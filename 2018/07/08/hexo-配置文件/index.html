@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- 
+ -->
+  
+  <title>hexo 配置文件 | ah-blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="hexo博客 上传到github1、安装一个插件1npm install hexo-deployer-git --save 2、ssh key要配置好3、配置_config.yml中有关deploy的部分：1234deploy:type: gitrepository: git@github.com:liuxianan&#x2F;liuxianan.github.io.gitbranch: mast">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hexo 配置文件">
+<meta property="og:url" content="http://yqzyanp.cn/2018/07/08/hexo-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/index.html">
+<meta property="og:site_name" content="ah-blog">
+<meta property="og:description" content="hexo博客 上传到github1、安装一个插件1npm install hexo-deployer-git --save 2、ssh key要配置好3、配置_config.yml中有关deploy的部分：1234deploy:type: gitrepository: git@github.com:liuxianan&#x2F;liuxianan.github.io.gitbranch: mast">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-07-08T09:28:07.000Z">
+<meta property="article:modified_time" content="2020-12-28T14:16:00.389Z">
+<meta property="article:author" content="ah">
+<meta property="article:tag" content="hexo">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <!--
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    -->
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+
+    <!-- <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">ah-blog</a>
+      </h1>
+      
+    </div> -->
+
+
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <!-- 菜单 -->
+        
+          <a class="main-nav-link" href="/">首页</a>          
+        
+          <a class="main-nav-link" href="/archives">档案</a>          
+        
+          <a class="main-nav-link" href="/about">关于</a>          
+        
+
+        <!-- tags 标签 -->
+        
+          <a class="main-nav-link" href="/tags/to-do">待办事项</a>    
+        
+          <a class="main-nav-link" href="/tags/plan-aim">计划-目标</a>    
+        
+          <a class="main-nav-link" href="/tags/trouble">问题</a>    
+        
+
+        <!-- 类别 _config.yml & header.ejs -->
+        
+
+
+      </nav>
+      <!-- <nav id="sub-nav"> -->
+        <!--  -->
+        <!-- <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav> -->
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yqzyanp.cn"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer h100">
+        <section id="main"><!-- 99999111 -->
+<article id="post-hexo-配置文件" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/07/08/hexo-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" class="article-date">
+  <time datetime="2018-07-08T09:28:07.000Z" itemprop="datePublished">2018-07-08</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%A1%86%E6%9E%B6/">框架</a>►<a class="article-category-link" href="/categories/%E6%A1%86%E6%9E%B6/%E5%8D%9A%E5%AE%A2%E6%A1%86%E6%9E%B6/">博客框架</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      hexo 配置文件
+    </h1>
+    <div id="ah_nav"></div>
+  
+
+      </header>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="hexo博客-上传到github"><a href="#hexo博客-上传到github" class="headerlink" title="hexo博客 上传到github"></a>hexo博客 上传到github</h2><h4 id="1、安装一个插件"><a href="#1、安装一个插件" class="headerlink" title="1、安装一个插件"></a>1、安装一个插件</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+<h4 id="2、ssh-key要配置好"><a href="#2、ssh-key要配置好" class="headerlink" title="2、ssh key要配置好"></a>2、<code>ssh key</code>要配置好</h4><h4 id="3、配置-config-yml中有关deploy的部分："><a href="#3、配置-config-yml中有关deploy的部分：" class="headerlink" title="3、配置_config.yml中有关deploy的部分："></a>3、配置_config.yml中有关deploy的部分：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">type: git</span><br><span class="line">repository: git@github.com:liuxianan&#x2F;liuxianan.github.io.git</span><br><span class="line">branch: master</span><br></pre></td></tr></table></figure>
+<h4 id="4、上传到github"><a href="#4、上传到github" class="headerlink" title="4、上传到github"></a>4、上传到github</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+
+<h2 id="主题配置文件-config-yml"><a href="#主题配置文件-config-yml" class="headerlink" title="主题配置文件 _config.yml"></a>主题配置文件 _config.yml</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br></pre></td><td class="code"><pre><span class="line">disqus:  <span class="comment">## Disqus评论 shortnam</span></span><br><span class="line">uyan: <span class="comment">## 友言评论 id</span></span><br><span class="line">livere: <span class="comment">## 来必力评论 data-uid</span></span><br><span class="line">changyan: <span class="comment">## Your changyan appid, e.g. cyrALsXc8</span></span><br><span class="line">changyan_conf: <span class="comment">## Your changyan conf, e.g. prod_d8a508c2825ab57eeb43e7c69bba0e8b</span></span><br><span class="line">gitment:</span><br><span class="line">  <span class="built_in">enable</span>: <span class="literal">false</span> <span class="comment">## If you want to use Gitment comment system please set the value to true.</span></span><br><span class="line">  owner: <span class="comment">## Your GitHub ID, e.g. username</span></span><br><span class="line">  repo: <span class="comment">## The repository to store your comments, make sure you're the repo's owner, e.g. imsun.github.io</span></span><br><span class="line">  client_id: <span class="comment">## GitHub client ID, e.g. 75752dafe7907a897619</span></span><br><span class="line">  client_secret: <span class="comment">## GitHub client secret, e.g. ec2fb9054972c891289640354993b662f4cccc50</span></span><br><span class="line">gitalk:</span><br><span class="line">  <span class="built_in">enable</span>: <span class="literal">false</span> <span class="comment">## If you want to use Gitment comment system please set the value to true.</span></span><br><span class="line">  owner:  <span class="comment">## Your GitHub ID, e.g. username</span></span><br><span class="line">  repo:  <span class="comment">## The repository to store your comments, make sure you're the repo's owner, e.g. gitalk.github.io</span></span><br><span class="line">  client_id:  <span class="comment">## GitHub client ID, e.g. 75752dafe7907a897619</span></span><br><span class="line">  client_secret:  <span class="comment">## GitHub client secret, e.g. ec2fb9054972c891289640354993b662f4cccc50</span></span><br><span class="line">  admin:  <span class="comment">## Github repo owner and collaborators, only these guys can initialize github issues.</span></span><br><span class="line">valine: <span class="comment">## https://valine.js.org</span></span><br><span class="line">  <span class="built_in">enable</span>: <span class="literal">false</span> <span class="comment">## If you want to use Valine comment system, please set the value to true.</span></span><br><span class="line">  appid: <span class="comment">## Your LeanCloud application App ID, e.g. pRBBL2JR4N7kLEGojrF0MsSs-gzGzoHsz</span></span><br><span class="line">  appkey: <span class="comment">## Your LeanCloud application App Key, e.g. tjczHpDfhjYDSYddzymYK1JJ</span></span><br><span class="line">  notify: <span class="literal">false</span> <span class="comment">## Mail notifier, see https://github.com/xCss/Valine/wiki/Valine-评论系统中的邮件提醒设置</span></span><br><span class="line">  verify: <span class="literal">false</span> <span class="comment">## Validation code.</span></span><br><span class="line">  placeholder: Just so so <span class="comment">## Comment box placeholders.</span></span><br><span class="line">  avatar: <span class="string">'mm'</span> <span class="comment">## Gravatar type, see https://github.com/xCss/Valine/wiki/avatar-setting-for-valine</span></span><br><span class="line">  pageSize: 10 <span class="comment">## Number of comments per page.</span></span><br><span class="line">  guest_info: nick,mail,link <span class="comment">## Attributes of reviewers.</span></span><br><span class="line"></span><br><span class="line">google_search: <span class="literal">true</span> <span class="comment">## Use Google search, true/false.</span></span><br><span class="line">baidu_search: <span class="literal">false</span> <span class="comment">## Use Baidu search, true/false.</span></span><br><span class="line">swiftype: <span class="comment">## Your swiftype_key, e.g. m7b11ZrsT8Me7gzApciT</span></span><br><span class="line">tinysou: <span class="comment">## Your tinysou_key, e.g. 4ac092ad8d749fdc6293</span></span><br><span class="line">self_search: <span class="literal">false</span> <span class="comment">## Use a jQuery-based local search engine, true/false.</span></span><br><span class="line">google_analytics: <span class="comment">## Your Google Analytics tracking id, e.g. UA-42425684-2</span></span><br><span class="line">baidu_analytics: <span class="comment">## Your Baidu Analytics tracking id, e.g. 8006843039519956000</span></span><br><span class="line">fancybox: <span class="literal">true</span> <span class="comment">## If you want to use fancybox please set the value to true.</span></span><br><span class="line">show_category_count: <span class="literal">false</span> <span class="comment">## If you want to show the count of categories in the sidebar widget please set the value to true.</span></span><br><span class="line">toc_number: <span class="literal">true</span> <span class="comment">## If you want to add list number to toc please set the value to true.</span></span><br><span class="line">shareto: <span class="literal">false</span> <span class="comment">## If you want to use the share button please set the value to true, and you must have hexo-helper-qrcode installed.</span></span><br><span class="line">busuanzi: <span class="literal">false</span> <span class="comment">## If you want to use Busuanzi page views please set the value to true.</span></span><br><span class="line">wordcount: <span class="literal">false</span> <span class="comment">## If you want to display the word counter and the reading time expected to spend of each post please set the value to true, and you must have hexo-wordcount installed.</span></span><br><span class="line">widgets_on_small_screens: <span class="literal">false</span> <span class="comment">## Set to true to enable widgets on small screens.</span></span><br><span class="line">canvas_nest:</span><br><span class="line">  <span class="built_in">enable</span>: <span class="literal">false</span> <span class="comment">## If you want to use dynamic background please set the value to true, you can also fill the following parameters to customize the dynamic effect, or just leave them blank to keep the default effect.</span></span><br><span class="line">  color: <span class="comment">## RGB value of the color, e.g. "100,99,98"</span></span><br><span class="line">  opacity: <span class="comment">## Transparency of lines, e.g. "0.7"</span></span><br><span class="line">  zIndex: <span class="comment">## The z-index property of the background, e.g. "-1"</span></span><br><span class="line">  count: <span class="comment">## Quantity of lines, e.g. "150"</span></span><br><span class="line">donate:</span><br><span class="line">  <span class="built_in">enable</span>: <span class="literal">false</span> <span class="comment">## If you want to display the donate button after each post, please set the value to true and fill the following items on your need. You can also enable donate button in a page by adding a "donate: true" item to the front-matter.</span></span><br><span class="line">  github: <span class="comment">## GitHub URL, e.g. https://github.com/Kaiyuan/donate-page</span></span><br><span class="line">  alipay_qr: <span class="comment">## Path of Alipay QRcode image, e.g. /img/AliPayQR.png</span></span><br><span class="line">  wechat_qr: <span class="comment">## Path of Wechat QRcode image, e.g. /img/WeChatQR.png</span></span><br><span class="line">  btc_qr: <span class="comment">## Path of Bitcoin QRcode image, e.g. /img/BTCQR.png</span></span><br><span class="line">  btc_key: <span class="comment">## Bitcoin key, e.g. 1KuK5eK2BLsqpsFVXXSBG5wbSAwZVadt6L</span></span><br><span class="line">  paypal_url: <span class="comment">## Paypal URL, e.g. https://www.paypal.me/tufu9441</span></span><br><span class="line">post_copyright:</span><br><span class="line">  <span class="built_in">enable</span>: <span class="literal">false</span> <span class="comment">## If you want to display the copyright info after each post, please set the value to true and fill the following items on your need.</span></span><br><span class="line">  author: <span class="comment">## Your author name, e.g. tufu9441</span></span><br><span class="line">  copyright_text: <span class="comment">## Your copyright text, e.g. The author owns the copyright, please indicate the source reproduced.</span></span><br><span class="line"></span><br><span class="line">menu:</span><br><span class="line">  - page: home</span><br><span class="line">    directory: .</span><br><span class="line">    icon: fa-home</span><br><span class="line">  - page: archive</span><br><span class="line">    directory: archives/</span><br><span class="line">    icon: fa-archive</span><br><span class="line">  - page: about</span><br><span class="line">    directory: about/</span><br><span class="line">    icon: fa-user</span><br><span class="line"><span class="comment">#  - page: rss</span></span><br><span class="line"><span class="comment">#    directory: atom.xml</span></span><br><span class="line"><span class="comment">#    icon: fa-rss</span></span><br><span class="line"></span><br><span class="line">widgets: <span class="comment">## Six widgets in sidebar provided: search, category, tag, recent_posts, rencent_comments and links.</span></span><br><span class="line">  - search</span><br><span class="line">  - category</span><br><span class="line">  - tag</span><br><span class="line">  - recent_posts</span><br><span class="line">  - recent_comments</span><br><span class="line">  - links</span><br><span class="line"></span><br><span class="line">links:</span><br><span class="line">  - title: site-name1</span><br><span class="line">    url: http://www.example1.com/</span><br><span class="line">  - title: site-name2</span><br><span class="line">    url: http://www.example2.com/</span><br><span class="line">  - title: site-name3</span><br><span class="line">    url: http://www.example3.com/</span><br><span class="line"></span><br><span class="line">timeline:</span><br><span class="line">  - num: 1</span><br><span class="line">    word: 2014/06/12-Start</span><br><span class="line">  - num: 2</span><br><span class="line">    word: 2014/11/29-XXX</span><br><span class="line">  - num: 3</span><br><span class="line">    word: 2015/02/18-DDD</span><br><span class="line">  - num: 4</span><br><span class="line">    word: More</span><br><span class="line"></span><br><span class="line"><span class="comment"># Static files</span></span><br><span class="line">js: js</span><br><span class="line">css: css</span><br><span class="line"></span><br><span class="line"><span class="comment"># Theme version</span></span><br><span class="line">version: 0.0.0</span><br></pre></td></tr></table></figure>
+
+<ul><li>fancybox - 是否启用<a href="http://fancyapps.com/fancybox/" target="_blank" rel="noopener">Fancybox</a>图片灯箱效果</li><li>disqus - <a href="https://disqus.com" target="_blank" rel="noopener">Disqus评论</a> shortnam</li><li>uyan - <a href="http://www.uyan.cc" target="_blank" rel="noopener">友言评论</a> id</li><li>livere - <a href="https://livere.com" target="_blank" rel="noopener">来必力评论</a> data-uid</li><li>changyan - <a href="http://changyan.kuaizhan.com" target="_blank" rel="noopener">畅言评论</a> appid</li><li>gitment - <a href="https://github.com/imsun/gitment" target="_blank" rel="noopener">Gitment评论</a>相关参数</li><li>gitalk - <a href="https://github.com/gitalk/gitalk" target="_blank" rel="noopener">Gitalk评论</a>相关参数</li><li>valine - <a href="https://valine.js.org" target="_blank" rel="noopener">Valine评论</a>相关参数</li><li>google_search - 默认使用Google搜索引擎</li><li>baidu_search - 若想使用百度搜索，将其设定为<code>true</code>。</li><li>swiftype - <a href="https://swiftype.com" target="_blank" rel="noopener">Swiftype</a> 站内搜索key</li><li>tinysou - <a href="http://tinysou.com" target="_blank" rel="noopener">微搜索</a> key</li><li>self_search - 基于jQuery的<a href="http://hahack.com/codes/local-search-engine-for-hexo" target="_blank" rel="noopener">本地搜索引擎</a>，需要安装<a href="https://github.com/PaicHyperionDev/hexo-generator-search" target="_blank" rel="noopener">hexo-generator-search</a>插件使用。</li><li>google_analytics - <a href="https://www.google.com/analytics/" target="_blank" rel="noopener">Google Analytics</a> 跟踪ID</li><li>baidu_analytics - <a href="http://tongji.baidu.com" target="_blank" rel="noopener">百度统计</a> 跟踪ID</li><li>show_category_count - 是否显示侧边栏分类数目</li><li>toc_number - 是否显示文章中目录列表自动编号</li><li>shareto - 是否使用分享按鈕，需要安装<a href="https://github.com/yscoder/hexo-helper-qrcode" target="_blank" rel="noopener">hexo-helper-qrcode</a>插件使用</li><li>busuanzi - 是否使用<a href="http://busuanzi.ibruce.info" target="_blank" rel="noopener">不蒜子</a>页面访问计数</li><li>widgets_on_small_screens - 是否在移动设备屏幕底部显示侧边栏</li><li><a href="https://github.com/hustcc/canvas-nest.js/blob/master/README-zh.md" target="_blank" rel="noopener">canvas_nest</a> - 是否使用canvas动态背景</li><li>donate - 是否启用捐赠按钮</li><li>menu - 自定义页面及菜单，依照已有格式填写。填写后请在<code>source</code>目录下建立相应名称的文件夹，并包含<code>index.md</code>文件，以正确显示页面。导航菜单中集成了<a href="http://fontawesome.io" target="_blank" rel="noopener">FontAwesome</a>图标字体，可以在<a href="http://fontawesome.io/icons/" target="_blank" rel="noopener">这里</a>选择新的图标，并按照相关说明使用。</li><li>widgets - 选择和排列希望使用的侧边栏小工具。</li><li>links - 友情链接，请依照格式填写。</li><li>timeline - 网站历史时间线，在页面<code>front-matter</code>中设置<code>layout: timeline</code>可显示。</li><li>Static files - 静态文件存储路径，方便设置CDN缓存。</li><li>Theme version - 主题版本，便于静态文件更新后刷新CDN缓存。</li></ul>
+
+
+      
+    </div>
+
+
+    <footer class="article-footer">
+      <a data-url="http://yqzyanp.cn/2018/07/08/hexo-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" data-id="ckjn0n1mj007ocopz8l5zgeyf" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/07/20/css-web-88888888-03/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          CSS/CSS3 Android和iOS的H5界面开发，对input的placeholder样式的设置
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/07/26/mysql/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">mysql</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        <!-- sidebar start -->
+        
+          <aside id="sidebar">
+
+
+  <!-- 标签云 -->
+  
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云<!--888--></h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android/" style="font-size: 16.67px;">Android</a> <a href="/tags/CSS-CSS3/" style="font-size: 18.33px;">CSS/CSS3</a> <a href="/tags/CSS-CSS3%E6%89%8B%E5%86%8C/" style="font-size: 10px;">CSS/CSS3手册</a> <a href="/tags/ESLint/" style="font-size: 10px;">ESLint</a> <a href="/tags/HTML-HTML5/" style="font-size: 16.67px;">HTML/HTML5</a> <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/MySQL/" style="font-size: 11.67px;">MySQL</a> <a href="/tags/RegExp/" style="font-size: 10px;">RegExp</a> <a href="/tags/SSH/" style="font-size: 10px;">SSH</a> <a href="/tags/VSCode/" style="font-size: 13.33px;">VSCode</a> <a href="/tags/Xshell/" style="font-size: 10px;">Xshell</a> <a href="/tags/adb/" style="font-size: 10px;">adb</a> <a href="/tags/git/" style="font-size: 13.33px;">git</a> <a href="/tags/hexo/" style="font-size: 13.33px;">hexo</a> <a href="/tags/less/" style="font-size: 11.67px;">less</a> <a href="/tags/mac/" style="font-size: 10px;">mac</a> <a href="/tags/markdown/" style="font-size: 11.67px;">markdown</a> <a href="/tags/moment-js/" style="font-size: 10px;">moment.js</a> <a href="/tags/mysql/" style="font-size: 16.67px;">mysql</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/node/" style="font-size: 18.33px;">node</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/nvm/" style="font-size: 10px;">nvm</a> <a href="/tags/plan-aim/" style="font-size: 10px;">plan-aim</a> <a href="/tags/to-do/" style="font-size: 11.67px;">to-do</a> <a href="/tags/trouble/" style="font-size: 11.67px;">trouble</a> <a href="/tags/vue/" style="font-size: 15px;">vue</a> <a href="/tags/vuex/" style="font-size: 10px;">vuex</a> <a href="/tags/win10/" style="font-size: 10px;">win10</a> <a href="/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8ECS/" style="font-size: 10px;">云服务器ECS</a> <a href="/tags/%E5%85%B6%E4%BB%96/" style="font-size: 10px;">其他</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 11.67px;">前端</a> <a href="/tags/%E5%B8%B8%E8%AF%86/" style="font-size: 10px;">常识</a> <a href="/tags/%E5%BC%80%E5%8F%91%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/" style="font-size: 10px;">开发中遇到的问题</a> <a href="/tags/%E5%BF%AB%E6%8D%B7%E9%94%AE/" style="font-size: 10px;">快捷键</a> <a href="/tags/%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/" style="font-size: 10px;">思维导图</a> <a href="/tags/%E6%96%AD%E8%A8%80%E5%BA%93/" style="font-size: 10px;">断言库</a> <a href="/tags/%E6%A1%86%E6%9E%B6/" style="font-size: 15px;">框架</a> <a href="/tags/%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8E/" style="font-size: 10px;">模板引擎</a> <a href="/tags/%E6%AF%92%E9%B8%A1%E6%B1%A4/" style="font-size: 10px;">毒鸡汤</a> <a href="/tags/%E6%B5%8B%E8%AF%95/" style="font-size: 10px;">测试</a> <a href="/tags/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/" style="font-size: 13.33px;">版本控制</a> <a href="/tags/%E7%AC%94%E8%AE%B0/" style="font-size: 11.67px;">笔记</a> <a href="/tags/%E8%8B%B1%E8%AF%AD/" style="font-size: 11.67px;">英语</a>
+    </div>
+  </div>
+
+
+   <!-- 标签 -->
+   
+   
+
+  <!-- 分类 -->
+  
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类<!--666--></h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B9%A6%E7%B1%8D/">书籍</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B9%A6%E7%B1%8D/JavaScript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BC%80%E5%8F%91%E5%AE%9E%E8%B7%B5/">JavaScript设计模式与开发实践</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%85%B6%E4%BB%96/">其他</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%85%B6%E4%BB%96/mac/">mac</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%85%B6%E4%BB%96/nginx/">nginx</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%85%B6%E4%BB%96/win10/">win10</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/CSS-CSS3/">CSS/CSS3</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/HTML-HTML5/">HTML/HTML5</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/JavaScript/">JavaScript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/JavaScript%E5%BA%93/">JavaScript库</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/JavaScript%E5%BA%93/moment-js/">moment.js</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/%E6%AD%A3%E5%88%99/">正则</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AE%A2%E6%88%B7%E7%AB%AF/">客户端</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AE%A2%E6%88%B7%E7%AB%AF/%E5%AE%89%E5%8D%93/">安卓</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/VSCode/">VSCode</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/git/">git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/markdown/">markdown</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/npm/">npm</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/nvm/">nvm</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%91%98%E5%BD%95/">摘录</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%91%98%E5%BD%95/%E5%B8%B8%E8%AF%86/">常识</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%91%98%E5%BD%95/%E6%AF%92%E9%B8%A1%E6%B1%A4/">毒鸡汤</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/">MySQL</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/mysql/">mysql</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9C%8D%E5%8A%A1%E7%AB%AF/">服务端</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9C%8D%E5%8A%A1%E7%AB%AF/node/">node</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%A1%86%E6%9E%B6/">框架</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%A1%86%E6%9E%B6/%E5%8D%9A%E5%AE%A2%E6%A1%86%E6%9E%B6/">博客框架</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%8B%B1%E8%AF%AD/">英语</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%8B%B1%E8%AF%AD/%E5%9F%BA%E7%A1%80/">基础</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%8B%B1%E8%AF%AD%E7%AC%94%E8%AE%B0/">英语笔记</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%8B%B1%E8%AF%AD%E7%AC%94%E8%AE%B0/Android/">Android</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%8B%B1%E8%AF%AD%E7%AC%94%E8%AE%B0/JavaScript/">JavaScript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%8B%B1%E8%AF%AD%E7%AC%94%E8%AE%B0/vue/">vue</a></li></ul></li></ul>
+    </div>
+  </div>
+
+
+
+ 
+
+
+  <!-- 归挡 -->
+  
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档<!--555--></h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">二月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">七月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/07/">七月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">十二月 2012</a></li></ul>
+    </div>
+  </div>
+
+
+
+  
+
+
+
+ 
+  
+
+    
+
+
+    
+      
+    
+    
+  
+
+    
+
+
+    
+      
+    
+    
+  
+
+    
+
+
+    
+      
+    
+    
+  
+
+    
+
+
+    
+      
+    
+    
+  
+</aside>
+        
+        <!-- sidebar end -->
+
+      </div>
+      <div id="scrollTop0">
+  顶
+</div>
+<style>
+  #scrollTop0{
+    width: 50px;
+    height: 50px;
+    position: fixed;
+    right: 15px;
+    bottom: 15px;
+    border: 1px solid #ededed;
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ccc;
+  }
+</style>
+
+<footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 ah<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  <!-- menu 菜单 -->
+  
+    <a class="mobile-nav-link" href="/">首页</a>
+  
+    <a class="mobile-nav-link" href="/archives">档案</a>
+  
+    <a class="mobile-nav-link" href="/about">关于</a>
+  
+
+  <!-- tags 标签 -->
+  
+    <a class="mobile-nav-link" href="/tags/to-do">待办事项</a>    
+  
+    <a class="mobile-nav-link" href="/tags/plan-aim">计划-目标</a>    
+  
+    <a class="mobile-nav-link" href="/tags/trouble">问题</a>    
+  
+
+  <!-- 类别 _config.yml & header.ejs -->
+  
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类<!--666--></h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B9%A6%E7%B1%8D/">书籍</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B9%A6%E7%B1%8D/JavaScript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BC%80%E5%8F%91%E5%AE%9E%E8%B7%B5/">JavaScript设计模式与开发实践</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%85%B6%E4%BB%96/">其他</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%85%B6%E4%BB%96/mac/">mac</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%85%B6%E4%BB%96/nginx/">nginx</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%85%B6%E4%BB%96/win10/">win10</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/CSS-CSS3/">CSS/CSS3</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/HTML-HTML5/">HTML/HTML5</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/JavaScript/">JavaScript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/JavaScript%E5%BA%93/">JavaScript库</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/JavaScript%E5%BA%93/moment-js/">moment.js</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/%E6%AD%A3%E5%88%99/">正则</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AE%A2%E6%88%B7%E7%AB%AF/">客户端</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AE%A2%E6%88%B7%E7%AB%AF/%E5%AE%89%E5%8D%93/">安卓</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/VSCode/">VSCode</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/git/">git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/markdown/">markdown</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/npm/">npm</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/nvm/">nvm</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%91%98%E5%BD%95/">摘录</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%91%98%E5%BD%95/%E5%B8%B8%E8%AF%86/">常识</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%91%98%E5%BD%95/%E6%AF%92%E9%B8%A1%E6%B1%A4/">毒鸡汤</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/">MySQL</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/mysql/">mysql</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9C%8D%E5%8A%A1%E7%AB%AF/">服务端</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9C%8D%E5%8A%A1%E7%AB%AF/node/">node</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%A1%86%E6%9E%B6/">框架</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%A1%86%E6%9E%B6/%E5%8D%9A%E5%AE%A2%E6%A1%86%E6%9E%B6/">博客框架</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%8B%B1%E8%AF%AD/">英语</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%8B%B1%E8%AF%AD/%E5%9F%BA%E7%A1%80/">基础</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%8B%B1%E8%AF%AD%E7%AC%94%E8%AE%B0/">英语笔记</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%8B%B1%E8%AF%AD%E7%AC%94%E8%AE%B0/Android/">Android</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%8B%B1%E8%AF%AD%E7%AC%94%E8%AE%B0/JavaScript/">JavaScript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%8B%B1%E8%AF%AD%E7%AC%94%E8%AE%B0/vue/">vue</a></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云<!--888--></h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android/" style="font-size: 16.67px;">Android</a> <a href="/tags/CSS-CSS3/" style="font-size: 18.33px;">CSS/CSS3</a> <a href="/tags/CSS-CSS3%E6%89%8B%E5%86%8C/" style="font-size: 10px;">CSS/CSS3手册</a> <a href="/tags/ESLint/" style="font-size: 10px;">ESLint</a> <a href="/tags/HTML-HTML5/" style="font-size: 16.67px;">HTML/HTML5</a> <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/MySQL/" style="font-size: 11.67px;">MySQL</a> <a href="/tags/RegExp/" style="font-size: 10px;">RegExp</a> <a href="/tags/SSH/" style="font-size: 10px;">SSH</a> <a href="/tags/VSCode/" style="font-size: 13.33px;">VSCode</a> <a href="/tags/Xshell/" style="font-size: 10px;">Xshell</a> <a href="/tags/adb/" style="font-size: 10px;">adb</a> <a href="/tags/git/" style="font-size: 13.33px;">git</a> <a href="/tags/hexo/" style="font-size: 13.33px;">hexo</a> <a href="/tags/less/" style="font-size: 11.67px;">less</a> <a href="/tags/mac/" style="font-size: 10px;">mac</a> <a href="/tags/markdown/" style="font-size: 11.67px;">markdown</a> <a href="/tags/moment-js/" style="font-size: 10px;">moment.js</a> <a href="/tags/mysql/" style="font-size: 16.67px;">mysql</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/node/" style="font-size: 18.33px;">node</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/nvm/" style="font-size: 10px;">nvm</a> <a href="/tags/plan-aim/" style="font-size: 10px;">plan-aim</a> <a href="/tags/to-do/" style="font-size: 11.67px;">to-do</a> <a href="/tags/trouble/" style="font-size: 11.67px;">trouble</a> <a href="/tags/vue/" style="font-size: 15px;">vue</a> <a href="/tags/vuex/" style="font-size: 10px;">vuex</a> <a href="/tags/win10/" style="font-size: 10px;">win10</a> <a href="/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8ECS/" style="font-size: 10px;">云服务器ECS</a> <a href="/tags/%E5%85%B6%E4%BB%96/" style="font-size: 10px;">其他</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 11.67px;">前端</a> <a href="/tags/%E5%B8%B8%E8%AF%86/" style="font-size: 10px;">常识</a> <a href="/tags/%E5%BC%80%E5%8F%91%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/" style="font-size: 10px;">开发中遇到的问题</a> <a href="/tags/%E5%BF%AB%E6%8D%B7%E9%94%AE/" style="font-size: 10px;">快捷键</a> <a href="/tags/%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/" style="font-size: 10px;">思维导图</a> <a href="/tags/%E6%96%AD%E8%A8%80%E5%BA%93/" style="font-size: 10px;">断言库</a> <a href="/tags/%E6%A1%86%E6%9E%B6/" style="font-size: 15px;">框架</a> <a href="/tags/%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8E/" style="font-size: 10px;">模板引擎</a> <a href="/tags/%E6%AF%92%E9%B8%A1%E6%B1%A4/" style="font-size: 10px;">毒鸡汤</a> <a href="/tags/%E6%B5%8B%E8%AF%95/" style="font-size: 10px;">测试</a> <a href="/tags/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/" style="font-size: 13.33px;">版本控制</a> <a href="/tags/%E7%AC%94%E8%AE%B0/" style="font-size: 11.67px;">笔记</a> <a href="/tags/%E8%8B%B1%E8%AF%AD/" style="font-size: 11.67px;">英语</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档<!--555--></h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">二月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">七月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/07/">七月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">十二月 2012</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/" rel="tag">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS-CSS3/" rel="tag">CSS/CSS3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS-CSS3%E6%89%8B%E5%86%8C/" rel="tag">CSS/CSS3手册</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ESLint/" rel="tag">ESLint</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML-HTML5/" rel="tag">HTML/HTML5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/" rel="tag">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RegExp/" rel="tag">RegExp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSH/" rel="tag">SSH</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VSCode/" rel="tag">VSCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Xshell/" rel="tag">Xshell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/adb/" rel="tag">adb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/less/" rel="tag">less</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mac/" rel="tag">mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/" rel="tag">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/moment-js/" rel="tag">moment.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/" rel="tag">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/" rel="tag">node</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm/" rel="tag">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nvm/" rel="tag">nvm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/plan-aim/" rel="tag">plan-aim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/to-do/" rel="tag">to-do</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/trouble/" rel="tag">trouble</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/" rel="tag">vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vuex/" rel="tag">vuex</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/win10/" rel="tag">win10</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8ECS/" rel="tag">云服务器ECS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%85%B6%E4%BB%96/" rel="tag">其他</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B8%B8%E8%AF%86/" rel="tag">常识</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BC%80%E5%8F%91%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/" rel="tag">开发中遇到的问题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BF%AB%E6%8D%B7%E9%94%AE/" rel="tag">快捷键</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/" rel="tag">思维导图</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%AD%E8%A8%80%E5%BA%93/" rel="tag">断言库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A1%86%E6%9E%B6/" rel="tag">框架</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8E/" rel="tag">模板引擎</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%AF%92%E9%B8%A1%E6%B1%A4/" rel="tag">毒鸡汤</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B5%8B%E8%AF%95/" rel="tag">测试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/" rel="tag">版本控制</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%8B%B1%E8%AF%AD/" rel="tag">英语</a></li></ul>
+    </div>
+  </div>
+
+
+  
+</nav>
+    
+
+
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+
+<script src="/js/playAudio.js"></script>
+
+
+
+
+
+
+<script src="/js/CryptoJS-core.js"></script>
+
+
+<script src="/js/CryptoJS-sha256.js"></script>
+
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
