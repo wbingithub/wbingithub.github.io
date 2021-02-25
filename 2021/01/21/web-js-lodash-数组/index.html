@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- 
+ -->
+  
+  <title>lodash - 数组 | ah-blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="_.chunk1_.chunk(array, [size&#x3D;1]) 将数组（array）拆分成多个 size 长度的区块，并将这些区块组成一个新数组。 如果array 无法被分割成全部等长的区块，那么最后剩余的元素将组成一个区块。 参数 array (Array): 需要处理的数组 [size&#x3D;1] (number): 每个数组区块的长度  返回 (Array): 返回一个包含拆分区块的新">
+<meta property="og:type" content="article">
+<meta property="og:title" content="lodash - 数组">
+<meta property="og:url" content="http://yqzyanp.cn/2021/01/21/web-js-lodash-%E6%95%B0%E7%BB%84/index.html">
+<meta property="og:site_name" content="ah-blog">
+<meta property="og:description" content="_.chunk1_.chunk(array, [size&#x3D;1]) 将数组（array）拆分成多个 size 长度的区块，并将这些区块组成一个新数组。 如果array 无法被分割成全部等长的区块，那么最后剩余的元素将组成一个区块。 参数 array (Array): 需要处理的数组 [size&#x3D;1] (number): 每个数组区块的长度  返回 (Array): 返回一个包含拆分区块的新">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-01-20T16:06:19.000Z">
+<meta property="article:modified_time" content="2021-01-26T11:40:35.618Z">
+<meta property="article:author" content="ah">
+<meta property="article:tag" content="Lodash">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <!--
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    -->
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+
+    <!-- <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">ah-blog</a>
+      </h1>
+      
+    </div> -->
+
+
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <!-- 菜单 -->
+        
+          <a class="main-nav-link" href="/">首页</a>          
+        
+          <a class="main-nav-link" href="/archives">档案</a>          
+        
+          <a class="main-nav-link" href="/about">关于</a>          
+        
+
+        <!-- tags 标签 -->
+        
+          <a class="main-nav-link" href="/tags/to-do">待办事项</a>    
+        
+          <a class="main-nav-link" href="/tags/plan-aim">计划-目标</a>    
+        
+          <a class="main-nav-link" href="/tags/trouble">问题</a>    
+        
+
+        <!-- 类别 _config.yml & header.ejs -->
+        
+
+
+      </nav>
+      <!-- <nav id="sub-nav"> -->
+        <!--  -->
+        <!-- <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav> -->
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yqzyanp.cn"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer h100">
+        <section id="main"><!-- 99999111 -->
+<article id="post-web-js-lodash-数组" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/01/21/web-js-lodash-%E6%95%B0%E7%BB%84/" class="article-date">
+  <time datetime="2021-01-20T16:06:19.000Z" itemprop="datePublished">2021-01-21</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>►<a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/JavaScript%E5%BA%93/">JavaScript库</a>►<a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/JavaScript%E5%BA%93/Lodash/">Lodash</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      lodash - 数组
+    </h1>
+    <div id="ah_nav"></div>
+  
+
+      </header>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="chunk"><a href="#chunk" class="headerlink" title="_.chunk"></a>_.chunk</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_.chunk(array, [size&#x3D;1])</span><br></pre></td></tr></table></figure>
+<p>将数组（array）拆分成多个 size 长度的区块，并将这些区块组成一个新数组。 如果array 无法被分割成全部等长的区块，那么最后剩余的元素将组成一个区块。</p>
+<h3 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h3><ul>
+<li>array (Array): 需要处理的数组</li>
+<li>[size=1] (number): 每个数组区块的长度</li>
+</ul>
+<h3 id="返回"><a href="#返回" class="headerlink" title="返回"></a>返回</h3><ul>
+<li>(Array): 返回一个包含拆分区块的新数组（注：相当于一个二维数组）。</li>
+</ul>
+<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">_.chunk([&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;], 2);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; [[&#39;a&#39;, &#39;b&#39;], [&#39;c&#39;, &#39;d&#39;]]</span><br><span class="line"> </span><br><span class="line">_.chunk([&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;], 3);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; [[&#39;a&#39;, &#39;b&#39;, &#39;c&#39;], [&#39;d&#39;]]</span><br></pre></td></tr></table></figure>
+
+<h2 id="compact"><a href="#compact" class="headerlink" title="_.compact"></a>_.compact</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_.compact(array)</span><br></pre></td></tr></table></figure>
+<p>创建一个新数组，包含原数组中所有的非假值元素。例如false, null,0, “”, undefined, 和 NaN 都是被认为是“假值”。</p>
+<h3 id="参数-1"><a href="#参数-1" class="headerlink" title="参数"></a>参数</h3><ul>
+<li>array (Array): 待处理的数组<h3 id="返回值"><a href="#返回值" class="headerlink" title="返回值"></a>返回值</h3></li>
+<li>(Array): 返回过滤掉假值的新数组。<h3 id="例子-1"><a href="#例子-1" class="headerlink" title="例子"></a>例子</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">_.compact([0, 1, false, 2, &#39;&#39;, 3]);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; [1, 2, 3]</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="concat"><a href="#concat" class="headerlink" title="_.concat"></a>_.concat</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_.concat(array, [values])</span><br></pre></td></tr></table></figure>
+<p>创建一个新数组，将array与任何数组 或 值连接在一起。</p>
+<h3 id="参数-2"><a href="#参数-2" class="headerlink" title="参数"></a>参数</h3><ul>
+<li>array (Array): 被连接的数组。</li>
+<li>[values] (…*): 连接的值。</li>
+</ul>
+<h3 id="返回值-1"><a href="#返回值-1" class="headerlink" title="返回值"></a>返回值</h3><ul>
+<li>(Array): 返回连接后的新数组。</li>
+</ul>
+<h3 id="例子-2"><a href="#例子-2" class="headerlink" title="例子"></a>例子</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var array &#x3D; [1];</span><br><span class="line">var other &#x3D; _.concat(array, 2, [3], [[4]]);</span><br><span class="line"> </span><br><span class="line">console.log(other);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; [1, 2, 3, [4]]</span><br><span class="line"> </span><br><span class="line">console.log(array);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; [1]</span><br></pre></td></tr></table></figure>
+
+<h2 id="difference"><a href="#difference" class="headerlink" title="_.difference"></a>_.difference</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_.difference(array, [values])</span><br></pre></td></tr></table></figure>
+<p>创建一个具有唯一array值的数组，每个值不包含在其他给定的数组中。（注：即创建一个新数组，这个数组中的值，为第一个数字（array 参数）排除了给定数组中的值。）该方法使用SameValueZero做相等比较。结果值的顺序是由第一个数组中的顺序确定。</p>
+<p>注意: 不像_.pullAll，这个方法会返回一个新数组。</p>
+<h3 id="参数-3"><a href="#参数-3" class="headerlink" title="参数"></a>参数</h3><ul>
+<li>array (Array): 要检查的数组。</li>
+<li>[values] (…Array): 排除的值。</li>
+</ul>
+<h3 id="返回值-2"><a href="#返回值-2" class="headerlink" title="返回值"></a>返回值</h3><ul>
+<li>(Array): 返回一个过滤值后的新数组。</li>
+</ul>
+<h3 id="例子-3"><a href="#例子-3" class="headerlink" title="例子"></a>例子</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">_.difference([3, 2, 1], [4, 2]);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; [3, 1]</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;_.difference([&#123;a:&quot;1&quot;,b:&quot;2&quot;&#125;,&#123;a:&quot;2&quot;,b:&quot;3&quot;&#125;], [&#123;a:&quot;1&quot;,b:&quot;2&quot;&#125;]);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; [&#123;a:&quot;1&quot;,b:&quot;2&quot;&#125;,&#123;a:&quot;2&quot;,b:&quot;3&quot;&#125;] XXXX</span><br></pre></td></tr></table></figure>
+
+<h2 id="differenceBy"><a href="#differenceBy" class="headerlink" title="_.differenceBy"></a>_.differenceBy</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_.differenceBy(array, [values], [iteratee&#x3D;_.identity])</span><br></pre></td></tr></table></figure>
+<p>这个方法类似_.difference ，除了它接受一个 iteratee （注：迭代器）， 调用array 和 values 中的每个元素以产生比较的标准。 结果值是从第一数组中选择。iteratee 会调用一个参数：(value)。（注：首先使用迭代器分别迭代array 和 values中的每个元素，返回的值作为比较值）。</p>
+<p>Note: 不像_.pullAllBy，这个方法会返回一个新数组。</p>
+<h3 id="引入版本"><a href="#引入版本" class="headerlink" title="引入版本"></a>引入版本</h3><p>4.0.0</p>
+<h3 id="参数-4"><a href="#参数-4" class="headerlink" title="参数"></a>参数</h3><p>array (Array): 要检查的数组。<br>[values] (…Array): 排除的值。<br>[iteratee=_.identity] (Array|Function|Object|string): iteratee 调用每个元素。</p>
+<h3 id="返回值-3"><a href="#返回值-3" class="headerlink" title="返回值"></a>返回值</h3><p>(Array): 返回一个过滤值后的新数组。</p>
+<h3 id="例子-4"><a href="#例子-4" class="headerlink" title="例子"></a>例子</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">_.differenceBy([3.1, 2.2, 1.3], [4.4, 2.5], Math.floor);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; [3.1, 1.3]</span><br><span class="line"> </span><br><span class="line">&#x2F;&#x2F; The &#96;_.property&#96; iteratee shorthand.</span><br><span class="line">_.differenceBy([&#123; &#39;x&#39;: 2 &#125;, &#123; &#39;x&#39;: 1 &#125;], [&#123; &#39;x&#39;: 1 &#125;], &#39;x&#39;);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; [&#123; &#39;x&#39;: 2 &#125;]</span><br></pre></td></tr></table></figure>
+
+<h2 id="differenceWith"><a href="#differenceWith" class="headerlink" title="_.differenceWith"></a>_.differenceWith</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_.differenceWith(array, [values], [comparator])</span><br></pre></td></tr></table></figure>
+<p>这个方法类似_.difference ，除了它接受一个 comparator （注：比较器），它调用比较array，values中的元素。 结果值是从第一数组中选择。comparator 调用参数有两个：(arrVal, othVal)。</p>
+<p>Note: 不像_.pullAllWith, 这个方法会返回一个新数组。</p>
+<h3 id="引入版本-1"><a href="#引入版本-1" class="headerlink" title="引入版本"></a>引入版本</h3><p>4.0.0</p>
+<h3 id="参数-5"><a href="#参数-5" class="headerlink" title="参数"></a>参数</h3><ul>
+<li>array (Array): 要检查的数组。</li>
+<li>[values] (…Array): 排除的值。</li>
+<li>[comparator] (Function): comparator 调用每个元素。</li>
+</ul>
+<h3 id="返回值-4"><a href="#返回值-4" class="headerlink" title="返回值"></a>返回值</h3><ul>
+<li>(Array): 返回一个过滤值后的新数组。</li>
+</ul>
+<h3 id="例子-5"><a href="#例子-5" class="headerlink" title="例子"></a>例子</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var objects &#x3D; [&#123; &#39;x&#39;: 1, &#39;y&#39;: 2 &#125;, &#123; &#39;x&#39;: 2, &#39;y&#39;: 1 &#125;];</span><br><span class="line"> </span><br><span class="line">_.differenceWith(objects, [&#123; &#39;x&#39;: 1, &#39;y&#39;: 2 &#125;], _.isEqual);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; [&#123; &#39;x&#39;: 2, &#39;y&#39;: 1 &#125;]</span><br></pre></td></tr></table></figure>
+
+<h2 id="drop"><a href="#drop" class="headerlink" title="_.drop"></a>_.drop</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_.drop(array, [n&#x3D;1])</span><br></pre></td></tr></table></figure>
+<p>创建一个切片数组，去除array前面的n个元素。（n默认值为1。）</p>
+<h3 id="引入版本-2"><a href="#引入版本-2" class="headerlink" title="引入版本"></a>引入版本</h3><p>0.5.0</p>
+<h3 id="参数-6"><a href="#参数-6" class="headerlink" title="参数"></a>参数</h3><ul>
+<li>array (Array): 要查询的数组。</li>
+<li>[n=1] (number): 要去除的元素个数。</li>
+</ul>
+<h3 id="返回值-5"><a href="#返回值-5" class="headerlink" title="返回值"></a>返回值</h3><ul>
+<li>(Array): 返回array剩余切片。</li>
+</ul>
+<h3 id="例子-6"><a href="#例子-6" class="headerlink" title="例子"></a>例子</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">_.drop([1, 2, 3]);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; [2, 3]</span><br><span class="line"> </span><br><span class="line">_.drop([1, 2, 3], 2);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; [3]</span><br><span class="line"> </span><br><span class="line">_.drop([1, 2, 3], 5);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; []</span><br><span class="line"> </span><br><span class="line">_.drop([1, 2, 3], 0);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; [1, 2, 3]</span><br></pre></td></tr></table></figure>
+
+<h2 id="dropRight"><a href="#dropRight" class="headerlink" title="_.dropRight"></a>_.dropRight</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_.dropRight(array, [n&#x3D;1])</span><br></pre></td></tr></table></figure>
+<p>创建一个切片数组，去除array尾部的n个元素。（n默认值为1。）</p>
+<h3 id="引入版本-3"><a href="#引入版本-3" class="headerlink" title="引入版本"></a>引入版本</h3><p>3.0.0</p>
+<h3 id="参数-7"><a href="#参数-7" class="headerlink" title="参数"></a>参数</h3><ul>
+<li>array (Array): 要查询的数组。</li>
+<li>[n=1] (number): 要去除的元素个数。</li>
+</ul>
+<h3 id="返回值-6"><a href="#返回值-6" class="headerlink" title="返回值"></a>返回值</h3><ul>
+<li>(Array): 返回array剩余切片。</li>
+</ul>
+<h3 id="例子-7"><a href="#例子-7" class="headerlink" title="例子"></a>例子</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">_.dropRight([1, 2, 3]);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; [1, 2]</span><br><span class="line"> </span><br><span class="line">_.dropRight([1, 2, 3], 2);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; [1]</span><br><span class="line"> </span><br><span class="line">_.dropRight([1, 2, 3], 5);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; []</span><br><span class="line"> </span><br><span class="line">_.dropRight([1, 2, 3], 0);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; [1, 2, 3]</span><br></pre></td></tr></table></figure>
+
+<h2 id="dropRightWhile"><a href="#dropRightWhile" class="headerlink" title="_.dropRightWhile"></a>_.dropRightWhile</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_.dropRightWhile(array, [predicate&#x3D;_.identity])</span><br></pre></td></tr></table></figure>
+<p>创建一个切片数组，去除array中从 predicate 返回假值开始到尾部的部分。predicate 会传入3个参数： (value, index, array)。</p>
+<h3 id="引入版本-4"><a href="#引入版本-4" class="headerlink" title="引入版本"></a>引入版本</h3><p>3.0.0</p>
+<h3 id="参数-8"><a href="#参数-8" class="headerlink" title="参数"></a>参数</h3><ul>
+<li>array (Array): 要查询的数组。</li>
+<li>[predicate=_.identity] (Function): 这个函数会在每一次迭代调用。</li>
+</ul>
+<h3 id="返回值-7"><a href="#返回值-7" class="headerlink" title="返回值"></a>返回值</h3><ul>
+<li>(Array): 返回array剩余切片。</li>
+</ul>
+<h3 id="例子-8"><a href="#例子-8" class="headerlink" title="例子"></a>例子</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">var users &#x3D; [</span><br><span class="line">  &#123; &#39;user&#39;: &#39;barney&#39;,  &#39;active&#39;: true &#125;,</span><br><span class="line">  &#123; &#39;user&#39;: &#39;fred&#39;,    &#39;active&#39;: false &#125;,</span><br><span class="line">  &#123; &#39;user&#39;: &#39;pebbles&#39;, &#39;active&#39;: false &#125;</span><br><span class="line">];</span><br><span class="line"> </span><br><span class="line">_.dropRightWhile(users, function(o) &#123; return !o.active; &#125;);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; [&#123; &#39;user&#39;: &#39;barney&#39;,  &#39;active&#39;: true ]</span><br><span class="line"> </span><br><span class="line">&#x2F;&#x2F; The &#96;_.matches&#96; iteratee shorthand.</span><br><span class="line">_.dropRightWhile(users, &#123; &#39;user&#39;: &#39;pebbles&#39;, &#39;active&#39;: false &#125;);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; [&#123; &#39;user&#39;: &#39;barney&#39;,  &#39;active&#39;: true &#125;,&#123; &#39;user&#39;: &#39;fred&#39;,    &#39;active&#39;: false &#125;]</span><br><span class="line"> </span><br><span class="line">&#x2F;&#x2F; The &#96;_.matchesProperty&#96; iteratee shorthand.</span><br><span class="line">_.dropRightWhile(users, [&#39;active&#39;, false]);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; [&#123; &#39;user&#39;: &#39;barney&#39;,  &#39;active&#39;: true ]</span><br><span class="line"> </span><br><span class="line">&#x2F;&#x2F; The &#96;_.property&#96; iteratee shorthand.</span><br><span class="line">_.dropRightWhile(users, &#39;active&#39;);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; [&#123; &#39;user&#39;: &#39;barney&#39;,  &#39;active&#39;: true &#125;,&#123; &#39;user&#39;: &#39;fred&#39;,    &#39;active&#39;: false &#125;,&#123; &#39;user&#39;: &#39;pebbles&#39;, &#39;active&#39;: false &#125;]</span><br></pre></td></tr></table></figure>
+
+<h2 id="dropWhile"><a href="#dropWhile" class="headerlink" title="_.dropWhile"></a>_.dropWhile</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_.dropWhile(array, [predicate&#x3D;_.identity])</span><br></pre></td></tr></table></figure>
+<p>创建一个切片数组，去除array中从起点开始到 predicate 返回假值结束部分。predicate 会传入3个参数： (value, index, array)。</p>
+<h3 id="引入版本-5"><a href="#引入版本-5" class="headerlink" title="引入版本"></a>引入版本</h3><p>3.0.0</p>
+<h3 id="参数-9"><a href="#参数-9" class="headerlink" title="参数"></a>参数</h3><ul>
+<li>array (Array): 要查询的数组。</li>
+<li>[predicate=_.identity] (Function): 这个函数会在每一次迭代调用。</li>
+</ul>
+<h3 id="返回值-8"><a href="#返回值-8" class="headerlink" title="返回值"></a>返回值</h3><ul>
+<li>(Array): 返回array剩余切片。</li>
+</ul>
+<h3 id="例子-9"><a href="#例子-9" class="headerlink" title="例子"></a>例子</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">var users &#x3D; [</span><br><span class="line">  &#123; &#39;user&#39;: &#39;barney&#39;,  &#39;active&#39;: false &#125;,</span><br><span class="line">  &#123; &#39;user&#39;: &#39;fred&#39;,    &#39;active&#39;: false &#125;,</span><br><span class="line">  &#123; &#39;user&#39;: &#39;pebbles&#39;, &#39;active&#39;: true &#125;</span><br><span class="line">];</span><br><span class="line"> </span><br><span class="line">_.dropWhile(users, function(o) &#123; return !o.active; &#125;);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; objects for [&#39;pebbles&#39;]</span><br><span class="line"> </span><br><span class="line">&#x2F;&#x2F; The &#96;_.matches&#96; iteratee shorthand.</span><br><span class="line">_.dropWhile(users, &#123; &#39;user&#39;: &#39;barney&#39;, &#39;active&#39;: false &#125;);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; objects for [&#39;fred&#39;, &#39;pebbles&#39;]</span><br><span class="line"> </span><br><span class="line">&#x2F;&#x2F; The &#96;_.matchesProperty&#96; iteratee shorthand.</span><br><span class="line">_.dropWhile(users, [&#39;active&#39;, false]);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; objects for [&#39;pebbles&#39;]</span><br><span class="line"> </span><br><span class="line">&#x2F;&#x2F; The &#96;_.property&#96; iteratee shorthand.</span><br><span class="line">_.dropWhile(users, &#39;active&#39;);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; objects for [&#39;barney&#39;, &#39;fred&#39;, &#39;pebbles&#39;]</span><br></pre></td></tr></table></figure>
+
+<h2 id="fill"><a href="#fill" class="headerlink" title="_.fill"></a>_.fill</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_.fill(array, value, [start&#x3D;0], [end&#x3D;array.length])</span><br></pre></td></tr></table></figure>
+<p>使用 value 值来填充（替换） array，从start位置开始, 到end位置结束（但不包含end位置）。</p>
+<p>Note: 这个方法会改变 array（注：不是创建新数组）。</p>
+<h3 id="引入版本-6"><a href="#引入版本-6" class="headerlink" title="引入版本"></a>引入版本</h3><p>3.2.0</p>
+<h3 id="参数-10"><a href="#参数-10" class="headerlink" title="参数"></a>参数</h3><ul>
+<li>array (Array): 要填充改变的数组。</li>
+<li>value (*): 填充给 array 的值。</li>
+<li>[start=0] (number): 开始位置（默认0）。</li>
+<li>[end=array.length] (number):结束位置（默认array.length）。<h3 id="返回值-9"><a href="#返回值-9" class="headerlink" title="返回值"></a>返回值</h3></li>
+<li>(Array): 返回 array。</li>
+</ul>
+<h3 id="例子-10"><a href="#例子-10" class="headerlink" title="例子"></a>例子</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var array &#x3D; [1, 2, 3];</span><br><span class="line"> </span><br><span class="line">_.fill(array, &#39;a&#39;);</span><br><span class="line">console.log(array);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; [&#39;a&#39;, &#39;a&#39;, &#39;a&#39;]</span><br><span class="line"> </span><br><span class="line">_.fill(Array(3), 2);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; [2, 2, 2]</span><br><span class="line"> </span><br><span class="line">_.fill([4, 6, 8, 10], &#39;*&#39;, 1, 3);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; [4, &#39;*&#39;, &#39;*&#39;, 10]</span><br></pre></td></tr></table></figure>
+
+<h2 id="findIndex"><a href="#findIndex" class="headerlink" title="_.findIndex"></a>_.findIndex</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_.findIndex(array, [predicate&#x3D;_.identity], [fromIndex&#x3D;0])</span><br></pre></td></tr></table></figure>
+<p>该方法类似_.find，区别是该方法返回第一个通过 predicate 判断为真值的元素的索引值（index），而不是元素本身。</p>
+<h3 id="引入版本-7"><a href="#引入版本-7" class="headerlink" title="引入版本"></a>引入版本</h3><p>1.1.0</p>
+<h3 id="参数-11"><a href="#参数-11" class="headerlink" title="参数"></a>参数</h3><ul>
+<li>array (Array): 要搜索的数组。</li>
+<li>[predicate=_.identity] (Array|Function|Object|string): 这个函数会在每一次迭代调用。</li>
+<li>[fromIndex=0] (number): The index to search from.<h3 id="返回值-10"><a href="#返回值-10" class="headerlink" title="返回值"></a>返回值</h3></li>
+<li>(number): 返回找到元素的 索引值（index），否则返回 -1。</li>
+</ul>
+<h3 id="例子-11"><a href="#例子-11" class="headerlink" title="例子"></a>例子</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">var users &#x3D; [</span><br><span class="line">  &#123; &#39;user&#39;: &#39;barney&#39;,  &#39;active&#39;: false &#125;,</span><br><span class="line">  &#123; &#39;user&#39;: &#39;fred&#39;,    &#39;active&#39;: false &#125;,</span><br><span class="line">  &#123; &#39;user&#39;: &#39;pebbles&#39;, &#39;active&#39;: true &#125;</span><br><span class="line">];</span><br><span class="line"> </span><br><span class="line">_.findIndex(users, function(o) &#123; return o.user &#x3D;&#x3D; &#39;barney&#39;; &#125;);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; 0</span><br><span class="line"> </span><br><span class="line">&#x2F;&#x2F; The &#96;_.matches&#96; iteratee shorthand.</span><br><span class="line">_.findIndex(users, &#123; &#39;user&#39;: &#39;fred&#39;, &#39;active&#39;: false &#125;);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; 1</span><br><span class="line"> </span><br><span class="line">&#x2F;&#x2F; The &#96;_.matchesProperty&#96; iteratee shorthand.</span><br><span class="line">_.findIndex(users, [&#39;active&#39;, false]);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; 0</span><br><span class="line"> </span><br><span class="line">&#x2F;&#x2F; The &#96;_.property&#96; iteratee shorthand.</span><br><span class="line">_.findIndex(users, &#39;active&#39;);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; 2</span><br></pre></td></tr></table></figure>
+
+<h2 id="findLastIndex"><a href="#findLastIndex" class="headerlink" title="_.findLastIndex"></a>_.findLastIndex</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_.findLastIndex(array, [predicate&#x3D;_.identity], [fromIndex&#x3D;array.length-1])</span><br></pre></td></tr></table></figure>
+<p>这个方式类似_.findIndex， 区别是它是从右到左的迭代集合array中的元素。</p>
+<h3 id="引入版本-8"><a href="#引入版本-8" class="headerlink" title="引入版本"></a>引入版本</h3><p>2.0.0</p>
+<h3 id="参数-12"><a href="#参数-12" class="headerlink" title="参数"></a>参数</h3><ul>
+<li>array (Array): 要搜索的数组。</li>
+<li>[predicate=_.identity] (Array|Function|Object|string): 这个函数会在每一次迭代调用。</li>
+<li>[fromIndex=array.length-1] (number): The index to search from.<h3 id="返回值-11"><a href="#返回值-11" class="headerlink" title="返回值"></a>返回值</h3></li>
+<li>(number): 返回找到元素的 索引值（index），否则返回 -1。</li>
+</ul>
+<h3 id="例子-12"><a href="#例子-12" class="headerlink" title="例子"></a>例子</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">var users &#x3D; [</span><br><span class="line">  &#123; &#39;user&#39;: &#39;barney&#39;,  &#39;active&#39;: true &#125;,</span><br><span class="line">  &#123; &#39;user&#39;: &#39;fred&#39;,    &#39;active&#39;: false &#125;,</span><br><span class="line">  &#123; &#39;user&#39;: &#39;pebbles&#39;, &#39;active&#39;: false &#125;</span><br><span class="line">];</span><br><span class="line"> </span><br><span class="line">_.findLastIndex(users, function(o) &#123; return o.user &#x3D;&#x3D; &#39;pebbles&#39;; &#125;);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; 2</span><br><span class="line"> </span><br><span class="line">&#x2F;&#x2F; The &#96;_.matches&#96; iteratee shorthand.</span><br><span class="line">_.findLastIndex(users, &#123; &#39;user&#39;: &#39;barney&#39;, &#39;active&#39;: true &#125;);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; 0</span><br><span class="line"> </span><br><span class="line">&#x2F;&#x2F; The &#96;_.matchesProperty&#96; iteratee shorthand.</span><br><span class="line">_.findLastIndex(users, [&#39;active&#39;, false]);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; 2</span><br><span class="line"> </span><br><span class="line">&#x2F;&#x2F; The &#96;_.property&#96; iteratee shorthand.</span><br><span class="line">_.findLastIndex(users, &#39;active&#39;);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; 0</span><br></pre></td></tr></table></figure>
+
+<h2 id="head-别名-first"><a href="#head-别名-first" class="headerlink" title="_.head [ 别名 ( _.first ) ]"></a>_.head [ 别名 ( _.first ) ]</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">_.head(array)</span><br><span class="line">_.first(array)</span><br></pre></td></tr></table></figure>
+<p>获取数组 array 的第一个元素。</p>
+<h3 id="引入版本-9"><a href="#引入版本-9" class="headerlink" title="引入版本"></a>引入版本</h3><p>0.1.0</p>
+<h3 id="别名"><a href="#别名" class="headerlink" title="别名"></a>别名</h3><p>_.first</p>
+<h3 id="参数-13"><a href="#参数-13" class="headerlink" title="参数"></a>参数</h3><ul>
+<li>array (Array): 要查询的数组。</li>
+</ul>
+<h3 id="返回值-12"><a href="#返回值-12" class="headerlink" title="返回值"></a>返回值</h3><ul>
+<li>(*): 返回数组 array的第一个元素。</li>
+</ul>
+<h3 id="例子-13"><a href="#例子-13" class="headerlink" title="例子"></a>例子</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">_.head([1, 2, 3]);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; 1</span><br><span class="line"> </span><br><span class="line">_.head([]);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; undefined</span><br></pre></td></tr></table></figure>
+
+<h2 id="flatten"><a href="#flatten" class="headerlink" title="_.flatten"></a>_.flatten</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_.flatten(array)</span><br></pre></td></tr></table></figure>
+<p>减少一级array嵌套深度。</p>
+<h3 id="引入版本-10"><a href="#引入版本-10" class="headerlink" title="引入版本"></a>引入版本</h3><p>0.1.0</p>
+<h3 id="参数-14"><a href="#参数-14" class="headerlink" title="参数"></a>参数</h3><ul>
+<li>array (Array): 需要减少嵌套层级的数组。<h3 id="返回值-13"><a href="#返回值-13" class="headerlink" title="返回值"></a>返回值</h3></li>
+<li>(Array): 返回减少嵌套层级后的新数组。</li>
+</ul>
+<h3 id="例子-14"><a href="#例子-14" class="headerlink" title="例子"></a>例子</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">_.flatten([1, [2, [3, [4]], 5]]);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; [1, 2, [3, [4]], 5]</span><br></pre></td></tr></table></figure>
+
+<h2 id="flattenDeep"><a href="#flattenDeep" class="headerlink" title="_.flattenDeep"></a>_.flattenDeep</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_.flattenDeep(array)</span><br></pre></td></tr></table></figure>
+<p>将array递归为一维数组。</p>
+<h3 id="引入版本-11"><a href="#引入版本-11" class="headerlink" title="引入版本"></a>引入版本</h3><p>3.0.0</p>
+<h3 id="参数-15"><a href="#参数-15" class="headerlink" title="参数"></a>参数</h3><ul>
+<li>array (Array): 需要处理的数组。</li>
+</ul>
+<h3 id="返回值-14"><a href="#返回值-14" class="headerlink" title="返回值"></a>返回值</h3><ul>
+<li>(Array): 返回一个的新一维数组。</li>
+</ul>
+<h3 id="例子-15"><a href="#例子-15" class="headerlink" title="例子"></a>例子</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">_.flattenDeep([1, [2, [3, [4]], 5]]);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; [1, 2, 3, 4, 5]</span><br></pre></td></tr></table></figure>
+<h2 id="flattenDepth"><a href="#flattenDepth" class="headerlink" title="_.flattenDepth"></a>_.flattenDepth</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_.flattenDepth(array, [depth&#x3D;1])</span><br></pre></td></tr></table></figure>
+<p>根据 depth 递归减少 array 的嵌套层级</p>
+<h3 id="引入版本-12"><a href="#引入版本-12" class="headerlink" title="引入版本"></a>引入版本</h3><p>4.4.0</p>
+<h3 id="参数-16"><a href="#参数-16" class="headerlink" title="参数"></a>参数</h3><ul>
+<li>array (Array): 需要减少嵌套层级的数组。</li>
+<li>[depth=1] (number):最多减少的嵌套层级数。<h3 id="返回值-15"><a href="#返回值-15" class="headerlink" title="返回值"></a>返回值</h3></li>
+<li>(Array): 返回减少嵌套层级后的新数组。</li>
+</ul>
+<h3 id="例子-16"><a href="#例子-16" class="headerlink" title="例子"></a>例子</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var array &#x3D; [1, [2, [3, [4]], 5]];</span><br><span class="line"> </span><br><span class="line">_.flattenDepth(array, 1);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; [1, 2, [3, [4]], 5]</span><br><span class="line"> </span><br><span class="line">_.flattenDepth(array, 2);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; [1, 2, 3, [4], 5]</span><br></pre></td></tr></table></figure>
+
+<h2 id="fromPairs"><a href="#fromPairs" class="headerlink" title="_.fromPairs"></a>_.fromPairs</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_.fromPairs(pairs)</span><br></pre></td></tr></table></figure>
+<p>与_.toPairs正好相反；这个方法返回一个由键值对pairs构成的对象。</p>
+<h3 id="引入版本-13"><a href="#引入版本-13" class="headerlink" title="引入版本"></a>引入版本</h3><p>4.0.0</p>
+<h3 id="参数-17"><a href="#参数-17" class="headerlink" title="参数"></a>参数</h3><ul>
+<li>pairs (Array): 键值对pairs。</li>
+</ul>
+<h3 id="返回值-16"><a href="#返回值-16" class="headerlink" title="返回值"></a>返回值</h3><ul>
+<li>(Object): 返回一个新对象。</li>
+</ul>
+<h3 id="例子-17"><a href="#例子-17" class="headerlink" title="例子"></a>例子</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">_.fromPairs([[&#39;fred&#39;, 30], [&#39;barney&#39;, 40]]);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; &#123; &#39;fred&#39;: 30, &#39;barney&#39;: 40 &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="indexOf"><a href="#indexOf" class="headerlink" title="_.indexOf"></a>_.indexOf</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_.indexOf(array, value, [fromIndex&#x3D;0])</span><br></pre></td></tr></table></figure>
+<p>使用SameValueZero 等值比较，返回首次 value 在数组array中被找到的 索引值， 如果 fromIndex 为负值，将从数组array尾端索引进行匹配。</p>
+<h3 id="引入版本-14"><a href="#引入版本-14" class="headerlink" title="引入版本"></a>引入版本</h3><p>0.1.0</p>
+<h3 id="参数-18"><a href="#参数-18" class="headerlink" title="参数"></a>参数</h3><ul>
+<li>array (Array): 需要查找的数组。</li>
+<li>value (*): 需要查找的值。</li>
+<li>[fromIndex=0] (number): 开始查询的位置。<h3 id="返回值-17"><a href="#返回值-17" class="headerlink" title="返回值"></a>返回值</h3></li>
+<li>(number): 返回 值value在数组中的索引位置, 没有找到为返回-1。</li>
+</ul>
+<h3 id="例子-18"><a href="#例子-18" class="headerlink" title="例子"></a>例子</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">_.indexOf([1, 2, 1, 2], 2);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; 1</span><br><span class="line"> </span><br><span class="line">&#x2F;&#x2F; Search from the &#96;fromIndex&#96;.</span><br><span class="line">_.indexOf([1, 2, 1, 2], 2, 2);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; 3</span><br></pre></td></tr></table></figure>
+
+<h2 id="initial"><a href="#initial" class="headerlink" title="_.initial"></a>_.initial</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_.initial(array)</span><br></pre></td></tr></table></figure>
+<p>获取数组array中除了最后一个元素之外的所有元素（注：去除数组array中的最后一个元素）。</p>
+<h3 id="引入版本-15"><a href="#引入版本-15" class="headerlink" title="引入版本"></a>引入版本</h3><p>0.1.0</p>
+<h3 id="参数-19"><a href="#参数-19" class="headerlink" title="参数"></a>参数</h3><ul>
+<li>array (Array): 要查询的数组。</li>
+</ul>
+<h3 id="返回值-18"><a href="#返回值-18" class="headerlink" title="返回值"></a>返回值</h3><ul>
+<li>(Array): 返回截取后的数组array。</li>
+</ul>
+<h3 id="例子-19"><a href="#例子-19" class="headerlink" title="例子"></a>例子</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">_.initial([1, 2, 3]);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; [1, 2]</span><br></pre></td></tr></table></figure>
+
+<h2 id="intersection"><a href="#intersection" class="headerlink" title="_.intersection"></a>_.intersection</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_.intersection([arrays])</span><br></pre></td></tr></table></figure>
+<p>创建唯一值的数组，这个数组包含所有给定数组都包含的元素，使用SameValueZero进行相等性比较。（注：可以理解为给定数组的交集）</p>
+<h3 id="引入版本-16"><a href="#引入版本-16" class="headerlink" title="引入版本"></a>引入版本</h3><p>0.1.0</p>
+<h3 id="参数-20"><a href="#参数-20" class="headerlink" title="参数"></a>参数</h3><ul>
+<li>[arrays] (…Array): 待检查的数组。<h3 id="返回值-19"><a href="#返回值-19" class="headerlink" title="返回值"></a>返回值</h3></li>
+<li>(Array): 返回一个包含所有传入数组交集元素的新数组。</li>
+</ul>
+<h3 id="例子-20"><a href="#例子-20" class="headerlink" title="例子"></a>例子</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">_.intersection([2, 1], [4, 2], [1, 2]);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; [2]</span><br></pre></td></tr></table></figure>
+
+<h2 id="intersectionBy"><a href="#intersectionBy" class="headerlink" title="_.intersectionBy"></a>_.intersectionBy</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_.intersectionBy([arrays], [iteratee&#x3D;_.identity])</span><br></pre></td></tr></table></figure>
+<p>这个方法类似_.intersection，区别是它接受一个 iteratee 调用每一个arrays的每个值以产生一个值，通过产生的值进行了比较。结果值是从第一数组中选择。iteratee 会传入一个参数：(value)。</p>
+<h3 id="引入版本-17"><a href="#引入版本-17" class="headerlink" title="引入版本"></a>引入版本</h3><p>4.0.0</p>
+<h3 id="参数-21"><a href="#参数-21" class="headerlink" title="参数"></a>参数</h3><ul>
+<li>[arrays] (…Array): 待检查的数组。</li>
+<li>[iteratee=_.identity] (Array|Function|Object|string): iteratee（迭代器）调用每个元素。<h3 id="返回值-20"><a href="#返回值-20" class="headerlink" title="返回值"></a>返回值</h3></li>
+<li>(Array): 返回一个包含所有传入数组交集元素的新数组。</li>
+</ul>
+<h3 id="例子-21"><a href="#例子-21" class="headerlink" title="例子"></a>例子</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">_.intersectionBy([2.1, 1.2], [4.3, 2.4], Math.floor);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; [2.1]</span><br><span class="line"> </span><br><span class="line">&#x2F;&#x2F; The &#96;_.property&#96; iteratee shorthand.</span><br><span class="line">_.intersectionBy([&#123; &#39;x&#39;: 1 &#125;], [&#123; &#39;x&#39;: 2 &#125;, &#123; &#39;x&#39;: 1 &#125;], &#39;x&#39;);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; [&#123; &#39;x&#39;: 1 &#125;]</span><br></pre></td></tr></table></figure>
+
+<h2 id="intersectionWith"><a href="#intersectionWith" class="headerlink" title="_.intersectionWith"></a>_.intersectionWith</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_.intersectionWith([arrays], [comparator])</span><br></pre></td></tr></table></figure>
+<p>这个方法类似_.intersection，区别是它接受一个 comparator 调用比较arrays中的元素。结果值是从第一数组中选择。comparator 会传入两个参数：(arrVal, othVal)。</p>
+<h3 id="引入版本-18"><a href="#引入版本-18" class="headerlink" title="引入版本"></a>引入版本</h3><p>4.0.0</p>
+<h3 id="参数-22"><a href="#参数-22" class="headerlink" title="参数"></a>参数</h3><p>[arrays] (…Array): 待检查的数组。<br>[comparator] (Function): comparator（比较器）调用每个元素。</p>
+<h3 id="返回值-21"><a href="#返回值-21" class="headerlink" title="返回值"></a>返回值</h3><p>(Array): 返回一个包含所有传入数组交集元素的新数组。</p>
+<h3 id="例子-22"><a href="#例子-22" class="headerlink" title="例子"></a>例子</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var objects &#x3D; [&#123; &#39;x&#39;: 1, &#39;y&#39;: 2 &#125;, &#123; &#39;x&#39;: 2, &#39;y&#39;: 1 &#125;];</span><br><span class="line">var others &#x3D; [&#123; &#39;x&#39;: 1, &#39;y&#39;: 1 &#125;, &#123; &#39;x&#39;: 1, &#39;y&#39;: 2 &#125;];</span><br><span class="line"> </span><br><span class="line">_.intersectionWith(objects, others, _.isEqual);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; [&#123; &#39;x&#39;: 1, &#39;y&#39;: 2 &#125;]</span><br></pre></td></tr></table></figure>
+
+<h2 id="join"><a href="#join" class="headerlink" title="_.join"></a>_.join</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_.join(array, [separator&#x3D;&#39;,&#39;])</span><br></pre></td></tr></table></figure>
+<p>将 array 中的所有元素转换为由 separator 分隔的字符串。</p>
+<h3 id="引入版本-19"><a href="#引入版本-19" class="headerlink" title="引入版本"></a>引入版本</h3><p>4.0.0</p>
+<h3 id="参数-23"><a href="#参数-23" class="headerlink" title="参数"></a>参数</h3><p>array (Array): 要转换的数组。<br>[separator=’,’] (string): 分隔元素。</p>
+<h3 id="返回值-22"><a href="#返回值-22" class="headerlink" title="返回值"></a>返回值</h3><p>(string): 返回连接字符串。</p>
+<h3 id="例子-23"><a href="#例子-23" class="headerlink" title="例子"></a>例子</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">_.join([&#39;a&#39;, &#39;b&#39;, &#39;c&#39;], &#39;~&#39;);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; &#39;a~b~c&#39;</span><br></pre></td></tr></table></figure>
+
+<h2 id="last"><a href="#last" class="headerlink" title="_.last"></a>_.last</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_.last(array)</span><br></pre></td></tr></table></figure>
+<p>获取array中的最后一个元素。</p>
+<h3 id="引入版本-20"><a href="#引入版本-20" class="headerlink" title="引入版本"></a>引入版本</h3><p>0.1.0</p>
+<h3 id="参数-24"><a href="#参数-24" class="headerlink" title="参数"></a>参数</h3><p>array (Array): 要检索的数组。</p>
+<h3 id="返回值-23"><a href="#返回值-23" class="headerlink" title="返回值"></a>返回值</h3><p>(*): 返回array中的最后一个元素</p>
+<h3 id="例子-24"><a href="#例子-24" class="headerlink" title="例子"></a>例子</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">_.last([1, 2, 3]);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; 3</span><br></pre></td></tr></table></figure>
+
+<h2 id="lastIndexOf"><a href="#lastIndexOf" class="headerlink" title="_.lastIndexOf"></a>_.lastIndexOf</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_.lastIndexOf(array, value, [fromIndex&#x3D;array.length-1])</span><br></pre></td></tr></table></figure>
+<p>这个方法类似_.indexOf ，区别是它是从右到左遍历array的元素。</p>
+<h3 id="引入版本-21"><a href="#引入版本-21" class="headerlink" title="引入版本"></a>引入版本</h3><p>0.1.0</p>
+<h3 id="参数-25"><a href="#参数-25" class="headerlink" title="参数"></a>参数</h3><ul>
+<li>array (Array): 要搜索的数组。</li>
+<li>value (*): 要搜索的值。</li>
+<li>[fromIndex=array.length-1] (number): 开始搜索的索引值。</li>
+</ul>
+<h3 id="返回值-24"><a href="#返回值-24" class="headerlink" title="返回值"></a>返回值</h3><ul>
+<li>(number): 返回匹配值的索引值，否则返回 -1。</li>
+</ul>
+<h3 id="例子-25"><a href="#例子-25" class="headerlink" title="例子"></a>例子</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">_.lastIndexOf([1, 2, 1, 2], 2);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; 3</span><br><span class="line"> </span><br><span class="line">&#x2F;&#x2F; Search from the &#96;fromIndex&#96;.</span><br><span class="line">_.lastIndexOf([1, 2, 1, 2], 2, 2);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; 1</span><br></pre></td></tr></table></figure>
+
+<h2 id="nth"><a href="#nth" class="headerlink" title="_.nth"></a>_.nth</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_.nth(array, [n&#x3D;0])</span><br></pre></td></tr></table></figure>
+<p>获取array数组的第n个元素。如果n为负数，则返回从数组结尾开始的第n个元素。</p>
+<h3 id="引入版本-22"><a href="#引入版本-22" class="headerlink" title="引入版本"></a>引入版本</h3><p>4.11.0</p>
+<h3 id="参数-26"><a href="#参数-26" class="headerlink" title="参数"></a>参数</h3><p>array (Array): 要查询的数组。<br>[n=0] (number): 要返回元素的索引值。</p>
+<h3 id="返回值-25"><a href="#返回值-25" class="headerlink" title="返回值"></a>返回值</h3><p>(*): 获取array数组的第n个元素。</p>
+<h3 id="例子-26"><a href="#例子-26" class="headerlink" title="例子"></a>例子</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var array &#x3D; [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;];</span><br><span class="line"> </span><br><span class="line">_.nth(array, 1);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; &#39;b&#39;</span><br><span class="line"> </span><br><span class="line">_.nth(array, -2);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; &#39;c&#39;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="pull"><a href="#pull" class="headerlink" title="_.pull"></a>_.pull</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_.pull(array, [values])</span><br></pre></td></tr></table></figure>
+<p>移除数组array中所有和给定值相等的元素，使用SameValueZero 进行全等比较。</p>
+<p>注意： 和<em>.without 方法不同，这个方法会改变数组。使用</em>.remove 从一个数组中移除元素。</p>
+<h3 id="引入版本-23"><a href="#引入版本-23" class="headerlink" title="引入版本"></a>引入版本</h3><p>2.0.0</p>
+<h3 id="参数-27"><a href="#参数-27" class="headerlink" title="参数"></a>参数</h3><p>array (Array): 要修改的数组。<br>[values] (…*): 要删除的值。</p>
+<h3 id="返回值-26"><a href="#返回值-26" class="headerlink" title="返回值"></a>返回值</h3><p>(Array): 返回 array.</p>
+<h3 id="例子-27"><a href="#例子-27" class="headerlink" title="例子"></a>例子</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var array &#x3D; [1, 2, 3, 1, 2, 3];</span><br><span class="line"> </span><br><span class="line">_.pull(array, 2, 3);</span><br><span class="line">console.log(array);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; [1, 1]</span><br></pre></td></tr></table></figure>
+
+<h2 id="pullAll"><a href="#pullAll" class="headerlink" title="_.pullAll"></a>_.pullAll</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_.pullAll(array, values)</span><br></pre></td></tr></table></figure>
+<p>这个方法类似_.pull，区别是这个方法接收一个要移除值的数组。</p>
+<p>Note: 不同于_.difference, 这个方法会改变数组 array。</p>
+<h3 id="引入版本-24"><a href="#引入版本-24" class="headerlink" title="引入版本"></a>引入版本</h3><p>4.0.0</p>
+<h3 id="参数-28"><a href="#参数-28" class="headerlink" title="参数"></a>参数</h3><p>array (Array): 要修改的数组。<br>values (Array): 要移除值的数组。</p>
+<h3 id="返回值-27"><a href="#返回值-27" class="headerlink" title="返回值"></a>返回值</h3><p>(Array): 返回 array。</p>
+<h3 id="例子-28"><a href="#例子-28" class="headerlink" title="例子"></a>例子</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var array &#x3D; [1, 2, 3, 1, 2, 3];</span><br><span class="line"> </span><br><span class="line">_.pullAll(array, [2, 3]);</span><br><span class="line">console.log(array);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; [1, 1]</span><br></pre></td></tr></table></figure>
+
+<h2 id="pullAllBy"><a href="#pullAllBy" class="headerlink" title="_.pullAllBy"></a>_.pullAllBy</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_.pullAllBy(array, values, [iteratee&#x3D;_.identity])</span><br></pre></td></tr></table></figure>
+<p>这个方法类似于_.pullAll ，区别是这个方法接受一个 iteratee（迭代函数） 调用 array 和 values的每个值以产生一个值，通过产生的值进行了比较。iteratee 会传入一个参数： (value)。</p>
+<p>Note: 不同于_.differenceBy, 这个方法会改变数组 array。</p>
+<h3 id="引入版本-25"><a href="#引入版本-25" class="headerlink" title="引入版本"></a>引入版本</h3><p>4.0.0</p>
+<h3 id="参数-29"><a href="#参数-29" class="headerlink" title="参数"></a>参数</h3><p>array (Array): 要修改的数组。<br>values (Array): 要移除值的数组。<br>[iteratee=_.identity] (Array|Function|Object|string): iteratee（迭代器）调用每个元素。</p>
+<h3 id="返回值-28"><a href="#返回值-28" class="headerlink" title="返回值"></a>返回值</h3><p>(Array): 返回 array.</p>
+<h3 id="例子-29"><a href="#例子-29" class="headerlink" title="例子"></a>例子</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var array &#x3D; [&#123; &#39;x&#39;: 1 &#125;, &#123; &#39;x&#39;: 2 &#125;, &#123; &#39;x&#39;: 3 &#125;, &#123; &#39;x&#39;: 1 &#125;];</span><br><span class="line"> </span><br><span class="line">_.pullAllBy(array, [&#123; &#39;x&#39;: 1 &#125;, &#123; &#39;x&#39;: 3 &#125;], &#39;x&#39;);</span><br><span class="line">console.log(array);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; [&#123; &#39;x&#39;: 2 &#125;]</span><br></pre></td></tr></table></figure>
+
+<h2 id="pullAllWith"><a href="#pullAllWith" class="headerlink" title="_.pullAllWith"></a>_.pullAllWith</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_.pullAllWith(array, values, [comparator])</span><br></pre></td></tr></table></figure>
+<p>这个方法类似于_.pullAll，区别是这个方法接受 comparator 调用array中的元素和values比较。comparator 会传入两个参数：(arrVal, othVal)。</p>
+<p>注意: 和_.differenceWith 不同, 这个方法会改变数组 array。</p>
+<h3 id="引入版本-26"><a href="#引入版本-26" class="headerlink" title="引入版本"></a>引入版本</h3><p>4.6.0</p>
+<h3 id="参数-30"><a href="#参数-30" class="headerlink" title="参数"></a>参数</h3><p>array (Array): 要修改的数组。<br>values (Array): 要移除值的数组。<br>[comparator] (Function): comparator（比较器）调用每个元素。</p>
+<h3 id="返回值-29"><a href="#返回值-29" class="headerlink" title="返回值"></a>返回值</h3><p>(Array): 返回 array。</p>
+<h3 id="例子-30"><a href="#例子-30" class="headerlink" title="例子"></a>例子</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">var array &#x3D; [&#123; &#39;x&#39;: 1, &#39;y&#39;: 2 &#125;, &#123; &#39;x&#39;: 3, &#39;y&#39;: 4 &#125;, &#123; &#39;x&#39;: 3, &#39;y&#39;: 4 ,&#39;z&#39;:7&#125;];</span><br><span class="line"> </span><br><span class="line">_.pullAllWith(array, [&#123; &#39;x&#39;: 3, &#39;y&#39;: 4 &#125;], _.isEqual);</span><br><span class="line">console.log(array);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; [&#123; &#39;x&#39;: 1, &#39;y&#39;: 2 &#125;, &#123; &#39;x&#39;: 3, &#39;y&#39;: 4 ,&#39;z&#39;:7 &#125;]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">var array &#x3D; [&#123; &#39;x&#39;: 1, &#39;y&#39;: 2 &#125;, &#123; &#39;x&#39;: 3, &#39;y&#39;: 4 &#125;, &#123; &#39;x&#39;: 3, &#39;y&#39;: 4 ,&#39;z&#39;:7&#125;, &#123; &#39;x&#39;: 3, &#39;y&#39;: 7&#125;];</span><br><span class="line"> </span><br><span class="line">_.pullAllWith(array, [&#123; &#39;x&#39;: 3, &#39;y&#39;: 4 &#125;], function(obj1,obj2)&#123;</span><br><span class="line">  console.log(obj1)</span><br><span class="line">  console.log(obj2)</span><br><span class="line">  console.log(&quot;*****&quot;)</span><br><span class="line"></span><br><span class="line">  let result &#x3D; false;</span><br><span class="line">  if( obj1.x &#x3D;&#x3D;&#x3D;  obj2.x &amp;&amp; obj1.y &#x3D;&#x3D;&#x3D;  obj2.y )&#123;</span><br><span class="line">    result &#x3D; true;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  return result</span><br><span class="line">&#125;);</span><br><span class="line">console.log(array);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; [&#123; &#39;x&#39;: 1, &#39;y&#39;: 2 &#125;, &#123; &#39;x&#39;: 3, &#39;y&#39;: 7&#125;]</span><br></pre></td></tr></table></figure>
+
+<h2 id="pullAt"><a href="#pullAt" class="headerlink" title="_.pullAt"></a>_.pullAt</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_.pullAt(array, [indexes])</span><br></pre></td></tr></table></figure>
+<p>根据索引 indexes，移除array中对应的元素，并返回被移除元素的数组。</p>
+<p>Note: 和_.at不同, 这个方法会改变数组 array。</p>
+<h3 id="引入版本-27"><a href="#引入版本-27" class="headerlink" title="引入版本"></a>引入版本</h3><p>3.0.0</p>
+<h3 id="参数-31"><a href="#参数-31" class="headerlink" title="参数"></a>参数</h3><p>array (Array): 要修改的数组。<br>[indexes] (…(number|number[])): 要移除元素的索引。</p>
+<h3 id="返回值-30"><a href="#返回值-30" class="headerlink" title="返回值"></a>返回值</h3><p>(Array): 返回移除元素组成的新数组。</p>
+<h3 id="例子-31"><a href="#例子-31" class="headerlink" title="例子"></a>例子</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var array &#x3D; [5, 10, 15, 20];</span><br><span class="line">var evens &#x3D; _.pullAt(array, 1, 3);</span><br><span class="line"> </span><br><span class="line">console.log(array);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; [5, 15]</span><br><span class="line"> </span><br><span class="line">console.log(evens);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; [10, 20]</span><br></pre></td></tr></table></figure>
+
+<h2 id="remove"><a href="#remove" class="headerlink" title="_.remove"></a>_.remove</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_.remove(array, [predicate&#x3D;_.identity])</span><br></pre></td></tr></table></figure>
+<p>移除数组中predicate（断言）返回为真值的所有元素，并返回移除元素组成的数组。predicate（断言） 会传入3个参数： (value, index, array)。</p>
+<p>Note: 和<em>.filter不同, 这个方法会改变数组 array。使用</em>.pull来根据提供的value值从数组中移除元素。</p>
+<h3 id="添加版本"><a href="#添加版本" class="headerlink" title="添加版本"></a>添加版本</h3><p>2.0.0</p>
+<h3 id="参数-32"><a href="#参数-32" class="headerlink" title="参数"></a>参数</h3><p>array (Array): 要修改的数组。<br>[predicate=_.identity] (Array|Function|Object|string): 每次迭代调用的函数。</p>
+<h3 id="返回-1"><a href="#返回-1" class="headerlink" title="返回"></a>返回</h3><p>(Array): 返回移除元素组成的新数组。</p>
+<h3 id="例子-32"><a href="#例子-32" class="headerlink" title="例子"></a>例子</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var array &#x3D; [1, 2, 3, 4];</span><br><span class="line">var evens &#x3D; _.remove(array, function(n) &#123;</span><br><span class="line">  return n % 2 &#x3D;&#x3D; 0;</span><br><span class="line">&#125;);</span><br><span class="line"> </span><br><span class="line">console.log(array);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; [1, 3]</span><br><span class="line"> </span><br><span class="line">console.log(evens);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; [2, 4]</span><br></pre></td></tr></table></figure>
+
+<h2 id="reverse"><a href="#reverse" class="headerlink" title="_.reverse"></a>_.reverse</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_.reverse(array)</span><br></pre></td></tr></table></figure>
+<p>反转array，使得第一个元素变为最后一个元素，第二个元素变为倒数第二个元素，依次类推。</p>
+<p>Note: 这个方法会改变原数组 array，基于Array#reverse.</p>
+<h3 id="添加版本-1"><a href="#添加版本-1" class="headerlink" title="添加版本"></a>添加版本</h3><p>4.0.0</p>
+<h3 id="参数-33"><a href="#参数-33" class="headerlink" title="参数"></a>参数</h3><p>array (Array): 要修改的数组。</p>
+<h3 id="返回-2"><a href="#返回-2" class="headerlink" title="返回"></a>返回</h3><p>(Array): 返回 array.</p>
+<h3 id="例子-33"><a href="#例子-33" class="headerlink" title="例子"></a>例子</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var array &#x3D; [1, 2, 3];</span><br><span class="line"> </span><br><span class="line">_.reverse(array);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; [3, 2, 1]</span><br><span class="line"> </span><br><span class="line">console.log(array);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; [3, 2, 1]</span><br></pre></td></tr></table></figure>
+
+<h2 id="slice"><a href="#slice" class="headerlink" title="_.slice"></a>_.slice</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_.slice(array, [start&#x3D;0], [end&#x3D;array.length])</span><br></pre></td></tr></table></figure>
+<p>裁剪数组array，从 start 位置开始到end结束，但不包括 end 本身的位置。</p>
+<p>Note: 这个方法用于代替Array#slice 来确保数组正确返回。</p>
+<h3 id="添加版本-2"><a href="#添加版本-2" class="headerlink" title="添加版本"></a>添加版本</h3><p>3.0.0</p>
+<h3 id="参数-34"><a href="#参数-34" class="headerlink" title="参数"></a>参数</h3><p>array (Array): 要裁剪数组。<br>[start=0] (number): 开始位置。<br>[end=array.length] (number): 结束位置。</p>
+<h3 id="返回-3"><a href="#返回-3" class="headerlink" title="返回"></a>返回</h3><p>(Array): 返回 数组array 裁剪部分的新数组。</p>
+<h3 id="例子-34"><a href="#例子-34" class="headerlink" title="例子"></a>例子</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var array &#x3D; [1, 2, 3];</span><br><span class="line"> </span><br><span class="line">console.log( _.slice(array,1,2) );</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; [ 2]</span><br><span class="line"> </span><br><span class="line">console.log( array );</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; [1, 2, 3]</span><br></pre></td></tr></table></figure>
+
+<h2 id="sortedIndex"><a href="#sortedIndex" class="headerlink" title="_.sortedIndex"></a>_.sortedIndex</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_.sortedIndex(array, value)</span><br></pre></td></tr></table></figure>
+<p>使用二进制的方式检索来决定 value值 应该插入到数组中 尽可能小的索引位置，以保证array的排序。</p>
+<p>添加版本<br>0.1.0</p>
+<p>参数<br>array (Array): 要检查的排序数组。<br>value (*): 要评估的值。<br>返回<br>(number): 返回 value值 应该在数组array中插入的索引位置 index。</p>
+<p>例子</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">_.sortedIndex([30, 50], 40);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; 1</span><br></pre></td></tr></table></figure>
+
+<h2 id="sortedIndexBy"><a href="#sortedIndexBy" class="headerlink" title="_.sortedIndexBy"></a>_.sortedIndexBy</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_.sortedIndexBy(array, value, [iteratee&#x3D;_.identity])</span><br></pre></td></tr></table></figure>
+<p>这个方法类似_.sortedIndex ，除了它接受一个 iteratee （迭代函数），调用每一个数组（array）元素，返回结果和value 值比较来计算排序。iteratee 会传入一个参数：(value)。</p>
+<p>添加版本<br>4.0.0</p>
+<p>参数<br>array (Array): 要检查的排序数组。<br>value (*): 要评估的值。<br>[iteratee=_.identity] (Array|Function|Object|string): 迭代函数，调用每个元素。<br>返回<br>(number): 返回 value值 应该在数组array中插入的索引位置 index。</p>
+<p>例子</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var objects &#x3D; [&#123; &#39;x&#39;: 4 &#125;, &#123; &#39;x&#39;: 5 &#125;];</span><br><span class="line"> </span><br><span class="line">_.sortedIndexBy(objects, &#123; &#39;x&#39;: 4 &#125;, function(o) &#123; return o.x; &#125;);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; 0</span><br><span class="line"> </span><br><span class="line">&#x2F;&#x2F; The &#96;_.property&#96; iteratee shorthand.</span><br><span class="line">_.sortedIndexBy(objects, &#123; &#39;x&#39;: 4 &#125;, &#39;x&#39;);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; 0</span><br></pre></td></tr></table></figure>
+
+<h2 id="sortedIndexOf"><a href="#sortedIndexOf" class="headerlink" title="_.sortedIndexOf"></a>_.sortedIndexOf</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_.sortedIndexOf(array, value)</span><br></pre></td></tr></table></figure>
+<p>这个方法类似_.indexOf，除了它是在已经排序的数组array上执行二进制检索。</p>
+<p>添加版本<br>4.0.0</p>
+<p>参数<br>array (Array): 要搜索的数组。<br>value (*): 搜索的值。<br>返回<br>(number): 返回匹配值的索引位置，否则返回 -1。</p>
+<p>例子</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">_.sortedIndexOf([4, 5, 5, 5, 6], 5);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; 1</span><br></pre></td></tr></table></figure>
+
+<h2 id="sortedLastIndex"><a href="#sortedLastIndex" class="headerlink" title="_.sortedLastIndex"></a>_.sortedLastIndex</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_.sortedLastIndex(array, value)</span><br></pre></td></tr></table></figure>
+<p>此方法类似于_.sortedIndex，除了 它返回 value值 在 array 中尽可能大的索引位置（index）。</p>
+<p>添加版本<br>3.0.0</p>
+<p>参数<br>array (Array): 要检查的排序数组。<br>value (*): 要评估的值。<br>返回<br>(number): 返回 value值 应该在数组array中插入的索引位置 index。</p>
+<p>例子</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">_.sortedLastIndex([4, 5, 5, 5, 6], 5);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; 4</span><br></pre></td></tr></table></figure>
+
+<h2 id="sortedLastIndexBy"><a href="#sortedLastIndexBy" class="headerlink" title="_.sortedLastIndexBy"></a>_.sortedLastIndexBy</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_.sortedLastIndexBy(array, value, [iteratee&#x3D;_.identity])</span><br></pre></td></tr></table></figure>
+<p>这个方法类似_.sortedLastIndex ，除了它接受一个 iteratee （迭代函数），调用每一个数组（array）元素，返回结果和value 值比较来计算排序。iteratee 会传入一个参数：(value)。</p>
+<p>添加版本<br>4.0.0</p>
+<p>参数<br>array (Array): 要检查的排序数组。<br>value (*): 要评估的值。<br>[iteratee=_.identity] (Array|Function|Object|string): 迭代函数，调用每个元素。<br>返回<br>(number): 返回 value值 应该在数组array中插入的索引位置 index。</p>
+<p>例子</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var objects &#x3D; [&#123; &#39;x&#39;: 4 &#125;, &#123; &#39;x&#39;: 5 &#125;];</span><br><span class="line"> </span><br><span class="line">_.sortedLastIndexBy(objects, &#123; &#39;x&#39;: 4 &#125;, function(o) &#123; return o.x; &#125;);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; 1</span><br><span class="line"> </span><br><span class="line">&#x2F;&#x2F; The &#96;_.property&#96; iteratee shorthand.</span><br><span class="line">_.sortedLastIndexBy(objects, &#123; &#39;x&#39;: 4 &#125;, &#39;x&#39;);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; 1</span><br></pre></td></tr></table></figure>
+
+<h2 id="sortedLastIndexOf"><a href="#sortedLastIndexOf" class="headerlink" title="_.sortedLastIndexOf"></a>_.sortedLastIndexOf</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_.sortedLastIndexOf(array, value)</span><br></pre></td></tr></table></figure>
+<p>这个方法类似_.lastIndexOf，除了它是在已经排序的数组array上执行二进制检索。</p>
+<p>添加版本<br>4.0.0</p>
+<p>参数<br>array (Array): 要搜索的数组。<br>value (*): 搜索的值。<br>返回<br>(number): 返回匹配值的索引位置，否则返回 -1。</p>
+<p>例子</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">_.sortedLastIndexOf([4, 5, 5, 5, 6], 5);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; 3</span><br></pre></td></tr></table></figure>
+
+<h2 id="sortedUniq"><a href="#sortedUniq" class="headerlink" title="_.sortedUniq"></a>_.sortedUniq</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_.sortedUniq(array)</span><br></pre></td></tr></table></figure>
+<p>这个方法类似_.uniq，除了它会优化排序数组。</p>
+<p>添加版本<br>4.0.0</p>
+<p>参数<br>array (Array): 要检查的数组。<br>返回<br>(Array): 返回一个新的不重复的数组。</p>
+<p>例子</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">_.sortedUniq([1, 1, 2]);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; [1, 2]</span><br></pre></td></tr></table></figure>
+<h2 id="sortedUniqB"><a href="#sortedUniqB" class="headerlink" title="_.sortedUniqB"></a>_.sortedUniqB</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_.sortedUniqBy(array, [iteratee])</span><br></pre></td></tr></table></figure>
+<p>这个方法类似_.uniqBy，除了它会优化排序数组。</p>
+<p>添加版本<br>4.0.0</p>
+<p>参数<br>array (Array): 要检查的数组。<br>[iteratee] (Function): 迭代函数，调用每个元素。<br>返回<br>(Array): 返回一个新的不重复的数组。</p>
+<p>例子</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">_.sortedUniqBy([1.1, 1.2, 2.3, 2.4], Math.floor);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; [1.1, 2.3]</span><br></pre></td></tr></table></figure>
+
+<h2 id="tail"><a href="#tail" class="headerlink" title="_.tail"></a>_.tail</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_.tail(array)</span><br></pre></td></tr></table></figure>
+<p>获取除了array数组第一个元素以外的全部元素。</p>
+<p>添加版本<br>4.0.0</p>
+<p>参数<br>array (Array): 要检索的数组。<br>返回<br>(Array): 返回 array 数组的切片（除了array数组第一个元素以外的全部元素）。</p>
+<p>例子</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">_.tail([1, 2, 3]);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; [2, 3]</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="take"><a href="#take" class="headerlink" title="_.take"></a>_.take</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_.take(array, [n&#x3D;1])</span><br></pre></td></tr></table></figure>
+<p>创建一个数组切片，从array数组的起始元素开始提取n个元素。</p>
+<p>添加版本<br>0.1.0</p>
+<p>参数<br>array (Array): 要检索的数组。<br>[n=1] (number): 要提取的元素个数。<br>返回<br>(Array): 返回 array 数组的切片（从起始元素开始n个元素）。</p>
+<p>例子</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">_.take([1, 2, 3]);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; [1]</span><br><span class="line"> </span><br><span class="line">_.take([1, 2, 3], 2);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; [1, 2]</span><br><span class="line"> </span><br><span class="line">_.take([1, 2, 3], 5);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; [1, 2, 3]</span><br><span class="line"> </span><br><span class="line">_.take([1, 2, 3], 0);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; []</span><br></pre></td></tr></table></figure>
+
+<h2 id="takeRight"><a href="#takeRight" class="headerlink" title="_.takeRight"></a>_.takeRight</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_.takeRight(array, [n&#x3D;1])</span><br></pre></td></tr></table></figure>
+<p>创建一个数组切片，从array数组的最后一个元素开始提取n个元素。</p>
+<h3 id="添加版本-3"><a href="#添加版本-3" class="headerlink" title="添加版本"></a>添加版本</h3><p>3.0.0</p>
+<h3 id="参数-35"><a href="#参数-35" class="headerlink" title="参数"></a>参数</h3><p>array (Array): 要检索的数组。<br>[n=1] (number): 要提取的元素个数。<br>返回<br>(Array): 返回 array 数组的切片（从结尾元素开始n个元素）。</p>
+<h3 id="例子-35"><a href="#例子-35" class="headerlink" title="例子"></a>例子</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">_.takeRight([1, 2, 3]);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; [3]</span><br><span class="line"> </span><br><span class="line">_.takeRight([1, 2, 3], 2);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; [2, 3]</span><br><span class="line"> </span><br><span class="line">_.takeRight([1, 2, 3], 5);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; [1, 2, 3]</span><br><span class="line"> </span><br><span class="line">_.takeRight([1, 2, 3], 0);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; []</span><br></pre></td></tr></table></figure>
+
+<h2 id="takeRightWhile"><a href="#takeRightWhile" class="headerlink" title="_.takeRightWhile"></a>_.takeRightWhile</h2><p><em>.takeRightWhile(array, [predicate=</em>.identity])#<br>从array数组的最后一个元素开始提取元素，直到 predicate 返回假值。predicate 会传入三个参数： (value, index, array)。</p>
+<p>添加版本<br>3.0.0</p>
+<p>参数<br>array (Array): 要检索的数组。<br>[predicate=_.identity] (Array|Function|Object|string): 每次迭代调用的函数。<br>返回<br>(Array): 返回 array 数组的切片。</p>
+<p>例子</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">var users &#x3D; [</span><br><span class="line">  &#123; &#39;user&#39;: &#39;barney&#39;,  &#39;active&#39;: true &#125;,</span><br><span class="line">  &#123; &#39;user&#39;: &#39;fred&#39;,    &#39;active&#39;: false &#125;,</span><br><span class="line">  &#123; &#39;user&#39;: &#39;pebbles&#39;, &#39;active&#39;: false &#125;</span><br><span class="line">];</span><br><span class="line"> </span><br><span class="line">_.takeRightWhile(users, function(o) &#123; return !o.active; &#125;);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; objects for [&#39;fred&#39;, &#39;pebbles&#39;]</span><br><span class="line"> </span><br><span class="line">&#x2F;&#x2F; The &#96;_.matches&#96; iteratee shorthand.</span><br><span class="line">_.takeRightWhile(users, &#123; &#39;user&#39;: &#39;pebbles&#39;, &#39;active&#39;: false &#125;);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; objects for [&#39;pebbles&#39;]</span><br><span class="line"> </span><br><span class="line">&#x2F;&#x2F; The &#96;_.matchesProperty&#96; iteratee shorthand.</span><br><span class="line">_.takeRightWhile(users, [&#39;active&#39;, false]);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; objects for [&#39;fred&#39;, &#39;pebbles&#39;]</span><br><span class="line"> </span><br><span class="line">&#x2F;&#x2F; The &#96;_.property&#96; iteratee shorthand.</span><br><span class="line">_.takeRightWhile(users, &#39;active&#39;);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; []</span><br></pre></td></tr></table></figure>
+<h2 id="takeWhile"><a href="#takeWhile" class="headerlink" title="_.takeWhile"></a>_.takeWhile</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_.takeWhile(array, [predicate&#x3D;_.identity])</span><br></pre></td></tr></table></figure>
+<p>从array数组的起始元素开始提取元素，，直到 predicate 返回假值。predicate 会传入三个参数： (value, index, array)。</p>
+<p>添加版本<br>3.0.0</p>
+<p>参数<br>array (Array): 需要处理的数组<br>[predicate=_.identity] (Array|Function|Object|string): 每次迭代调用的函数。<br>返回<br>(Array): 返回 array 数组的切片。</p>
+<p>例子</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">var users &#x3D; [</span><br><span class="line">  &#123; &#39;user&#39;: &#39;barney&#39;,  &#39;active&#39;: false &#125;,</span><br><span class="line">  &#123; &#39;user&#39;: &#39;fred&#39;,    &#39;active&#39;: false&#125;,</span><br><span class="line">  &#123; &#39;user&#39;: &#39;pebbles&#39;, &#39;active&#39;: true &#125;</span><br><span class="line">];</span><br><span class="line"> </span><br><span class="line">_.takeWhile(users, function(o) &#123; return !o.active; &#125;);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; objects for [&#39;barney&#39;, &#39;fred&#39;]</span><br><span class="line"> </span><br><span class="line">&#x2F;&#x2F; The &#96;_.matches&#96; iteratee shorthand.</span><br><span class="line">_.takeWhile(users, &#123; &#39;user&#39;: &#39;barney&#39;, &#39;active&#39;: false &#125;);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; objects for [&#39;barney&#39;]</span><br><span class="line"> </span><br><span class="line">&#x2F;&#x2F; The &#96;_.matchesProperty&#96; iteratee shorthand.</span><br><span class="line">_.takeWhile(users, [&#39;active&#39;, false]);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; objects for [&#39;barney&#39;, &#39;fred&#39;]</span><br><span class="line"> </span><br><span class="line">&#x2F;&#x2F; The &#96;_.property&#96; iteratee shorthand.</span><br><span class="line">_.takeWhile(users, &#39;active&#39;);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; []</span><br></pre></td></tr></table></figure>
+
+<h2 id="union"><a href="#union" class="headerlink" title="_.union"></a>_.union</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_.union([arrays])</span><br></pre></td></tr></table></figure>
+<p>创建一个按顺序排列的唯一值的数组。所有给定数组的元素值使用SameValueZero做等值比较。（注： arrays（数组）的并集，按顺序返回，返回数组的元素是唯一的）</p>
+<p>添加版本<br>0.1.0</p>
+<p>参数<br>[arrays] (…Array): 要检查的数组。<br>返回<br>(Array): 返回一个新的联合数组。</p>
+<p>例子</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">_.union([2], [1, 2]);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; [2, 1]</span><br></pre></td></tr></table></figure>
+
+<h2 id="unionBy"><a href="#unionBy" class="headerlink" title="_.unionBy"></a>_.unionBy</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_.unionBy([arrays], [iteratee&#x3D;_.identity])</span><br></pre></td></tr></table></figure>
+<p>这个方法类似_.union ，除了它接受一个 iteratee （迭代函数），调用每一个数组（array）的每个元素以产生唯一性计算的标准。iteratee 会传入一个参数：(value)。</p>
+<p>添加版本<br>4.0.0</p>
+<p>参数<br>[arrays] (…Array): 要检查的数组。<br>[iteratee=_.identity] (Array|Function|Object|string): 迭代函数，调用每个元素。<br>返回<br>(Array): 返回一个新的联合数组。</p>
+<p>例子</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">_.unionBy([2.1], [1.2, 2.3], Math.floor);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; [2.1, 1.2]</span><br><span class="line"> </span><br><span class="line">&#x2F;&#x2F; The &#96;_.property&#96; iteratee shorthand.</span><br><span class="line">_.unionBy([&#123; &#39;x&#39;: 1 &#125;], [&#123; &#39;x&#39;: 2 &#125;, &#123; &#39;x&#39;: 1 &#125;], &#39;x&#39;);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; [&#123; &#39;x&#39;: 1 &#125;, &#123; &#39;x&#39;: 2 &#125;]</span><br></pre></td></tr></table></figure>
+
+<h2 id="unionWith"><a href="#unionWith" class="headerlink" title="_.unionWith"></a>_.unionWith</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_.unionWith([arrays], [comparator])</span><br></pre></td></tr></table></figure>
+<p>这个方法类似_.union， 除了它接受一个 comparator 调用比较arrays数组的每一个元素。 comparator 调用时会传入2个参数： (arrVal, othVal)。</p>
+<p>添加版本<br>4.0.0</p>
+<p>参数<br>[arrays] (…Array): 要检查的数组。<br>[comparator] (Function): 比较函数，调用每个元素。<br>返回<br>(Array): 返回一个新的联合数组。</p>
+<p>例子</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var objects &#x3D; [&#123; &#39;x&#39;: 1, &#39;y&#39;: 2 &#125;, &#123; &#39;x&#39;: 2, &#39;y&#39;: 1 &#125;];</span><br><span class="line">var others &#x3D; [&#123; &#39;x&#39;: 1, &#39;y&#39;: 1 &#125;, &#123; &#39;x&#39;: 1, &#39;y&#39;: 2 &#125;];</span><br><span class="line"> </span><br><span class="line">_.unionWith(objects, others, _.isEqual);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; [&#123; &#39;x&#39;: 1, &#39;y&#39;: 2 &#125;, &#123; &#39;x&#39;: 2, &#39;y&#39;: 1 &#125;, &#123; &#39;x&#39;: 1, &#39;y&#39;: 1 &#125;]</span><br></pre></td></tr></table></figure>
+
+<h2 id="uniq"><a href="#uniq" class="headerlink" title="_.uniq"></a>_.uniq</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_.uniq(array)</span><br></pre></td></tr></table></figure>
+<p>创建一个去重后的array数组副本。使用了SameValueZero 做等值比较。只有第一次出现的元素才会被保留。</p>
+<p>添加版本<br>0.1.0</p>
+<p>参数<br>array (Array): 要检查的数组。<br>返回<br>(Array): 返回新的去重后的数组。</p>
+<p>例子</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">_.uniq([2, 1, 2]);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; [2, 1]</span><br></pre></td></tr></table></figure>
+
+<h2 id="uniqBy-去重"><a href="#uniqBy-去重" class="headerlink" title="_.uniqBy 去重"></a>_.uniqBy 去重</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_.uniqBy(array, [iteratee&#x3D;_.identity])</span><br></pre></td></tr></table></figure>
+<p>这个方法类似_.uniq ，除了它接受一个 iteratee （迭代函数），调用每一个数组（array）的每个元素以产生唯一性计算的标准。iteratee 调用时会传入一个参数：(value)。</p>
+<p>添加版本<br>4.0.0</p>
+<p>参数<br>array (Array): 要检查的数组。<br>[iteratee=_.identity] (Array|Function|Object|string): 迭代函数，调用每个元素。<br>返回<br>(Array): 返回新的去重后的数组。</p>
+<p>例子</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">_.uniqBy([2.1, 1.2, 2.3], Math.floor);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; [2.1, 1.2]</span><br><span class="line"> </span><br><span class="line">&#x2F;&#x2F; The &#96;_.property&#96; iteratee shorthand.</span><br><span class="line">_.uniqBy([&#123; &#39;x&#39;: 1 &#125;, &#123; &#39;x&#39;: 2 &#125;, &#123; &#39;x&#39;: 1 &#125;], &#39;x&#39;);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; [&#123; &#39;x&#39;: 1 &#125;, &#123; &#39;x&#39;: 2 &#125;]</span><br></pre></td></tr></table></figure>
+
+<h2 id="uniqWith-去重"><a href="#uniqWith-去重" class="headerlink" title="_.uniqWith 去重"></a>_.uniqWith 去重</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_.uniqWith(array, [comparator])</span><br></pre></td></tr></table></figure>
+<p>这个方法类似_.uniq， 除了它接受一个 comparator 调用比较arrays数组的每一个元素。 comparator 调用时会传入2个参数： (arrVal, othVal)。</p>
+<p>添加版本<br>4.0.0</p>
+<p>参数<br>array (Array): 要检查的数组。<br>[comparator] (Function): 比较函数，调用每个元素。<br>返回<br>(Array): 返回新的去重后的数组。</p>
+<p>例子</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var objects &#x3D; [&#123; &#39;x&#39;: 1, &#39;y&#39;: 2 &#125;, &#123; &#39;x&#39;: 2, &#39;y&#39;: 1 &#125;, &#123; &#39;x&#39;: 1, &#39;y&#39;: 2 &#125;];</span><br><span class="line"> </span><br><span class="line">_.uniqWith(objects, _.isEqual);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; [&#123; &#39;x&#39;: 1, &#39;y&#39;: 2 &#125;, &#123; &#39;x&#39;: 2, &#39;y&#39;: 1 &#125;]</span><br></pre></td></tr></table></figure>
+
+<h2 id="unzip-重组元素"><a href="#unzip-重组元素" class="headerlink" title="_.unzip 重组元素"></a>_.unzip 重组元素</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_.unzip(array)</span><br></pre></td></tr></table></figure>
+<p>这个方法类似于_.zip，除了它接收分组元素的数组，并且创建一个数组，分组元素到打包前的结构。（：返回数组的第一个元素包含所有的输入数组的第一元素，第一个元素包含了所有的输入数组的第二元素，依此类推。）</p>
+<p>添加版本<br>1.2.0</p>
+<p>参数<br>array (Array): 要处理的分组元素数组。<br>返回<br>(Array): 返回重组元素的新数组。</p>
+<p>例子</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var zipped &#x3D; _.zip([&#39;fred&#39;, &#39;barney&#39;], [30, 40], [true, false]);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; [[&#39;fred&#39;, 30, true], [&#39;barney&#39;, 40, false]]</span><br><span class="line"> </span><br><span class="line">_.unzip(zipped);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; [[&#39;fred&#39;, &#39;barney&#39;], [30, 40], [true, false]]</span><br></pre></td></tr></table></figure>
+<h2 id="without-剔除"><a href="#without-剔除" class="headerlink" title="_.without 剔除"></a>_.without 剔除</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_.without(array, [values])#</span><br></pre></td></tr></table></figure>
+<p>创建一个剔除所有给定值的新数组，剔除值的时候，使用SameValueZero做相等比较。</p>
+<p>注意: 不像_.pull, 这个方法会返回一个新数组。</p>
+<p>添加版本<br>0.1.0</p>
+<p>参数<br>array (Array): 要检查的数组。<br>[values] (…*): 要剔除的值。<br>返回<br>(Array): 返回过滤值后的新数组。</p>
+<p>例子</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">_.without([2, 1, 2, 3], 1, 2);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; [3]</span><br></pre></td></tr></table></figure>
+
+<h2 id="xor-过滤"><a href="#xor-过滤" class="headerlink" title="_.xor 过滤"></a>_.xor 过滤</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_.xor([arrays])</span><br></pre></td></tr></table></figure>
+<p>创建一个给定数组唯一值的数组，使用symmetric difference做等值比较。返回值的顺序取决于他们数组的出现顺序。</p>
+<p>添加版本<br>2.4.0</p>
+<p>参数<br>[arrays] (…Array): 要检查的数组。<br>返回<br>(Array): 返回过滤值后的新数组。</p>
+<p>例子</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">_.xor([2, 1], [2, 3]);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; [1, 3]</span><br></pre></td></tr></table></figure>
+
+<h2 id="xorBy"><a href="#xorBy" class="headerlink" title="_.xorBy"></a>_.xorBy</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_.xorBy([arrays], [iteratee&#x3D;_.identity])</span><br></pre></td></tr></table></figure>
+<p>这个方法类似_.xor ，除了它接受 iteratee（迭代器），这个迭代器 调用每一个 arrays（数组）的每一个值，以生成比较的新值。iteratee 调用一个参数：(value).</p>
+<p>添加版本<br>4.0.0</p>
+<p>参数<br>[arrays] (…Array): 要检查的数组。<br>[iteratee=_.identity] (Array|Function|Object|string): 调用每一个元素的迭代函数。<br>返回<br>(Array): 返回过滤值后的新数组。</p>
+<p>例子</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">_.xorBy([2.1, 1.2], [2.3, 3.4], Math.floor);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; [1.2, 3.4]</span><br><span class="line"> </span><br><span class="line">&#x2F;&#x2F; The &#96;_.property&#96; iteratee shorthand.</span><br><span class="line">_.xorBy([&#123; &#39;x&#39;: 1 &#125;], [&#123; &#39;x&#39;: 2 &#125;, &#123; &#39;x&#39;: 1 &#125;], &#39;x&#39;);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; [&#123; &#39;x&#39;: 2 &#125;]</span><br></pre></td></tr></table></figure>
+
+<h2 id="xorWith-过滤"><a href="#xorWith-过滤" class="headerlink" title="_.xorWith 过滤"></a>_.xorWith 过滤</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_.xorWith([arrays], [comparator])</span><br></pre></td></tr></table></figure>
+<p>该方法是像_.xor，除了它接受一个 comparator ，以调用比较数组的元素。 comparator 调用2个参数：(arrVal, othVal).</p>
+<p>添加版本<br>4.0.0</p>
+<p>参数<br>[arrays] (…Array): 要检查的数组。<br>[comparator] (Function): 调用每一个元素的比较函数。<br>返回<br>(Array): 返回过滤值后的新数组。</p>
+<p>例子</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var objects &#x3D; [&#123; &#39;x&#39;: 1, &#39;y&#39;: 2 &#125;, &#123; &#39;x&#39;: 2, &#39;y&#39;: 1 &#125;];</span><br><span class="line">var others &#x3D; [&#123; &#39;x&#39;: 1, &#39;y&#39;: 1 &#125;, &#123; &#39;x&#39;: 1, &#39;y&#39;: 2 &#125;];</span><br><span class="line"> </span><br><span class="line">_.xorWith(objects, others, _.isEqual);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; [&#123; &#39;x&#39;: 2, &#39;y&#39;: 1 &#125;, &#123; &#39;x&#39;: 1, &#39;y&#39;: 1 &#125;]</span><br></pre></td></tr></table></figure>
+
+<h2 id="zip-分组"><a href="#zip-分组" class="headerlink" title="_.zip 分组"></a>_.zip 分组</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_.zip([arrays])</span><br></pre></td></tr></table></figure>
+
+<p>创建一个分组元素的数组，数组的第一个元素包含所有给定数组的第一个元素，数组的第二个元素包含所有给定数组的第二个元素，以此类推。</p>
+<p>添加版本<br>0.1.0</p>
+<p>参数<br>[arrays] (…Array): 要处理的数组。<br>返回<br>(Array): 返回分组元素的新数组。</p>
+<p>例子</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">_.zip([&#39;fred&#39;, &#39;barney&#39;], [30, 40], [true, false]);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; [[&#39;fred&#39;, 30, true], [&#39;barney&#39;, 40, false]]</span><br></pre></td></tr></table></figure>
+
+<h2 id="zipObject"><a href="#zipObject" class="headerlink" title="_.zipObject"></a>_.zipObject</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_.zipObject([props&#x3D;[]], [values&#x3D;[]])</span><br></pre></td></tr></table></figure>
+<p>这个方法类似_.fromPairs，除了它接受2个数组，第一个数组中的值作为属性标识符（属性名），第二个数组中的值作为相应的属性值。</p>
+<p>添加版本<br>0.4.0</p>
+<p>参数<br>[props=[]] (Array): The property identifiers.<br>[values=[]] (Array): The property values.<br>返回<br>(Object): Returns the new object.</p>
+<p>例子</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">_.zipObject([&#39;a&#39;, &#39;b&#39;], [1, 2]);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; &#123; &#39;a&#39;: 1, &#39;b&#39;: 2 &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="zipObjectDeep"><a href="#zipObjectDeep" class="headerlink" title="_.zipObjectDeep"></a>_.zipObjectDeep</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_.zipObjectDeep([props&#x3D;[]], [values&#x3D;[]])</span><br></pre></td></tr></table></figure>
+<p>这个方法类似_.zipObject，除了它支持属性路径。</p>
+<p>添加版本<br>4.1.0</p>
+<p>参数<br>[props=[]] (Array): 属性标识符（属性名）。<br>[values=[]] (Array): 属性值。<br>返回<br>(Object): 返回新对象。</p>
+<p>例子</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">_.zipObjectDeep([&#39;a.b[0].c&#39;, &#39;a.b[1].d&#39;], [1, 2]);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; &#123; &#39;a&#39;: &#123; &#39;b&#39;: [&#123; &#39;c&#39;: 1 &#125;, &#123; &#39;d&#39;: 2 &#125;] &#125; &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="zipWith"><a href="#zipWith" class="headerlink" title="_.zipWith"></a>_.zipWith</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_.zipWith([arrays], [iteratee&#x3D;_.identity])</span><br></pre></td></tr></table></figure>
+<p>这个方法类似于_.zip，不同之处在于它接受一个 iteratee（迭代函数），来 指定分组的值应该如何被组合。 该iteratee调用每个组的元素： (…group).</p>
+<p>添加版本<br>3.8.0</p>
+<p>参数<br>[arrays] (…Array): 要处理的数组。<br>[iteratee=_.identity] (Function): 函数用来组合分组的值。<br>返回<br>(Array): 返回分组元素的新数组。</p>
+<p>例子</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">_.zipWith([1, 2], [10, 20], [100, 200], function(a, b, c) &#123;</span><br><span class="line">  return a + b + c;</span><br><span class="line">&#125;);</span><br><span class="line">&#x2F;&#x2F; &#x3D;&gt; [111, 222]</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+
+    <footer class="article-footer">
+      <a data-url="http://yqzyanp.cn/2021/01/21/web-js-lodash-%E6%95%B0%E7%BB%84/" data-id="ckll024kc00avckpz7v24eh3q" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Lodash/" rel="tag">Lodash</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/01/21/web-js-lodash-%E6%95%B0%E5%AD%A6/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          lodash - 数学
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/01/20/%E6%91%98%E5%BD%95/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">摘录</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        <!-- sidebar start -->
+        
+          <aside id="sidebar">
+
+
+  <!-- 标签云 -->
+  
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云<!--888--></h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android/" style="font-size: 13.64px;">Android</a> <a href="/tags/CSS-CSS3/" style="font-size: 17.27px;">CSS/CSS3</a> <a href="/tags/ESLint/" style="font-size: 10px;">ESLint</a> <a href="/tags/English/" style="font-size: 10px;">English</a> <a href="/tags/FastClick/" style="font-size: 10px;">FastClick</a> <a href="/tags/HTML-HTML5/" style="font-size: 14.55px;">HTML/HTML5</a> <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/JavaScript%E5%BA%93/" style="font-size: 10px;">JavaScript库</a> <a href="/tags/JavaScript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BC%80%E5%8F%91%E5%AE%9E%E8%B7%B5/" style="font-size: 10px;">JavaScript设计模式与开发实践</a> <a href="/tags/Lodash/" style="font-size: 11.82px;">Lodash</a> <a href="/tags/MySQL/" style="font-size: 14.55px;">MySQL</a> <a href="/tags/PMP/" style="font-size: 10px;">PMP</a> <a href="/tags/RegExp/" style="font-size: 10px;">RegExp</a> <a href="/tags/SSH/" style="font-size: 10px;">SSH</a> <a href="/tags/STS4/" style="font-size: 10px;">STS4</a> <a href="/tags/SecureCRT/" style="font-size: 10px;">SecureCRT</a> <a href="/tags/VSCode/" style="font-size: 12.73px;">VSCode</a> <a href="/tags/Vim/" style="font-size: 10px;">Vim</a> <a href="/tags/Vue/" style="font-size: 12.73px;">Vue</a> <a href="/tags/Vue-Router/" style="font-size: 10px;">Vue Router</a> <a href="/tags/Vuex/" style="font-size: 10px;">Vuex</a> <a href="/tags/Xshell/" style="font-size: 10px;">Xshell</a> <a href="/tags/adb/" style="font-size: 10px;">adb</a> <a href="/tags/bat/" style="font-size: 10px;">bat</a> <a href="/tags/git/" style="font-size: 11.82px;">git</a> <a href="/tags/gulp/" style="font-size: 10.91px;">gulp</a> <a href="/tags/hexo/" style="font-size: 11.82px;">hexo</a> <a href="/tags/jQuery/" style="font-size: 18.18px;">jQuery</a> <a href="/tags/less/" style="font-size: 10.91px;">less</a> <a href="/tags/mac/" style="font-size: 10px;">mac</a> <a href="/tags/markdown/" style="font-size: 10.91px;">markdown</a> <a href="/tags/moment-js/" style="font-size: 10px;">moment.js</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/node/" style="font-size: 19.09px;">node</a> <a href="/tags/npm/" style="font-size: 12.73px;">npm</a> <a href="/tags/npx/" style="font-size: 10px;">npx</a> <a href="/tags/nvm/" style="font-size: 10px;">nvm</a> <a href="/tags/plan-aim/" style="font-size: 13.64px;">plan-aim</a> <a href="/tags/stylus/" style="font-size: 10.91px;">stylus</a> <a href="/tags/to-do/" style="font-size: 15.45px;">to-do</a> <a href="/tags/trouble/" style="font-size: 16.36px;">trouble</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/win10/" style="font-size: 10px;">win10</a> <a href="/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8ECS/" style="font-size: 10px;">云服务器ECS</a> <a href="/tags/%E5%85%B6%E4%BB%96/" style="font-size: 10px;">其他</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 11.82px;">前端</a> <a href="/tags/%E5%8D%95%E4%BD%8D/" style="font-size: 10px;">单位</a> <a href="/tags/%E5%B8%B8%E8%AF%86/" style="font-size: 10.91px;">常识</a> <a href="/tags/%E5%BF%AB%E6%8D%B7%E9%94%AE/" style="font-size: 10px;">快捷键</a> <a href="/tags/%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/" style="font-size: 10px;">思维导图</a> <a href="/tags/%E6%82%9F/" style="font-size: 10px;">悟</a> <a href="/tags/%E6%96%AD%E8%A8%80%E5%BA%93/" style="font-size: 10px;">断言库</a> <a href="/tags/%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8E/" style="font-size: 10px;">模板引擎</a> <a href="/tags/%E6%AF%92%E9%B8%A1%E6%B1%A4/" style="font-size: 10px;">毒鸡汤</a> <a href="/tags/%E6%B5%8B%E8%AF%95/" style="font-size: 10px;">测试</a> <a href="/tags/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/" style="font-size: 11.82px;">版本控制</a> <a href="/tags/%E7%AC%94%E8%AE%B0/" style="font-size: 10.91px;">笔记</a> <a href="/tags/%E8%8B%B1%E8%AF%AD/" style="font-size: 10px;">英语</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E5%8D%8F%E8%AE%AE/" style="font-size: 10px;">软件协议</a>
+    </div>
+  </div>
+
+
+   <!-- 标签 -->
+   
+   
+
+  <!-- 分类 -->
+  
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类<!--666--></h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/English/">English</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/English/Android/">Android</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/English/JavaScript/">JavaScript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/English/JavaScript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BC%80%E5%8F%91%E5%AE%9E%E8%B7%B5/">JavaScript设计模式与开发实践</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/English/vue/">vue</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/English/%E5%9F%BA%E7%A1%80/">基础</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B9%A6%E7%B1%8D/">书籍</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B9%A6%E7%B1%8D/JavaScript%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97/">JavaScript权威指南</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B9%A6%E7%B1%8D/JavaScript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BC%80%E5%8F%91%E5%AE%9E%E8%B7%B5/">JavaScript设计模式与开发实践</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%85%B6%E4%BB%96/">其他</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%85%B6%E4%BB%96/mac/">mac</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%85%B6%E4%BB%96/nginx/">nginx</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%85%B6%E4%BB%96/win10/">win10</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%85%B6%E4%BB%96/%E5%8D%95%E4%BD%8D/">单位</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%85%B6%E4%BB%96/%E8%BD%AF%E4%BB%B6%E5%8D%8F%E8%AE%AE/">软件协议</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/CSS-CSS3/">CSS/CSS3</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/CSS-CSS3/less/">less</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/CSS-CSS3/stylus/">stylus</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/HTML-HTML5/">HTML/HTML5</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/JavaScript/">JavaScript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/JavaScript%E5%BA%93/">JavaScript库</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/JavaScript%E5%BA%93/FastClick/">FastClick</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/JavaScript%E5%BA%93/Lodash/">Lodash</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/JavaScript%E5%BA%93/jQuery/">jQuery</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/JavaScript%E5%BA%93/moment-js/">moment.js</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/%E6%AD%A3%E5%88%99/">正则</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AE%A2%E6%88%B7%E7%AB%AF/">客户端</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AE%A2%E6%88%B7%E7%AB%AF/%E5%AE%89%E5%8D%93/">安卓</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/SSH/">SSH</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/SSH/SecureCRT/">SecureCRT</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/STS4/">STS4</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/VSCode/">VSCode</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/Vim/">Vim</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/Xshell/">Xshell</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/bat/">bat</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/git/">git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/gulp/">gulp</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/markdown/">markdown</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/npm/">npm</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/npx/">npx</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/nvm/">nvm</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%91%98%E5%BD%95/">摘录</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%91%98%E5%BD%95/%E5%B8%B8%E8%AF%86/">常识</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%91%98%E5%BD%95/%E6%82%9F/">悟</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%91%98%E5%BD%95/%E6%AF%92%E9%B8%A1%E6%B1%A4/">毒鸡汤</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/">MySQL</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/mysql/">mysql</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9C%8D%E5%8A%A1%E7%AB%AF/">服务端</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9C%8D%E5%8A%A1%E7%AB%AF/node/">node</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%A1%86%E6%9E%B6/">框架</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%A1%86%E6%9E%B6/Vue/">Vue</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%A1%86%E6%9E%B6/Vue/Vue-Router/">Vue Router</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%A1%86%E6%9E%B6/Vue/Vuex/">Vuex</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%A1%86%E6%9E%B6/%E5%8D%9A%E5%AE%A2%E6%A1%86%E6%9E%B6/">博客框架</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B6%A8%E5%A7%BF%E5%8A%BF/">涨姿势</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B6%A8%E5%A7%BF%E5%8A%BF/PMP/">PMP</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/">面试题</a></li></ul>
+    </div>
+  </div>
+
+
+
+ 
+
+
+  <!-- 归挡 -->
+  
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档<!--555--></h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">二月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">七月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/07/">七月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02/">二月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">十二月 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">七月 2012</a></li></ul>
+    </div>
+  </div>
+
+
+
+  
+
+
+
+ 
+  
+
+    
+
+
+    
+      
+    
+    
+  
+
+    
+
+
+    
+      
+    
+    
+  
+
+    
+
+
+    
+      
+    
+    
+  
+
+    
+
+
+    
+      
+    
+    
+  
+</aside>
+        
+        <!-- sidebar end -->
+
+      </div>
+      <div id="scrollTop0">
+  顶
+</div>
+<style>
+  #scrollTop0{
+    width: 50px;
+    height: 50px;
+    position: fixed;
+    right: 15px;
+    bottom: 15px;
+    border: 1px solid #ededed;
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ccc;
+  }
+</style>
+
+<footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 ah<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  <!-- menu 菜单 -->
+  
+    <a class="mobile-nav-link" href="/">首页</a>
+  
+    <a class="mobile-nav-link" href="/archives">档案</a>
+  
+    <a class="mobile-nav-link" href="/about">关于</a>
+  
+
+  <!-- tags 标签 -->
+  
+    <a class="mobile-nav-link" href="/tags/to-do">待办事项</a>    
+  
+    <a class="mobile-nav-link" href="/tags/plan-aim">计划-目标</a>    
+  
+    <a class="mobile-nav-link" href="/tags/trouble">问题</a>    
+  
+
+  <!-- 类别 _config.yml & header.ejs -->
+  
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类<!--666--></h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/English/">English</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/English/Android/">Android</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/English/JavaScript/">JavaScript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/English/JavaScript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BC%80%E5%8F%91%E5%AE%9E%E8%B7%B5/">JavaScript设计模式与开发实践</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/English/vue/">vue</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/English/%E5%9F%BA%E7%A1%80/">基础</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B9%A6%E7%B1%8D/">书籍</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B9%A6%E7%B1%8D/JavaScript%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97/">JavaScript权威指南</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B9%A6%E7%B1%8D/JavaScript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BC%80%E5%8F%91%E5%AE%9E%E8%B7%B5/">JavaScript设计模式与开发实践</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%85%B6%E4%BB%96/">其他</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%85%B6%E4%BB%96/mac/">mac</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%85%B6%E4%BB%96/nginx/">nginx</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%85%B6%E4%BB%96/win10/">win10</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%85%B6%E4%BB%96/%E5%8D%95%E4%BD%8D/">单位</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%85%B6%E4%BB%96/%E8%BD%AF%E4%BB%B6%E5%8D%8F%E8%AE%AE/">软件协议</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/CSS-CSS3/">CSS/CSS3</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/CSS-CSS3/less/">less</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/CSS-CSS3/stylus/">stylus</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/HTML-HTML5/">HTML/HTML5</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/JavaScript/">JavaScript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/JavaScript%E5%BA%93/">JavaScript库</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/JavaScript%E5%BA%93/FastClick/">FastClick</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/JavaScript%E5%BA%93/Lodash/">Lodash</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/JavaScript%E5%BA%93/jQuery/">jQuery</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/JavaScript%E5%BA%93/moment-js/">moment.js</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/%E6%AD%A3%E5%88%99/">正则</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AE%A2%E6%88%B7%E7%AB%AF/">客户端</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AE%A2%E6%88%B7%E7%AB%AF/%E5%AE%89%E5%8D%93/">安卓</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/SSH/">SSH</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/SSH/SecureCRT/">SecureCRT</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/STS4/">STS4</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/VSCode/">VSCode</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/Vim/">Vim</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/Xshell/">Xshell</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/bat/">bat</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/git/">git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/gulp/">gulp</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/markdown/">markdown</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/npm/">npm</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/npx/">npx</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/nvm/">nvm</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%91%98%E5%BD%95/">摘录</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%91%98%E5%BD%95/%E5%B8%B8%E8%AF%86/">常识</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%91%98%E5%BD%95/%E6%82%9F/">悟</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%91%98%E5%BD%95/%E6%AF%92%E9%B8%A1%E6%B1%A4/">毒鸡汤</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/">MySQL</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/mysql/">mysql</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9C%8D%E5%8A%A1%E7%AB%AF/">服务端</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9C%8D%E5%8A%A1%E7%AB%AF/node/">node</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%A1%86%E6%9E%B6/">框架</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%A1%86%E6%9E%B6/Vue/">Vue</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%A1%86%E6%9E%B6/Vue/Vue-Router/">Vue Router</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%A1%86%E6%9E%B6/Vue/Vuex/">Vuex</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%A1%86%E6%9E%B6/%E5%8D%9A%E5%AE%A2%E6%A1%86%E6%9E%B6/">博客框架</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B6%A8%E5%A7%BF%E5%8A%BF/">涨姿势</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B6%A8%E5%A7%BF%E5%8A%BF/PMP/">PMP</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/">面试题</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云<!--888--></h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android/" style="font-size: 13.64px;">Android</a> <a href="/tags/CSS-CSS3/" style="font-size: 17.27px;">CSS/CSS3</a> <a href="/tags/ESLint/" style="font-size: 10px;">ESLint</a> <a href="/tags/English/" style="font-size: 10px;">English</a> <a href="/tags/FastClick/" style="font-size: 10px;">FastClick</a> <a href="/tags/HTML-HTML5/" style="font-size: 14.55px;">HTML/HTML5</a> <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/JavaScript%E5%BA%93/" style="font-size: 10px;">JavaScript库</a> <a href="/tags/JavaScript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BC%80%E5%8F%91%E5%AE%9E%E8%B7%B5/" style="font-size: 10px;">JavaScript设计模式与开发实践</a> <a href="/tags/Lodash/" style="font-size: 11.82px;">Lodash</a> <a href="/tags/MySQL/" style="font-size: 14.55px;">MySQL</a> <a href="/tags/PMP/" style="font-size: 10px;">PMP</a> <a href="/tags/RegExp/" style="font-size: 10px;">RegExp</a> <a href="/tags/SSH/" style="font-size: 10px;">SSH</a> <a href="/tags/STS4/" style="font-size: 10px;">STS4</a> <a href="/tags/SecureCRT/" style="font-size: 10px;">SecureCRT</a> <a href="/tags/VSCode/" style="font-size: 12.73px;">VSCode</a> <a href="/tags/Vim/" style="font-size: 10px;">Vim</a> <a href="/tags/Vue/" style="font-size: 12.73px;">Vue</a> <a href="/tags/Vue-Router/" style="font-size: 10px;">Vue Router</a> <a href="/tags/Vuex/" style="font-size: 10px;">Vuex</a> <a href="/tags/Xshell/" style="font-size: 10px;">Xshell</a> <a href="/tags/adb/" style="font-size: 10px;">adb</a> <a href="/tags/bat/" style="font-size: 10px;">bat</a> <a href="/tags/git/" style="font-size: 11.82px;">git</a> <a href="/tags/gulp/" style="font-size: 10.91px;">gulp</a> <a href="/tags/hexo/" style="font-size: 11.82px;">hexo</a> <a href="/tags/jQuery/" style="font-size: 18.18px;">jQuery</a> <a href="/tags/less/" style="font-size: 10.91px;">less</a> <a href="/tags/mac/" style="font-size: 10px;">mac</a> <a href="/tags/markdown/" style="font-size: 10.91px;">markdown</a> <a href="/tags/moment-js/" style="font-size: 10px;">moment.js</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/node/" style="font-size: 19.09px;">node</a> <a href="/tags/npm/" style="font-size: 12.73px;">npm</a> <a href="/tags/npx/" style="font-size: 10px;">npx</a> <a href="/tags/nvm/" style="font-size: 10px;">nvm</a> <a href="/tags/plan-aim/" style="font-size: 13.64px;">plan-aim</a> <a href="/tags/stylus/" style="font-size: 10.91px;">stylus</a> <a href="/tags/to-do/" style="font-size: 15.45px;">to-do</a> <a href="/tags/trouble/" style="font-size: 16.36px;">trouble</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/win10/" style="font-size: 10px;">win10</a> <a href="/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8ECS/" style="font-size: 10px;">云服务器ECS</a> <a href="/tags/%E5%85%B6%E4%BB%96/" style="font-size: 10px;">其他</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 11.82px;">前端</a> <a href="/tags/%E5%8D%95%E4%BD%8D/" style="font-size: 10px;">单位</a> <a href="/tags/%E5%B8%B8%E8%AF%86/" style="font-size: 10.91px;">常识</a> <a href="/tags/%E5%BF%AB%E6%8D%B7%E9%94%AE/" style="font-size: 10px;">快捷键</a> <a href="/tags/%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/" style="font-size: 10px;">思维导图</a> <a href="/tags/%E6%82%9F/" style="font-size: 10px;">悟</a> <a href="/tags/%E6%96%AD%E8%A8%80%E5%BA%93/" style="font-size: 10px;">断言库</a> <a href="/tags/%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8E/" style="font-size: 10px;">模板引擎</a> <a href="/tags/%E6%AF%92%E9%B8%A1%E6%B1%A4/" style="font-size: 10px;">毒鸡汤</a> <a href="/tags/%E6%B5%8B%E8%AF%95/" style="font-size: 10px;">测试</a> <a href="/tags/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/" style="font-size: 11.82px;">版本控制</a> <a href="/tags/%E7%AC%94%E8%AE%B0/" style="font-size: 10.91px;">笔记</a> <a href="/tags/%E8%8B%B1%E8%AF%AD/" style="font-size: 10px;">英语</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E5%8D%8F%E8%AE%AE/" style="font-size: 10px;">软件协议</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档<!--555--></h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">二月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">七月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/07/">七月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02/">二月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">十二月 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">七月 2012</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/" rel="tag">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS-CSS3/" rel="tag">CSS/CSS3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ESLint/" rel="tag">ESLint</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/English/" rel="tag">English</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FastClick/" rel="tag">FastClick</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML-HTML5/" rel="tag">HTML/HTML5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript%E5%BA%93/" rel="tag">JavaScript库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BC%80%E5%8F%91%E5%AE%9E%E8%B7%B5/" rel="tag">JavaScript设计模式与开发实践</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lodash/" rel="tag">Lodash</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/" rel="tag">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PMP/" rel="tag">PMP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RegExp/" rel="tag">RegExp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSH/" rel="tag">SSH</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/STS4/" rel="tag">STS4</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SecureCRT/" rel="tag">SecureCRT</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VSCode/" rel="tag">VSCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vim/" rel="tag">Vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue-Router/" rel="tag">Vue Router</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vuex/" rel="tag">Vuex</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Xshell/" rel="tag">Xshell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/adb/" rel="tag">adb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bat/" rel="tag">bat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gulp/" rel="tag">gulp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/" rel="tag">jQuery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/less/" rel="tag">less</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mac/" rel="tag">mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/" rel="tag">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/moment-js/" rel="tag">moment.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/" rel="tag">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/" rel="tag">node</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm/" rel="tag">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npx/" rel="tag">npx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nvm/" rel="tag">nvm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/plan-aim/" rel="tag">plan-aim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/stylus/" rel="tag">stylus</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/to-do/" rel="tag">to-do</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/trouble/" rel="tag">trouble</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/" rel="tag">vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/win10/" rel="tag">win10</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8ECS/" rel="tag">云服务器ECS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%85%B6%E4%BB%96/" rel="tag">其他</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8D%95%E4%BD%8D/" rel="tag">单位</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B8%B8%E8%AF%86/" rel="tag">常识</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BF%AB%E6%8D%B7%E9%94%AE/" rel="tag">快捷键</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/" rel="tag">思维导图</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%82%9F/" rel="tag">悟</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%AD%E8%A8%80%E5%BA%93/" rel="tag">断言库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8E/" rel="tag">模板引擎</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%AF%92%E9%B8%A1%E6%B1%A4/" rel="tag">毒鸡汤</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B5%8B%E8%AF%95/" rel="tag">测试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/" rel="tag">版本控制</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%8B%B1%E8%AF%AD/" rel="tag">英语</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6%E5%8D%8F%E8%AE%AE/" rel="tag">软件协议</a></li></ul>
+    </div>
+  </div>
+
+
+  
+</nav>
+    
+
+
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+
+<script src="/js/playAudio.js"></script>
+
+
+
+
+
+
+<script src="/js/CryptoJS-core.js"></script>
+
+
+<script src="/js/CryptoJS-sha256.js"></script>
+
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

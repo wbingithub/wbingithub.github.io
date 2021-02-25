@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- 
+ -->
+  
+  <title>前端面试题 | ah-blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;224922926 vue响应式原理？详细说一下过程。数据发生变化后，会重新对页面渲染，这就是Vue响应式 https:&#x2F;&#x2F;juejin.cn&#x2F;post&#x2F;6850418111985352711 vue 想完成这个过程，我们需要做些什么 侦测数据的变化 收集视图依赖了哪些数据 数据变化时，自动“通知”需要更新的视图部分，并进行更新  「它们对">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端面试题">
+<meta property="og:url" content="http://yqzyanp.cn/2021/02/04/web-%E9%9D%A2%E8%AF%95%E9%A2%98/index.html">
+<meta property="og:site_name" content="ah-blog">
+<meta property="og:description" content="https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;224922926 vue响应式原理？详细说一下过程。数据发生变化后，会重新对页面渲染，这就是Vue响应式 https:&#x2F;&#x2F;juejin.cn&#x2F;post&#x2F;6850418111985352711 vue 想完成这个过程，我们需要做些什么 侦测数据的变化 收集视图依赖了哪些数据 数据变化时，自动“通知”需要更新的视图部分，并进行更新  「它们对">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-02-04T03:07:22.000Z">
+<meta property="article:modified_time" content="2021-02-04T05:01:13.147Z">
+<meta property="article:author" content="ah">
+<meta property="article:tag" content="trouble">
+<meta property="article:tag" content="JavaScript">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <!--
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    -->
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+
+    <!-- <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">ah-blog</a>
+      </h1>
+      
+    </div> -->
+
+
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <!-- 菜单 -->
+        
+          <a class="main-nav-link" href="/">首页</a>          
+        
+          <a class="main-nav-link" href="/archives">档案</a>          
+        
+          <a class="main-nav-link" href="/about">关于</a>          
+        
+
+        <!-- tags 标签 -->
+        
+          <a class="main-nav-link" href="/tags/to-do">待办事项</a>    
+        
+          <a class="main-nav-link" href="/tags/plan-aim">计划-目标</a>    
+        
+          <a class="main-nav-link" href="/tags/trouble">问题</a>    
+        
+
+        <!-- 类别 _config.yml & header.ejs -->
+        
+
+
+      </nav>
+      <!-- <nav id="sub-nav"> -->
+        <!--  -->
+        <!-- <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav> -->
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yqzyanp.cn"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer h100">
+        <section id="main"><!-- 99999111 -->
+<article id="post-web-面试题" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/02/04/web-%E9%9D%A2%E8%AF%95%E9%A2%98/" class="article-date">
+  <time datetime="2021-02-04T03:07:22.000Z" itemprop="datePublished">2021-02-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/">面试题</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      前端面试题
+    </h1>
+    <div id="ah_nav"></div>
+  
+
+      </header>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="https://zhuanlan.zhihu.com/p/224922926" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/224922926</a></p>
+<h2 id="vue响应式原理？详细说一下过程。"><a href="#vue响应式原理？详细说一下过程。" class="headerlink" title="vue响应式原理？详细说一下过程。"></a>vue响应式原理？详细说一下过程。</h2><p>数据发生变化后，会重新对页面渲染，这就是Vue响应式</p>
+<p><a href="https://juejin.cn/post/6850418111985352711" target="_blank" rel="noopener">https://juejin.cn/post/6850418111985352711</a></p>
+<h2 id="vue-想完成这个过程，我们需要做些什么"><a href="#vue-想完成这个过程，我们需要做些什么" class="headerlink" title="vue 想完成这个过程，我们需要做些什么"></a>vue 想完成这个过程，我们需要做些什么</h2><ul>
+<li>侦测数据的变化</li>
+<li>收集视图依赖了哪些数据</li>
+<li>数据变化时，自动“通知”需要更新的视图部分，并进行更新</li>
+</ul>
+<p>「它们对应专业俗语分别是：」</p>
+<ul>
+<li>数据劫持 / 数据代理</li>
+<li>依赖收集</li>
+<li>发布订阅模式</li>
+</ul>
+<h2 id="vue-如何侦测数据的变化"><a href="#vue-如何侦测数据的变化" class="headerlink" title="vue 如何侦测数据的变化"></a>vue 如何侦测数据的变化</h2><p>有两种办法可以侦测到变化：<br>使用Object.defineProperty和ES6的Proxy，这就是进行数据劫持或数据代理。</p>
+<h2 id="Object-defineProperty实现"><a href="#Object-defineProperty实现" class="headerlink" title="Object.defineProperty实现"></a>Object.defineProperty实现</h2><h2 id="vue的生命周期"><a href="#vue的生命周期" class="headerlink" title="vue的生命周期"></a>vue的生命周期</h2><p>为什么会有生命周期<br>项目中有用到哪几个钩子函数<br>ssr有哪几个钩子函数</p>
+<h2 id="HTML5或者css3的新特性"><a href="#HTML5或者css3的新特性" class="headerlink" title="HTML5或者css3的新特性"></a>HTML5或者css3的新特性</h2><p>这个问题虽然不是100%问到，但是绝大多数公司都问了，我就放入这个分类吧，你不会有意见吧（有意见我也不会听啊）</p>
+<p>你有用到哪些新标签<br>新特性主要包括哪几大块？你项目中有用到哪些？<br>canvas有用过吗</p>
+<h2 id="作用域，闭包，原型链"><a href="#作用域，闭包，原型链" class="headerlink" title="作用域，闭包，原型链"></a>作用域，闭包，原型链</h2><p>说一下三者的概念<br>原型链有什么用处参考第6条<br>怎么实现原型链继承参考第12.1条<br>你项目中什么地方用到了闭包？为什么要用闭包？闭包的原理是什么</p>
+<h2 id="es6"><a href="#es6" class="headerlink" title="es6"></a>es6</h2><p>项目中有用到哪些es6的特性 (他重点想让你说出箭头函数和promise，毫无疑问他还准备了this相关的问题)<br>说下es5和es6箭头函数中this的指向<br>有哪些办法可以改变this<br>promise怎么使用？它解决了什么问题？<br>怎么中断promise？ (可以返回一个空的promise，既无resolve也没有reject)</p>
+<h2 id="性能优化"><a href="#性能优化" class="headerlink" title="性能优化"></a>性能优化</h2><p>上个项目的性能优化是怎么做的<br>代码层面怎么做性能优化<br>webpack怎么做性能优化</p>
+<h2 id="flex"><a href="#flex" class="headerlink" title="flex"></a>flex</h2><p>一些做移动端开发的大概率会问，尤其是做ui-app的</p>
+<p>有用过flex吗<br>说下flex有哪些属性<br>使用flex实现垂直居中<br>使用flex实现九宫格布局</p>
+<h2 id="响应式布局"><a href="#响应式布局" class="headerlink" title="响应式布局"></a>响应式布局</h2><p>你知道哪几种响应式布局的方式<br>说下rem,em,px的区别<br>说下rem的实现</p>
+<h2 id="块元素有哪些"><a href="#块元素有哪些" class="headerlink" title="块元素有哪些"></a>块元素有哪些</h2><p>说下块元素和行内元素的区别和特点<br>知道哪些空元素 (类似于img这样的单标签元素)</p>
+<h2 id="css中有哪些属性是可以继承的"><a href="#css中有哪些属性是可以继承的" class="headerlink" title="css中有哪些属性是可以继承的"></a>css中有哪些属性是可以继承的</h2><h2 id="了解css的动画吗？说下transform"><a href="#了解css的动画吗？说下transform" class="headerlink" title="了解css的动画吗？说下transform"></a>了解css的动画吗？说下transform</h2><h2 id="vuex"><a href="#vuex" class="headerlink" title="vuex"></a>vuex</h2><p>项目中有用到vuex吗<br>如果不用vuex有什么其它的替代方案 (可以说下其它的组件通信方式)<br>vuex有哪些优势和缺点 (功能强大，但相比eventBus会更重一点)<br>vuex有哪些属性 (5大属性)<br>说一下vuex的action和mutation的区别<br>有看过vuex的源码吗 (老哥，现在是你的表演时间了)</p>
+<h2 id="v-show-和-v-if的区别"><a href="#v-show-和-v-if的区别" class="headerlink" title="v-show 和 v-if的区别"></a>v-show 和 v-if的区别</h2><h2 id="vue路由"><a href="#vue路由" class="headerlink" title="vue路由"></a>vue路由</h2><p>路由有哪几种<br>说下这几种路由的区别<br>history需要后台配置相关的url吗</p>
+<h2 id="2个页面怎么进行通讯"><a href="#2个页面怎么进行通讯" class="headerlink" title="2个页面怎么进行通讯"></a>2个页面怎么进行通讯</h2><p>同域名的2个页面怎么通讯<br>不同域的2个页面怎么通讯</p>
+<h2 id="虚拟dom"><a href="#虚拟dom" class="headerlink" title="虚拟dom"></a>虚拟dom</h2><p>说下你对虚拟dom的理解<br>虚拟dom的实现原理<br>虚拟dom的优缺点</p>
+<h2 id="深拷贝与浅拷贝的区别"><a href="#深拷贝与浅拷贝的区别" class="headerlink" title="深拷贝与浅拷贝的区别"></a>深拷贝与浅拷贝的区别</h2><p>手写深拷贝<br>怎么实现浅拷贝 (object.asign)</p>
+<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><p>有用过数组的那些方法<br>怎么实现数组去重</p>
+<h2 id="回流和重绘"><a href="#回流和重绘" class="headerlink" title="回流和重绘"></a>回流和重绘</h2><p>说一下两者的区别<br>说一下什么场景会触发</p>
+<h2 id="存储"><a href="#存储" class="headerlink" title="存储"></a>存储</h2><p>说一下浏览器的存储方式和区别<br>说一下强缓存和协商缓存</p>
+<h2 id="http"><a href="#http" class="headerlink" title="http"></a>http</h2><p>说一下常用的http状态码<br>说一下请求头包含哪些 </p>
+<h2 id="浏览器的渲染流程"><a href="#浏览器的渲染流程" class="headerlink" title="浏览器的渲染流程"></a>浏览器的渲染流程</h2><p>直接说渲染的流程就行了</p>
+<p>1.DNS 解析:将域名解析成 IP 地址<br>2.TCP 连接：TCP 三次握手<br>3.发送 HTTP 请求<br>4.服务器处理请求并返回 HTTP 报文<br>5.浏览器解析渲染页面，构建dom树，样式树，渲染树，layout布局，painting绘制<br>6.断开连接：TCP 四次挥手</p>
+<p><a href="https://juejin.cn/post/6844904191018680333#heading-18" target="_blank" rel="noopener">https://juejin.cn/post/6844904191018680333#heading-18</a></p>
+<h2 id="说一下你怎么封装组件的"><a href="#说一下你怎么封装组件的" class="headerlink" title="说一下你怎么封装组件的"></a>说一下你怎么封装组件的</h2><p>因为组件是复用的，我们要考虑暴露出属性和事件，供不同的地方引入，组件里面也有动态和静态的内容。</p>
+<h2 id="怎么创建一个三角形"><a href="#怎么创建一个三角形" class="headerlink" title="怎么创建一个三角形"></a>怎么创建一个三角形</h2><p>4条边框，3条透明，只显示一条</p>
+<h2 id="垂直居中"><a href="#垂直居中" class="headerlink" title="垂直居中"></a>垂直居中</h2><p>方法较多</p>
+<h2 id="内存泄露"><a href="#内存泄露" class="headerlink" title="内存泄露"></a>内存泄露</h2><p>说一下内存泄漏的场景</p>
+<h2 id="你今后的规划是什么？"><a href="#你今后的规划是什么？" class="headerlink" title="你今后的规划是什么？"></a>你今后的规划是什么？</h2><p>建议没有提前准备，不然你一下说不上来的。还好我年初的时候有做过清晰的规划，算是必问题了。</p>
+<h2 id="介绍下你上个项目，并且说一下你上个项目用到了哪些技术点"><a href="#介绍下你上个项目，并且说一下你上个项目用到了哪些技术点" class="headerlink" title="介绍下你上个项目，并且说一下你上个项目用到了哪些技术点"></a>介绍下你上个项目，并且说一下你上个项目用到了哪些技术点</h2><p>很多人会觉得上个项目没什么可说的，用的技术都是比较大众，如果是这样的话，你就需要对上个项目梳理。我一开始也觉得我们上个项目没什么说的，梳理以后发现有很多自己没有意识到的技术点。</p>
+<h2 id="你还有什么要问我的吗"><a href="#你还有什么要问我的吗" class="headerlink" title="你还有什么要问我的吗"></a>你还有什么要问我的吗</h2><p>可以问下团队成员情况<br>项目组的技术栈<br>项目是新开发还是迭代</p>
+<h2 id="浏览器-html-css面试题"><a href="#浏览器-html-css面试题" class="headerlink" title="浏览器/html/css面试题"></a>浏览器/html/css面试题</h2><p>1.什么是盒模型</p>
+<p>2.行内元素有哪些？块级元素有哪些？ 空(void)元素有那些？行内元素和块级元素有什么区别？</p>
+<p>3.简述src和href的区别</p>
+<p>4.什么是css Hack</p>
+<p>5.什么叫优雅降级和渐进增强</p>
+<p>6.px和em的区别</p>
+<p>7.HTML5 为什么只写</p>
+<p>8.Http的状态码有哪些</p>
+<p>9.一次完整的HTTP事务是怎么一个过程</p>
+<p>10.HTTPS是如何实现加密</p>
+<p>11.浏览器是如何渲染页面的</p>
+<p>12.浏览器的内核有哪些？分别有什么代表的浏览器</p>
+<p>13.页面导入时，使用link和@import有什么区别</p>
+<p>14.如何优化图像，图像格式的区别</p>
+<p>15.列举你了解Html5. Css3 新特性</p>
+<p>16.可以通过哪些方法优化css3 animation渲染</p>
+<p>17.列举几个前端性能方面的优化</p>
+<p>18.如何实现同一个浏览器多个标签页之间的通信</p>
+<p>19.浏览器的存储技术有哪些</p>
+<p>20.css定位方式</p>
+<p>21.尽可能多的写出浏览器兼容性问题</p>
+<p>22.垂直上下居中的方法</p>
+<p>23.响应式布局原理</p>
+<p>25.清除浮动的方法</p>
+<p>26.http协议和tcp协议</p>
+<p>27.刷新页面，js请求一般会有哪些地方有缓存处理</p>
+<p>28.如何对网站的文件和资源进行优化</p>
+<p>29.你对网页标准和W3C重要性的理解</p>
+<p>30.Http和https的区别</p>
+<p>31.data-属性的作用</p>
+<p>32.如何让Chrome浏览器显示小于12px的文字</p>
+<p>33.哪些操作会引起页面回流（Reflow）</p>
+<p>34.CSS预处理器的比较less sass</p>
+<p>35.如何实现页面每次打开时清除本页缓存</p>
+<p>36.什么是Virtual DOM,为何要用Virtual DOM</p>
+<p>37.伪元素和伪类的区别</p>
+<p>38.http的几种请求方法和区别</p>
+<p>39.前端需要注意哪些SEO</p>
+<p>40.的title和alt有什么区别</p>
+<p>41.从浏览器地址栏输入url到显示页面的步骤</p>
+<p>42.如何进行网站性能优化</p>
+<p>43.语义化的理解</p>
+<p>44.HTML5的离线储存怎么使用，工作原理能不能解释一下？</p>
+<p>45.浏览器是怎么对HTML5的离线储存资源进行管理和加载的呢</p>
+<p>46.iframe有那些缺点？</p>
+<p>47.WEB标准以及W3C标准是什么?</p>
+<p>48.Doctype作用? 严格模式与混杂模式如何区分？它们有何意义?</p>
+<p>49.HTML全局属性(global attribute)有哪些</p>
+<p>50.Canvas和SVG有什么区别？</p>
+<p>51.如何在页面上实现一个圆形的可点击区域？</p>
+<p>52.网页验证码是干嘛的，是为了解决什么安全问题</p>
+<p>53.请描述一下 cookies，sessionStorage 和 localStorage 的区别？</p>
+<p>54.CSS选择器有哪些？哪些属性可以继承？</p>
+<p>55.CSS优先级算法如何计算？</p>
+<p>56.CSS3有哪些新特性？</p>
+<p>57.请解释一下CSS3的flexbox（弹性盒布局模型）,以及适用场景？</p>
+<p>58.用纯CSS创建一个三角形的原理是什么？</p>
+<p>59.常见的兼容性问题？</p>
+<p>60.为什么要初始化CSS样式</p>
+<p>61.absolute的containing block计算方式跟正常流有什么不同？</p>
+<p>62.CSS里的visibility属性有个collapse属性值？在不同浏览器下以后什么区别？</p>
+<p>63.display:none与visibility：hidden的区别？</p>
+<p>64.position跟display、overflow、float这些特性相互叠加后会怎么样？</p>
+<p>65.对BFC规范(块级格式化上下文：block formatting context)的理解？</p>
+<p>66.为什么会出现浮动和什么时候需要清除浮动？清除浮动的方式？</p>
+<p>67.上下margin重合的问题</p>
+<p>68.设置元素浮动后，该元素的display值是多少？</p>
+<p>69.移动端的布局用过媒体查询吗？</p>
+<p>70.CSS优化、提高性能的方法有哪些？</p>
+<p>71.浏览器是怎样解析CSS选择器的？</p>
+<p>72.在网页中的应该使用奇数还是偶数的字体？为什么呢？</p>
+<p>73.margin和padding分别适合什么场景使用？</p>
+<p>74.元素竖向的百分比设定是相对于容器的高度吗？</p>
+<p>75.全屏滚动的原理是什么？用到了CSS的哪些属性？</p>
+<p>76.什么是响应式设计？响应式设计的基本原理是什么？如何兼容低版本的IE？</p>
+<p>77.视差滚动效果？</p>
+<p>78.::before 和 :after中双冒号和单冒号有什么区别？解释一下这2个伪元素的作用</p>
+<p>79.让页面里的字体变清晰，变细用CSS怎么做？</p>
+<p>80.position:fixed;在android下无效怎么处理？</p>
+<p>81.如果需要手动写动画，你认为最小时间间隔是多久，为什么？</p>
+<p>82.li与li之间有看不见的空白间隔是什么原因引起的？有什么解决办法？</p>
+<p>83.display:inline-block 什么时候会显示间隙？</p>
+<p>84.有一个高度自适应的div，里面有两个div，一个高度100px，希望另一个填满剩下的高度</p>
+<p>85.png、jpg、gif 这些图片格式解释一下，分别什么时候用。有没有了解过webp？</p>
+<p>86.style标签写在body后与body前有什么区别？</p>
+<p>87.CSS属性overflow属性定义溢出元素内容区的内容会如何处理?</p>
+<p>88.阐述一下CSS Sprites</p>
+<h2 id="移动端热点问题"><a href="#移动端热点问题" class="headerlink" title="移动端热点问题"></a>移动端热点问题</h2><p>px border问题<br>2.2X图 3X图适配<br>3.图片在安卓上，有些设备模糊问题<br>4.固定定位布局 键盘挡住输入框内容<br>5.click的300ms延迟问题和点击穿透问题<br>6.phone及ipad下输入框默认内阴影<br>7.防止手机中页面放大和缩小<br>8.flex布局<br>9.px、em、rem、%、vw、vh、vm这些单位的区别<br>10.移动端适配- dpr浅析<br>11.移动端扩展点击区域<br>12 上下拉动滚动条时卡顿、慢<br>13 长时间按住页面出现闪退<br>14.ios和android下触摸元素时出现半透明灰色遮罩<br>15.active兼容处理 即 伪类：active失效<br>16.webkit mask兼容处理<br>17.pc端与移动端字体大小的问题<br>18.transiton闪屏<br>19.圆角bug<br>20.如何解决禁用表单后移动端样式不统一问题 ?</p>
+
+      
+    </div>
+
+
+    <footer class="article-footer">
+      <a data-url="http://yqzyanp.cn/2021/02/04/web-%E9%9D%A2%E8%AF%95%E9%A2%98/" data-id="ckll024m100dsckpz6vjl2643" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/trouble/" rel="tag">trouble</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/02/24/npm-%E5%B8%B8%E7%94%A8%E5%8C%85/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          npm 常用包
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/01/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%98%E5%82%A8%E5%8D%95%E4%BD%8D/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">计算机存储单位</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        <!-- sidebar start -->
+        
+          <aside id="sidebar">
+
+
+  <!-- 标签云 -->
+  
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云<!--888--></h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android/" style="font-size: 13.64px;">Android</a> <a href="/tags/CSS-CSS3/" style="font-size: 17.27px;">CSS/CSS3</a> <a href="/tags/ESLint/" style="font-size: 10px;">ESLint</a> <a href="/tags/English/" style="font-size: 10px;">English</a> <a href="/tags/FastClick/" style="font-size: 10px;">FastClick</a> <a href="/tags/HTML-HTML5/" style="font-size: 14.55px;">HTML/HTML5</a> <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/JavaScript%E5%BA%93/" style="font-size: 10px;">JavaScript库</a> <a href="/tags/JavaScript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BC%80%E5%8F%91%E5%AE%9E%E8%B7%B5/" style="font-size: 10px;">JavaScript设计模式与开发实践</a> <a href="/tags/Lodash/" style="font-size: 11.82px;">Lodash</a> <a href="/tags/MySQL/" style="font-size: 14.55px;">MySQL</a> <a href="/tags/PMP/" style="font-size: 10px;">PMP</a> <a href="/tags/RegExp/" style="font-size: 10px;">RegExp</a> <a href="/tags/SSH/" style="font-size: 10px;">SSH</a> <a href="/tags/STS4/" style="font-size: 10px;">STS4</a> <a href="/tags/SecureCRT/" style="font-size: 10px;">SecureCRT</a> <a href="/tags/VSCode/" style="font-size: 12.73px;">VSCode</a> <a href="/tags/Vim/" style="font-size: 10px;">Vim</a> <a href="/tags/Vue/" style="font-size: 12.73px;">Vue</a> <a href="/tags/Vue-Router/" style="font-size: 10px;">Vue Router</a> <a href="/tags/Vuex/" style="font-size: 10px;">Vuex</a> <a href="/tags/Xshell/" style="font-size: 10px;">Xshell</a> <a href="/tags/adb/" style="font-size: 10px;">adb</a> <a href="/tags/bat/" style="font-size: 10px;">bat</a> <a href="/tags/git/" style="font-size: 11.82px;">git</a> <a href="/tags/gulp/" style="font-size: 10.91px;">gulp</a> <a href="/tags/hexo/" style="font-size: 11.82px;">hexo</a> <a href="/tags/jQuery/" style="font-size: 18.18px;">jQuery</a> <a href="/tags/less/" style="font-size: 10.91px;">less</a> <a href="/tags/mac/" style="font-size: 10px;">mac</a> <a href="/tags/markdown/" style="font-size: 10.91px;">markdown</a> <a href="/tags/moment-js/" style="font-size: 10px;">moment.js</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/node/" style="font-size: 19.09px;">node</a> <a href="/tags/npm/" style="font-size: 12.73px;">npm</a> <a href="/tags/npx/" style="font-size: 10px;">npx</a> <a href="/tags/nvm/" style="font-size: 10px;">nvm</a> <a href="/tags/plan-aim/" style="font-size: 13.64px;">plan-aim</a> <a href="/tags/stylus/" style="font-size: 10.91px;">stylus</a> <a href="/tags/to-do/" style="font-size: 15.45px;">to-do</a> <a href="/tags/trouble/" style="font-size: 16.36px;">trouble</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/win10/" style="font-size: 10px;">win10</a> <a href="/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8ECS/" style="font-size: 10px;">云服务器ECS</a> <a href="/tags/%E5%85%B6%E4%BB%96/" style="font-size: 10px;">其他</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 11.82px;">前端</a> <a href="/tags/%E5%8D%95%E4%BD%8D/" style="font-size: 10px;">单位</a> <a href="/tags/%E5%B8%B8%E8%AF%86/" style="font-size: 10.91px;">常识</a> <a href="/tags/%E5%BF%AB%E6%8D%B7%E9%94%AE/" style="font-size: 10px;">快捷键</a> <a href="/tags/%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/" style="font-size: 10px;">思维导图</a> <a href="/tags/%E6%82%9F/" style="font-size: 10px;">悟</a> <a href="/tags/%E6%96%AD%E8%A8%80%E5%BA%93/" style="font-size: 10px;">断言库</a> <a href="/tags/%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8E/" style="font-size: 10px;">模板引擎</a> <a href="/tags/%E6%AF%92%E9%B8%A1%E6%B1%A4/" style="font-size: 10px;">毒鸡汤</a> <a href="/tags/%E6%B5%8B%E8%AF%95/" style="font-size: 10px;">测试</a> <a href="/tags/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/" style="font-size: 11.82px;">版本控制</a> <a href="/tags/%E7%AC%94%E8%AE%B0/" style="font-size: 10.91px;">笔记</a> <a href="/tags/%E8%8B%B1%E8%AF%AD/" style="font-size: 10px;">英语</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E5%8D%8F%E8%AE%AE/" style="font-size: 10px;">软件协议</a>
+    </div>
+  </div>
+
+
+   <!-- 标签 -->
+   
+   
+
+  <!-- 分类 -->
+  
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类<!--666--></h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/English/">English</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/English/Android/">Android</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/English/JavaScript/">JavaScript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/English/JavaScript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BC%80%E5%8F%91%E5%AE%9E%E8%B7%B5/">JavaScript设计模式与开发实践</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/English/vue/">vue</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/English/%E5%9F%BA%E7%A1%80/">基础</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B9%A6%E7%B1%8D/">书籍</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B9%A6%E7%B1%8D/JavaScript%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97/">JavaScript权威指南</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B9%A6%E7%B1%8D/JavaScript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BC%80%E5%8F%91%E5%AE%9E%E8%B7%B5/">JavaScript设计模式与开发实践</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%85%B6%E4%BB%96/">其他</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%85%B6%E4%BB%96/mac/">mac</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%85%B6%E4%BB%96/nginx/">nginx</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%85%B6%E4%BB%96/win10/">win10</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%85%B6%E4%BB%96/%E5%8D%95%E4%BD%8D/">单位</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%85%B6%E4%BB%96/%E8%BD%AF%E4%BB%B6%E5%8D%8F%E8%AE%AE/">软件协议</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/CSS-CSS3/">CSS/CSS3</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/CSS-CSS3/less/">less</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/CSS-CSS3/stylus/">stylus</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/HTML-HTML5/">HTML/HTML5</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/JavaScript/">JavaScript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/JavaScript%E5%BA%93/">JavaScript库</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/JavaScript%E5%BA%93/FastClick/">FastClick</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/JavaScript%E5%BA%93/Lodash/">Lodash</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/JavaScript%E5%BA%93/jQuery/">jQuery</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/JavaScript%E5%BA%93/moment-js/">moment.js</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/%E6%AD%A3%E5%88%99/">正则</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AE%A2%E6%88%B7%E7%AB%AF/">客户端</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AE%A2%E6%88%B7%E7%AB%AF/%E5%AE%89%E5%8D%93/">安卓</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/SSH/">SSH</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/SSH/SecureCRT/">SecureCRT</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/STS4/">STS4</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/VSCode/">VSCode</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/Vim/">Vim</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/Xshell/">Xshell</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/bat/">bat</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/git/">git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/gulp/">gulp</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/markdown/">markdown</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/npm/">npm</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/npx/">npx</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/nvm/">nvm</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%91%98%E5%BD%95/">摘录</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%91%98%E5%BD%95/%E5%B8%B8%E8%AF%86/">常识</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%91%98%E5%BD%95/%E6%82%9F/">悟</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%91%98%E5%BD%95/%E6%AF%92%E9%B8%A1%E6%B1%A4/">毒鸡汤</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/">MySQL</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/mysql/">mysql</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9C%8D%E5%8A%A1%E7%AB%AF/">服务端</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9C%8D%E5%8A%A1%E7%AB%AF/node/">node</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%A1%86%E6%9E%B6/">框架</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%A1%86%E6%9E%B6/Vue/">Vue</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%A1%86%E6%9E%B6/Vue/Vue-Router/">Vue Router</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%A1%86%E6%9E%B6/Vue/Vuex/">Vuex</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%A1%86%E6%9E%B6/%E5%8D%9A%E5%AE%A2%E6%A1%86%E6%9E%B6/">博客框架</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B6%A8%E5%A7%BF%E5%8A%BF/">涨姿势</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B6%A8%E5%A7%BF%E5%8A%BF/PMP/">PMP</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/">面试题</a></li></ul>
+    </div>
+  </div>
+
+
+
+ 
+
+
+  <!-- 归挡 -->
+  
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档<!--555--></h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">二月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">七月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/07/">七月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02/">二月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">十二月 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">七月 2012</a></li></ul>
+    </div>
+  </div>
+
+
+
+  
+
+
+
+ 
+  
+
+    
+
+
+    
+      
+    
+    
+  
+
+    
+
+
+    
+      
+    
+    
+  
+
+    
+
+
+    
+      
+    
+    
+  
+
+    
+
+
+    
+      
+    
+    
+  
+</aside>
+        
+        <!-- sidebar end -->
+
+      </div>
+      <div id="scrollTop0">
+  顶
+</div>
+<style>
+  #scrollTop0{
+    width: 50px;
+    height: 50px;
+    position: fixed;
+    right: 15px;
+    bottom: 15px;
+    border: 1px solid #ededed;
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ccc;
+  }
+</style>
+
+<footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 ah<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  <!-- menu 菜单 -->
+  
+    <a class="mobile-nav-link" href="/">首页</a>
+  
+    <a class="mobile-nav-link" href="/archives">档案</a>
+  
+    <a class="mobile-nav-link" href="/about">关于</a>
+  
+
+  <!-- tags 标签 -->
+  
+    <a class="mobile-nav-link" href="/tags/to-do">待办事项</a>    
+  
+    <a class="mobile-nav-link" href="/tags/plan-aim">计划-目标</a>    
+  
+    <a class="mobile-nav-link" href="/tags/trouble">问题</a>    
+  
+
+  <!-- 类别 _config.yml & header.ejs -->
+  
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类<!--666--></h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/English/">English</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/English/Android/">Android</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/English/JavaScript/">JavaScript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/English/JavaScript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BC%80%E5%8F%91%E5%AE%9E%E8%B7%B5/">JavaScript设计模式与开发实践</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/English/vue/">vue</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/English/%E5%9F%BA%E7%A1%80/">基础</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B9%A6%E7%B1%8D/">书籍</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B9%A6%E7%B1%8D/JavaScript%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97/">JavaScript权威指南</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B9%A6%E7%B1%8D/JavaScript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BC%80%E5%8F%91%E5%AE%9E%E8%B7%B5/">JavaScript设计模式与开发实践</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%85%B6%E4%BB%96/">其他</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%85%B6%E4%BB%96/mac/">mac</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%85%B6%E4%BB%96/nginx/">nginx</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%85%B6%E4%BB%96/win10/">win10</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%85%B6%E4%BB%96/%E5%8D%95%E4%BD%8D/">单位</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%85%B6%E4%BB%96/%E8%BD%AF%E4%BB%B6%E5%8D%8F%E8%AE%AE/">软件协议</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/CSS-CSS3/">CSS/CSS3</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/CSS-CSS3/less/">less</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/CSS-CSS3/stylus/">stylus</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/HTML-HTML5/">HTML/HTML5</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/JavaScript/">JavaScript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/JavaScript%E5%BA%93/">JavaScript库</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/JavaScript%E5%BA%93/FastClick/">FastClick</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/JavaScript%E5%BA%93/Lodash/">Lodash</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/JavaScript%E5%BA%93/jQuery/">jQuery</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/JavaScript%E5%BA%93/moment-js/">moment.js</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/%E6%AD%A3%E5%88%99/">正则</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AE%A2%E6%88%B7%E7%AB%AF/">客户端</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AE%A2%E6%88%B7%E7%AB%AF/%E5%AE%89%E5%8D%93/">安卓</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/SSH/">SSH</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/SSH/SecureCRT/">SecureCRT</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/STS4/">STS4</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/VSCode/">VSCode</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/Vim/">Vim</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/Xshell/">Xshell</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/bat/">bat</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/git/">git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/gulp/">gulp</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/markdown/">markdown</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/npm/">npm</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/npx/">npx</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/nvm/">nvm</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%91%98%E5%BD%95/">摘录</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%91%98%E5%BD%95/%E5%B8%B8%E8%AF%86/">常识</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%91%98%E5%BD%95/%E6%82%9F/">悟</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%91%98%E5%BD%95/%E6%AF%92%E9%B8%A1%E6%B1%A4/">毒鸡汤</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/">MySQL</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/mysql/">mysql</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9C%8D%E5%8A%A1%E7%AB%AF/">服务端</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9C%8D%E5%8A%A1%E7%AB%AF/node/">node</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%A1%86%E6%9E%B6/">框架</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%A1%86%E6%9E%B6/Vue/">Vue</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%A1%86%E6%9E%B6/Vue/Vue-Router/">Vue Router</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%A1%86%E6%9E%B6/Vue/Vuex/">Vuex</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%A1%86%E6%9E%B6/%E5%8D%9A%E5%AE%A2%E6%A1%86%E6%9E%B6/">博客框架</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B6%A8%E5%A7%BF%E5%8A%BF/">涨姿势</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B6%A8%E5%A7%BF%E5%8A%BF/PMP/">PMP</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/">面试题</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云<!--888--></h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android/" style="font-size: 13.64px;">Android</a> <a href="/tags/CSS-CSS3/" style="font-size: 17.27px;">CSS/CSS3</a> <a href="/tags/ESLint/" style="font-size: 10px;">ESLint</a> <a href="/tags/English/" style="font-size: 10px;">English</a> <a href="/tags/FastClick/" style="font-size: 10px;">FastClick</a> <a href="/tags/HTML-HTML5/" style="font-size: 14.55px;">HTML/HTML5</a> <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/JavaScript%E5%BA%93/" style="font-size: 10px;">JavaScript库</a> <a href="/tags/JavaScript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BC%80%E5%8F%91%E5%AE%9E%E8%B7%B5/" style="font-size: 10px;">JavaScript设计模式与开发实践</a> <a href="/tags/Lodash/" style="font-size: 11.82px;">Lodash</a> <a href="/tags/MySQL/" style="font-size: 14.55px;">MySQL</a> <a href="/tags/PMP/" style="font-size: 10px;">PMP</a> <a href="/tags/RegExp/" style="font-size: 10px;">RegExp</a> <a href="/tags/SSH/" style="font-size: 10px;">SSH</a> <a href="/tags/STS4/" style="font-size: 10px;">STS4</a> <a href="/tags/SecureCRT/" style="font-size: 10px;">SecureCRT</a> <a href="/tags/VSCode/" style="font-size: 12.73px;">VSCode</a> <a href="/tags/Vim/" style="font-size: 10px;">Vim</a> <a href="/tags/Vue/" style="font-size: 12.73px;">Vue</a> <a href="/tags/Vue-Router/" style="font-size: 10px;">Vue Router</a> <a href="/tags/Vuex/" style="font-size: 10px;">Vuex</a> <a href="/tags/Xshell/" style="font-size: 10px;">Xshell</a> <a href="/tags/adb/" style="font-size: 10px;">adb</a> <a href="/tags/bat/" style="font-size: 10px;">bat</a> <a href="/tags/git/" style="font-size: 11.82px;">git</a> <a href="/tags/gulp/" style="font-size: 10.91px;">gulp</a> <a href="/tags/hexo/" style="font-size: 11.82px;">hexo</a> <a href="/tags/jQuery/" style="font-size: 18.18px;">jQuery</a> <a href="/tags/less/" style="font-size: 10.91px;">less</a> <a href="/tags/mac/" style="font-size: 10px;">mac</a> <a href="/tags/markdown/" style="font-size: 10.91px;">markdown</a> <a href="/tags/moment-js/" style="font-size: 10px;">moment.js</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/node/" style="font-size: 19.09px;">node</a> <a href="/tags/npm/" style="font-size: 12.73px;">npm</a> <a href="/tags/npx/" style="font-size: 10px;">npx</a> <a href="/tags/nvm/" style="font-size: 10px;">nvm</a> <a href="/tags/plan-aim/" style="font-size: 13.64px;">plan-aim</a> <a href="/tags/stylus/" style="font-size: 10.91px;">stylus</a> <a href="/tags/to-do/" style="font-size: 15.45px;">to-do</a> <a href="/tags/trouble/" style="font-size: 16.36px;">trouble</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/win10/" style="font-size: 10px;">win10</a> <a href="/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8ECS/" style="font-size: 10px;">云服务器ECS</a> <a href="/tags/%E5%85%B6%E4%BB%96/" style="font-size: 10px;">其他</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 11.82px;">前端</a> <a href="/tags/%E5%8D%95%E4%BD%8D/" style="font-size: 10px;">单位</a> <a href="/tags/%E5%B8%B8%E8%AF%86/" style="font-size: 10.91px;">常识</a> <a href="/tags/%E5%BF%AB%E6%8D%B7%E9%94%AE/" style="font-size: 10px;">快捷键</a> <a href="/tags/%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/" style="font-size: 10px;">思维导图</a> <a href="/tags/%E6%82%9F/" style="font-size: 10px;">悟</a> <a href="/tags/%E6%96%AD%E8%A8%80%E5%BA%93/" style="font-size: 10px;">断言库</a> <a href="/tags/%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8E/" style="font-size: 10px;">模板引擎</a> <a href="/tags/%E6%AF%92%E9%B8%A1%E6%B1%A4/" style="font-size: 10px;">毒鸡汤</a> <a href="/tags/%E6%B5%8B%E8%AF%95/" style="font-size: 10px;">测试</a> <a href="/tags/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/" style="font-size: 11.82px;">版本控制</a> <a href="/tags/%E7%AC%94%E8%AE%B0/" style="font-size: 10.91px;">笔记</a> <a href="/tags/%E8%8B%B1%E8%AF%AD/" style="font-size: 10px;">英语</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E5%8D%8F%E8%AE%AE/" style="font-size: 10px;">软件协议</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档<!--555--></h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">二月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">七月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/07/">七月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02/">二月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">十二月 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">七月 2012</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/" rel="tag">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS-CSS3/" rel="tag">CSS/CSS3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ESLint/" rel="tag">ESLint</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/English/" rel="tag">English</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FastClick/" rel="tag">FastClick</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML-HTML5/" rel="tag">HTML/HTML5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript%E5%BA%93/" rel="tag">JavaScript库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BC%80%E5%8F%91%E5%AE%9E%E8%B7%B5/" rel="tag">JavaScript设计模式与开发实践</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lodash/" rel="tag">Lodash</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/" rel="tag">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PMP/" rel="tag">PMP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RegExp/" rel="tag">RegExp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSH/" rel="tag">SSH</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/STS4/" rel="tag">STS4</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SecureCRT/" rel="tag">SecureCRT</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VSCode/" rel="tag">VSCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vim/" rel="tag">Vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue-Router/" rel="tag">Vue Router</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vuex/" rel="tag">Vuex</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Xshell/" rel="tag">Xshell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/adb/" rel="tag">adb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bat/" rel="tag">bat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gulp/" rel="tag">gulp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/" rel="tag">jQuery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/less/" rel="tag">less</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mac/" rel="tag">mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/" rel="tag">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/moment-js/" rel="tag">moment.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/" rel="tag">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/" rel="tag">node</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm/" rel="tag">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npx/" rel="tag">npx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nvm/" rel="tag">nvm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/plan-aim/" rel="tag">plan-aim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/stylus/" rel="tag">stylus</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/to-do/" rel="tag">to-do</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/trouble/" rel="tag">trouble</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/" rel="tag">vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/win10/" rel="tag">win10</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8ECS/" rel="tag">云服务器ECS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%85%B6%E4%BB%96/" rel="tag">其他</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8D%95%E4%BD%8D/" rel="tag">单位</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B8%B8%E8%AF%86/" rel="tag">常识</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BF%AB%E6%8D%B7%E9%94%AE/" rel="tag">快捷键</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/" rel="tag">思维导图</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%82%9F/" rel="tag">悟</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%AD%E8%A8%80%E5%BA%93/" rel="tag">断言库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8E/" rel="tag">模板引擎</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%AF%92%E9%B8%A1%E6%B1%A4/" rel="tag">毒鸡汤</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B5%8B%E8%AF%95/" rel="tag">测试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/" rel="tag">版本控制</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%8B%B1%E8%AF%AD/" rel="tag">英语</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6%E5%8D%8F%E8%AE%AE/" rel="tag">软件协议</a></li></ul>
+    </div>
+  </div>
+
+
+  
+</nav>
+    
+
+
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+
+<script src="/js/playAudio.js"></script>
+
+
+
+
+
+
+<script src="/js/CryptoJS-core.js"></script>
+
+
+<script src="/js/CryptoJS-sha256.js"></script>
+
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
