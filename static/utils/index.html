@@ -1,0 +1,126 @@
+
+
+  <!DOCTYPE html>
+  <html lang="en" id="app">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title2}}</title>
+    
+<script src="/js/es6-promise@4/es6-promise.auto.min.js"></script>
+
+    
+<script src="/js/vue@2.6.12/vue.min.js"></script>
+
+    
+<script src="/js/vuex@3.6.2/vuex.min.js"></script>
+
+    
+<script src="/js/vue-router@3.5.1/vue-router.min.js"></script>
+
+    <script>
+      var store = new Vuex.Store({
+        // 单一状态树
+        state: {
+          count: 0,
+          title: "首页"
+        },
+        mutations: {
+          increment (state) {
+            state.count++
+          }
+        },
+        actions: {
+          increment (context) {
+            context.commit('increment')
+          }
+        }
+      });
+    
+      var staticApp = new Vue({
+        el: '#app',
+        data:{
+          title2:""
+        },
+        watch: {
+          title2:function (val, oldVal) {
+            console.log('new: %s, old: %s', val, oldVal);
+            document.title = val;
+          },
+        },
+        store: store,
+        created: function () {
+          this.title2 = "测试ok";
+          console.log("okok==1");
+        },
+        mounted: function () {
+          // console.log("okok==1");
+        }
+      });
+    </script>
+  <meta name="generator" content="Hexo 4.2.0"></head>
+  <body>
+    <div id="encodeWrap">
+  <h4>encodeURI()、decodeURI()编码与解码</h4>
+
+  <textarea cols="30" rows="10" v-model="encodeWrapData.encodeURIData"></textarea>
+  <div style="word-break: break-all;" v-text="encodeWrapData.encodeURIData_result"></div>
+  
+  <textarea cols="30" rows="10" v-model="encodeWrapData.decodeURIData"></textarea>
+  <div style="word-break: break-all;" v-text="encodeWrapData.decodeURIData_result"></div>
+  
+  <hr>
+  
+  <h4>encodeURIComponent() 、 decodeURIComponent() 编码与解码</h4>
+  
+  <textarea cols="30" rows="10" v-model="encodeWrapData.encodeURIComponent"></textarea>
+  <div style="word-break: break-all;" v-text="encodeWrapData.encodeURIComponent_result"></div>
+
+  <textarea cols="30" rows="10" v-model="encodeWrapData.decodeURIComponent"></textarea>
+  <div style="word-break: break-all;" v-text="encodeWrapData.decodeURIComponent_result"></div>
+
+</div>
+
+<script>
+  new Vue({
+    el: '#encodeWrap',
+    data: {
+      encodeWrapData:{}
+    },
+    watch: {
+      // encodeURI 编码
+      "encodeWrapData.encodeURIData":function (val, oldVal) {
+        this.encodeWrapData.encodeURIData_result = encodeURI(val);
+      },
+      // decodeURI 解码
+      "encodeWrapData.decodeURIData":function (val, oldVal) {
+        this.encodeWrapData.decodeURIData_result = decodeURI(val);
+      },
+
+      // encodeURIComponent 编码
+      "encodeWrapData.encodeURIComponent":function (val, oldVal) {
+        this.encodeWrapData.encodeURIComponent_result = encodeURI(val);
+      },
+      // decodeURI 解码
+      "encodeWrapData.decodeURIComponent":function (val, oldVal) {
+        this.encodeWrapData.decodeURIComponent_result = decodeURIComponent(val);
+      },
+
+
+    },
+    created: function () {
+      staticApp.title2 = "encodeURI()、decodeURI()、encodeURIComponent() 、 decodeURIComponent()编码与解码";
+    },
+    mounted: function () {
+      console.log("okok==2");
+    }
+  })
+</script>
+    
+  </body>
+  </html>
+
+  <div style="display: none;">{&#34;_content&#34;:&#34;&lt;div id=\&#34;encodeWrap\&#34;&gt;\n  &lt;h4&gt;encodeURI()、decodeURI()编码与解码&lt;/h4&gt;\n\n  &lt;textarea cols=\&#34;30\&#34; rows=\&#34;10\&#34; v-model=\&#34;encodeWrapData.encodeURIData\&#34;&gt;&lt;/textarea&gt;\n  &lt;div style=\&#34;word-break: break-all;\&#34; v-text=\&#34;encodeWrapData.encodeURIData_result\&#34;&gt;&lt;/div&gt;\n  \n  &lt;textarea cols=\&#34;30\&#34; rows=\&#34;10\&#34; v-model=\&#34;encodeWrapData.decodeURIData\&#34;&gt;&lt;/textarea&gt;\n  &lt;div style=\&#34;word-break: break-all;\&#34; v-text=\&#34;encodeWrapData.decodeURIData_result\&#34;&gt;&lt;/div&gt;\n  \n  &lt;hr&gt;\n  \n  &lt;h4&gt;encodeURIComponent() 、 decodeURIComponent() 编码与解码&lt;/h4&gt;\n  \n  &lt;textarea cols=\&#34;30\&#34; rows=\&#34;10\&#34; v-model=\&#34;encodeWrapData.encodeURIComponent\&#34;&gt;&lt;/textarea&gt;\n  &lt;div style=\&#34;word-break: break-all;\&#34; v-text=\&#34;encodeWrapData.encodeURIComponent_result\&#34;&gt;&lt;/div&gt;\n\n  &lt;textarea cols=\&#34;30\&#34; rows=\&#34;10\&#34; v-model=\&#34;encodeWrapData.decodeURIComponent\&#34;&gt;&lt;/textarea&gt;\n  &lt;div style=\&#34;word-break: break-all;\&#34; v-text=\&#34;encodeWrapData.decodeURIComponent_result\&#34;&gt;&lt;/div&gt;\n\n&lt;/div&gt;\n\n&lt;script&gt;\n  new Vue({\n    el: &#39;#encodeWrap&#39;,\n    data: {\n      encodeWrapData:{}\n    },\n    watch: {\n      // encodeURI 编码\n      \&#34;encodeWrapData.encodeURIData\&#34;:function (val, oldVal) {\n        this.encodeWrapData.encodeURIData_result = encodeURI(val);\n      },\n      // decodeURI 解码\n      \&#34;encodeWrapData.decodeURIData\&#34;:function (val, oldVal) {\n        this.encodeWrapData.decodeURIData_result = decodeURI(val);\n      },\n\n      // encodeURIComponent 编码\n      \&#34;encodeWrapData.encodeURIComponent\&#34;:function (val, oldVal) {\n        this.encodeWrapData.encodeURIComponent_result = encodeURI(val);\n      },\n      // decodeURI 解码\n      \&#34;encodeWrapData.decodeURIComponent\&#34;:function (val, oldVal) {\n        this.encodeWrapData.decodeURIComponent_result = decodeURIComponent(val);\n      },\n\n\n    },\n    created: function () {\n      staticApp.title2 = \&#34;encodeURI()、decodeURI()、encodeURIComponent() 、 decodeURIComponent()编码与解码\&#34;;\n    },\n    mounted: function () {\n      console.log(\&#34;okok==2\&#34;);\n    }\n  })\n&lt;/script&gt;&#34;,&#34;source&#34;:&#34;static/utils/index.html&#34;,&#34;raw&#34;:&#34;&lt;div id=\&#34;encodeWrap\&#34;&gt;\n  &lt;h4&gt;encodeURI()、decodeURI()编码与解码&lt;/h4&gt;\n\n  &lt;textarea cols=\&#34;30\&#34; rows=\&#34;10\&#34; v-model=\&#34;encodeWrapData.encodeURIData\&#34;&gt;&lt;/textarea&gt;\n  &lt;div style=\&#34;word-break: break-all;\&#34; v-text=\&#34;encodeWrapData.encodeURIData_result\&#34;&gt;&lt;/div&gt;\n  \n  &lt;textarea cols=\&#34;30\&#34; rows=\&#34;10\&#34; v-model=\&#34;encodeWrapData.decodeURIData\&#34;&gt;&lt;/textarea&gt;\n  &lt;div style=\&#34;word-break: break-all;\&#34; v-text=\&#34;encodeWrapData.decodeURIData_result\&#34;&gt;&lt;/div&gt;\n  \n  &lt;hr&gt;\n  \n  &lt;h4&gt;encodeURIComponent() 、 decodeURIComponent() 编码与解码&lt;/h4&gt;\n  \n  &lt;textarea cols=\&#34;30\&#34; rows=\&#34;10\&#34; v-model=\&#34;encodeWrapData.encodeURIComponent\&#34;&gt;&lt;/textarea&gt;\n  &lt;div style=\&#34;word-break: break-all;\&#34; v-text=\&#34;encodeWrapData.encodeURIComponent_result\&#34;&gt;&lt;/div&gt;\n\n  &lt;textarea cols=\&#34;30\&#34; rows=\&#34;10\&#34; v-model=\&#34;encodeWrapData.decodeURIComponent\&#34;&gt;&lt;/textarea&gt;\n  &lt;div style=\&#34;word-break: break-all;\&#34; v-text=\&#34;encodeWrapData.decodeURIComponent_result\&#34;&gt;&lt;/div&gt;\n\n&lt;/div&gt;\n\n&lt;script&gt;\n  new Vue({\n    el: &#39;#encodeWrap&#39;,\n    data: {\n      encodeWrapData:{}\n    },\n    watch: {\n      // encodeURI 编码\n      \&#34;encodeWrapData.encodeURIData\&#34;:function (val, oldVal) {\n        this.encodeWrapData.encodeURIData_result = encodeURI(val);\n      },\n      // decodeURI 解码\n      \&#34;encodeWrapData.decodeURIData\&#34;:function (val, oldVal) {\n        this.encodeWrapData.decodeURIData_result = decodeURI(val);\n      },\n\n      // encodeURIComponent 编码\n      \&#34;encodeWrapData.encodeURIComponent\&#34;:function (val, oldVal) {\n        this.encodeWrapData.encodeURIComponent_result = encodeURI(val);\n      },\n      // decodeURI 解码\n      \&#34;encodeWrapData.decodeURIComponent\&#34;:function (val, oldVal) {\n        this.encodeWrapData.decodeURIComponent_result = decodeURIComponent(val);\n      },\n\n\n    },\n    created: function () {\n      staticApp.title2 = \&#34;encodeURI()、decodeURI()、encodeURIComponent() 、 decodeURIComponent()编码与解码\&#34;;\n    },\n    mounted: function () {\n      console.log(\&#34;okok==2\&#34;);\n    }\n  })\n&lt;/script&gt;&#34;,&#34;date&#34;:&#34;2021-03-08T11:37:16.055Z&#34;,&#34;updated&#34;:&#34;2021-03-08T11:37:16.055Z&#34;,&#34;path&#34;:&#34;static/utils/index.html&#34;,&#34;title&#34;:&#34;&#34;,&#34;comments&#34;:true,&#34;layout&#34;:&#34;page&#34;,&#34;_id&#34;:&#34;ckmf0acy300urs4pzb3ee4i9o&#34;,&#34;content&#34;:&#34;&lt;div id=\&#34;encodeWrap\&#34;&gt;\n  &lt;h4&gt;encodeURI()、decodeURI()编码与解码&lt;/h4&gt;\n\n  &lt;textarea cols=\&#34;30\&#34; rows=\&#34;10\&#34; v-model=\&#34;encodeWrapData.encodeURIData\&#34;&gt;&lt;/textarea&gt;\n  &lt;div style=\&#34;word-break: break-all;\&#34; v-text=\&#34;encodeWrapData.encodeURIData_result\&#34;&gt;&lt;/div&gt;\n  \n  &lt;textarea cols=\&#34;30\&#34; rows=\&#34;10\&#34; v-model=\&#34;encodeWrapData.decodeURIData\&#34;&gt;&lt;/textarea&gt;\n  &lt;div style=\&#34;word-break: break-all;\&#34; v-text=\&#34;encodeWrapData.decodeURIData_result\&#34;&gt;&lt;/div&gt;\n  \n  &lt;hr&gt;\n  \n  &lt;h4&gt;encodeURIComponent() 、 decodeURIComponent() 编码与解码&lt;/h4&gt;\n  \n  &lt;textarea cols=\&#34;30\&#34; rows=\&#34;10\&#34; v-model=\&#34;encodeWrapData.encodeURIComponent\&#34;&gt;&lt;/textarea&gt;\n  &lt;div style=\&#34;word-break: break-all;\&#34; v-text=\&#34;encodeWrapData.encodeURIComponent_result\&#34;&gt;&lt;/div&gt;\n\n  &lt;textarea cols=\&#34;30\&#34; rows=\&#34;10\&#34; v-model=\&#34;encodeWrapData.decodeURIComponent\&#34;&gt;&lt;/textarea&gt;\n  &lt;div style=\&#34;word-break: break-all;\&#34; v-text=\&#34;encodeWrapData.decodeURIComponent_result\&#34;&gt;&lt;/div&gt;\n\n&lt;/div&gt;\n\n&lt;script&gt;\n  new Vue({\n    el: &#39;#encodeWrap&#39;,\n    data: {\n      encodeWrapData:{}\n    },\n    watch: {\n      // encodeURI 编码\n      \&#34;encodeWrapData.encodeURIData\&#34;:function (val, oldVal) {\n        this.encodeWrapData.encodeURIData_result = encodeURI(val);\n      },\n      // decodeURI 解码\n      \&#34;encodeWrapData.decodeURIData\&#34;:function (val, oldVal) {\n        this.encodeWrapData.decodeURIData_result = decodeURI(val);\n      },\n\n      // encodeURIComponent 编码\n      \&#34;encodeWrapData.encodeURIComponent\&#34;:function (val, oldVal) {\n        this.encodeWrapData.encodeURIComponent_result = encodeURI(val);\n      },\n      // decodeURI 解码\n      \&#34;encodeWrapData.decodeURIComponent\&#34;:function (val, oldVal) {\n        this.encodeWrapData.decodeURIComponent_result = decodeURIComponent(val);\n      },\n\n\n    },\n    created: function () {\n      staticApp.title2 = \&#34;encodeURI()、decodeURI()、encodeURIComponent() 、 decodeURIComponent()编码与解码\&#34;;\n    },\n    mounted: function () {\n      console.log(\&#34;okok==2\&#34;);\n    }\n  })\n&lt;/script&gt;&#34;,&#34;site&#34;:{&#34;data&#34;:{}},&#34;excerpt&#34;:&#34;&#34;,&#34;more&#34;:&#34;&lt;div id=\&#34;encodeWrap\&#34;&gt;\n  &lt;h4&gt;encodeURI()、decodeURI()编码与解码&lt;/h4&gt;\n\n  &lt;textarea cols=\&#34;30\&#34; rows=\&#34;10\&#34; v-model=\&#34;encodeWrapData.encodeURIData\&#34;&gt;&lt;/textarea&gt;\n  &lt;div style=\&#34;word-break: break-all;\&#34; v-text=\&#34;encodeWrapData.encodeURIData_result\&#34;&gt;&lt;/div&gt;\n  \n  &lt;textarea cols=\&#34;30\&#34; rows=\&#34;10\&#34; v-model=\&#34;encodeWrapData.decodeURIData\&#34;&gt;&lt;/textarea&gt;\n  &lt;div style=\&#34;word-break: break-all;\&#34; v-text=\&#34;encodeWrapData.decodeURIData_result\&#34;&gt;&lt;/div&gt;\n  \n  &lt;hr&gt;\n  \n  &lt;h4&gt;encodeURIComponent() 、 decodeURIComponent() 编码与解码&lt;/h4&gt;\n  \n  &lt;textarea cols=\&#34;30\&#34; rows=\&#34;10\&#34; v-model=\&#34;encodeWrapData.encodeURIComponent\&#34;&gt;&lt;/textarea&gt;\n  &lt;div style=\&#34;word-break: break-all;\&#34; v-text=\&#34;encodeWrapData.encodeURIComponent_result\&#34;&gt;&lt;/div&gt;\n\n  &lt;textarea cols=\&#34;30\&#34; rows=\&#34;10\&#34; v-model=\&#34;encodeWrapData.decodeURIComponent\&#34;&gt;&lt;/textarea&gt;\n  &lt;div style=\&#34;word-break: break-all;\&#34; v-text=\&#34;encodeWrapData.decodeURIComponent_result\&#34;&gt;&lt;/div&gt;\n\n&lt;/div&gt;\n\n&lt;script&gt;\n  new Vue({\n    el: &#39;#encodeWrap&#39;,\n    data: {\n      encodeWrapData:{}\n    },\n    watch: {\n      // encodeURI 编码\n      \&#34;encodeWrapData.encodeURIData\&#34;:function (val, oldVal) {\n        this.encodeWrapData.encodeURIData_result = encodeURI(val);\n      },\n      // decodeURI 解码\n      \&#34;encodeWrapData.decodeURIData\&#34;:function (val, oldVal) {\n        this.encodeWrapData.decodeURIData_result = decodeURI(val);\n      },\n\n      // encodeURIComponent 编码\n      \&#34;encodeWrapData.encodeURIComponent\&#34;:function (val, oldVal) {\n        this.encodeWrapData.encodeURIComponent_result = encodeURI(val);\n      },\n      // decodeURI 解码\n      \&#34;encodeWrapData.decodeURIComponent\&#34;:function (val, oldVal) {\n        this.encodeWrapData.decodeURIComponent_result = decodeURIComponent(val);\n      },\n\n\n    },\n    created: function () {\n      staticApp.title2 = \&#34;encodeURI()、decodeURI()、encodeURIComponent() 、 decodeURIComponent()编码与解码\&#34;;\n    },\n    mounted: function () {\n      console.log(\&#34;okok==2\&#34;);\n    }\n  })\n&lt;/script&gt;&#34;,&#34;permalink&#34;:&#34;http://yqzyanp.cn/static/utils/index.html&#34;,&#34;full_source&#34;:&#34;E:\\ah-06-王宾项目\\blog\\source\\static\\utils\\index.html&#34;,&#34;__page&#34;:true,&#34;lang&#34;:&#34;zh-CN&#34;,&#34;canonical_path&#34;:&#34;static/utils/index.html&#34;}</div>
+  <div style="display: none;">{&#34;title&#34;:&#34;ah-blog&#34;,&#34;subtitle&#34;:&#34;&#34;,&#34;description&#34;:&#34;&#34;,&#34;author&#34;:&#34;ah&#34;,&#34;language&#34;:&#34;zh-CN&#34;,&#34;timezone&#34;:&#34;&#34;,&#34;url&#34;:&#34;http://yqzyanp.cn&#34;,&#34;root&#34;:&#34;/&#34;,&#34;permalink&#34;:&#34;:year/:month/:day/:title/&#34;,&#34;permalink_defaults&#34;:null,&#34;pretty_urls&#34;:{&#34;trailing_index&#34;:true,&#34;trailing_html&#34;:true},&#34;source_dir&#34;:&#34;source&#34;,&#34;public_dir&#34;:&#34;public&#34;,&#34;tag_dir&#34;:&#34;tags&#34;,&#34;archive_dir&#34;:&#34;archives&#34;,&#34;category_dir&#34;:&#34;categories&#34;,&#34;code_dir&#34;:&#34;downloads/code&#34;,&#34;i18n_dir&#34;:&#34;:lang&#34;,&#34;skip_render&#34;:[&#34;/static&#34;],&#34;new_post_name&#34;:&#34;:title.md&#34;,&#34;default_layout&#34;:&#34;post&#34;,&#34;titlecase&#34;:false,&#34;external_link&#34;:{&#34;enable&#34;:true,&#34;field&#34;:&#34;site&#34;,&#34;exclude&#34;:&#34;&#34;},&#34;filename_case&#34;:0,&#34;render_drafts&#34;:false,&#34;post_asset_folder&#34;:false,&#34;relative_link&#34;:false,&#34;future&#34;:true,&#34;highlight&#34;:{&#34;enable&#34;:true,&#34;auto_detect&#34;:false,&#34;line_number&#34;:true,&#34;tab_replace&#34;:&#34;&#34;,&#34;wrap&#34;:true,&#34;hljs&#34;:false,&#34;first_line_number&#34;:&#34;always1&#34;},&#34;default_category&#34;:&#34;uncategorized&#34;,&#34;category_map&#34;:null,&#34;tag_map&#34;:null,&#34;date_format&#34;:&#34;YYYY-MM-DD&#34;,&#34;time_format&#34;:&#34;HH:mm:ss&#34;,&#34;use_date_for_updated&#34;:false,&#34;per_page&#34;:100,&#34;pagination_dir&#34;:&#34;page&#34;,&#34;theme&#34;:&#34;landscape&#34;,&#34;server&#34;:{&#34;port&#34;:4000,&#34;log&#34;:false,&#34;compress&#34;:false,&#34;header&#34;:true,&#34;cache&#34;:false},&#34;deploy&#34;:{&#34;type&#34;:&#34;git&#34;,&#34;repository&#34;:&#34;git@github.com:wbingithub/wbingithub.github.io.git&#34;,&#34;branch&#34;:&#34;master&#34;},&#34;ignore&#34;:null,&#34;meta_generator&#34;:true,&#34;keywords&#34;:null,&#34;index_generator&#34;:{&#34;per_page&#34;:10,&#34;order_by&#34;:&#34;-date&#34;,&#34;path&#34;:&#34;&#34;},&#34;include&#34;:null,&#34;exclude&#34;:null,&#34;category_generator&#34;:{&#34;per_page&#34;:100},&#34;archive_generator&#34;:{&#34;per_page&#34;:100,&#34;yearly&#34;:true,&#34;monthly&#34;:true,&#34;daily&#34;:false},&#34;tag_generator&#34;:{&#34;per_page&#34;:100},&#34;marked&#34;:{&#34;gfm&#34;:true,&#34;pedantic&#34;:false,&#34;breaks&#34;:true,&#34;smartLists&#34;:true,&#34;smartypants&#34;:true,&#34;modifyAnchors&#34;:&#34;&#34;,&#34;autolink&#34;:true,&#34;sanitizeUrl&#34;:false,&#34;headerIds&#34;:true},&#34;menu&#34;:{&#34;Home&#34;:&#34;/&#34;,&#34;Archives&#34;:&#34;/archives&#34;,&#34;About&#34;:&#34;/about&#34;},&#34;tags&#34;:{&#34;to-do&#34;:&#34;/to-do&#34;,&#34;plan-aim&#34;:&#34;/plan-aim&#34;,&#34;trouble&#34;:&#34;/trouble&#34;},&#34;excerpt_link&#34;:&#34;Read More&#34;,&#34;fancybox&#34;:true,&#34;sidebar&#34;:&#34;right&#34;,&#34;widgets&#34;:[&#34;category&#34;,&#34;tagcloud&#34;,&#34;archive&#34;,&#34;tag&#34;],&#34;index_widgets&#34;:[&#34;archive&#34;],&#34;archive_type&#34;:&#34;monthly&#34;,&#34;show_count&#34;:false,&#34;google_analytics&#34;:null,&#34;gauges_analytics&#34;:null,&#34;favicon&#34;:&#34;/favicon.png&#34;,&#34;twitter&#34;:null,&#34;google_plus&#34;:null,&#34;fb_admins&#34;:null,&#34;fb_app_id&#34;:null}</div>
+  

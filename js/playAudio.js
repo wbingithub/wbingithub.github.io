@@ -53,7 +53,7 @@ try {
 
 //=========== 有道翻译  start =============
 var youdao = function(query,interpret){
-    if( interpret !=='Y' ){
+    if( interpret !=='1' ){
         return;
     }
 var appKey = '34b89a3f7eef20fc';
